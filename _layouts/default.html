@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>{{ page.title }}</title>
+	
+	<link href='http://fonts.googleapis.com/css?family=Inconsolata|Droid+Serif' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/static/css/layout.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="/static/css/blog.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="/static/css/syntax.css" type="text/css" media="screen">
+</head>
+<body>
+	<div class='container_12'>
+		<div class='header'>
+			<div id='big-name' class='grid_7'>
+				Andrew Huynh
+			</div>
+			<div id='my-attrs'>
+				<div id='short_word'>Thoughts</div>
+				<div id='short_word'>and ramblings.</div>
+			</div>
+			<div id='social-icons' class='grid_1'>
+				<div style='margin-bottom:4px;'>
+					<a href='http://www.google.com/recaptcha/mailhide/d?k=01riQqCHs4eJ535QVlNaD-lg==&amp;c=f66OrCHXc7tpnh7rSM6Cob_FBePpVLHtPh0VM6Bg1EA='>
+						<img src='/static/img/email.png'>
+					</a>
+				</div>
+				<div style='margin-bottom:4px;'>
+					<a href='http://twitter.com/a5huynh'>
+						<img src='/static/img/twitter.png'>
+					</a>
+				</div>
+				<div>
+					<a href='http://www.linkedin.com/profile/view?id=30602610'>
+						<img src='/static/img/linkedin.png'>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class='section' style='margin-top:16px;'>
+			<div class='article grid_8'>
+				{{ content }}
+			</div>
+			<div class='grid_4' style='font-size:14pt;color:#666;'>
+				<div style='padding-left:32px;padding-top:16px;'>
+					<div class='post-list-header'><h1>Bloggy Posts</h1></div>
+					{% for post in site.posts limit:10 %}
+					<div class='post-item'>
+						<div class='post-title'><a href="{{ post.url }}">{{ post.title }}</a></div>
+						<div class='caption'>{{ post.date | date_to_string }}</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class='footer container_12'>
+		<div class='grid_12'>
+			<p>An athlabs production. Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a></p>
+		</div>
+	</div>
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+	});
+	</script>	
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
