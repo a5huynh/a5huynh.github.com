@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>_posts/2011-11-23-blog-migration.md</string>
+	<string>_posts/2011-12-23-black-holes.md</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -35,14 +35,58 @@
 			<key>firstVisibleLine</key>
 			<integer>8</integer>
 		</dict>
-		<key>_posts/2011-11-23-blog-migration.md</key>
+		<key>_posts/2011-12-09-blog-migration.md</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>381</integer>
+				<integer>183</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>21</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>_posts/2011-12-16-fav-music-2011.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>190</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>7</integer>
+				<key>line</key>
+				<integer>95</integer>
+			</dict>
+		</dict>
+		<key>_posts/2011-12-23-black-holes.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>41</integer>
+				<key>line</key>
+				<integer>9</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -63,28 +107,14 @@
 			<key>firstVisibleLine</key>
 			<integer>4</integer>
 		</dict>
-		<key>favicon.ci</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>index.html</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>20</integer>
+				<integer>12</integer>
 				<key>line</key>
-				<integer>2</integer>
+				<integer>6</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -98,35 +128,19 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>59</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>1</integer>
-				<key>line</key>
-				<integer>36</integer>
-			</dict>
+			<integer>5</integer>
 		</dict>
 		<key>static/css/layout.css</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>3443</integer>
+				<integer>3205</integer>
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
@@ -139,14 +153,14 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>3433</integer>
+				<integer>3185</integer>
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>3443</integer>
+				<integer>3205</integer>
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
@@ -165,17 +179,33 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>static/js/blackhole.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>3</integer>
+				<key>line</key>
+				<integer>1</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>_layouts/default.html</string>
-		<string>favicon.ci</string>
 		<string>static/css/blog.css</string>
-		<string>_posts/2011-11-23-blog-migration.md</string>
 		<string>static/css/syntax.css</string>
 		<string>_site/index.html</string>
 		<string>static/css/layout.css</string>
 		<string>index.html</string>
+		<string>_posts/2011-12-09-blog-migration.md</string>
+		<string>_posts/2011-12-16-fav-music-2011.md</string>
+		<string>_posts/2011-12-23-black-holes.md</string>
+		<string>static/js/blackhole.js</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<false/>
@@ -189,13 +219,6 @@
 			<true/>
 			<key>subItems</key>
 			<dict>
-				<key>_layouts</key>
-				<dict>
-					<key>isExpanded</key>
-					<true/>
-					<key>subItems</key>
-					<dict/>
-				</dict>
 				<key>_posts</key>
 				<dict>
 					<key>isExpanded</key>
@@ -216,12 +239,19 @@
 							<key>subItems</key>
 							<dict/>
 						</dict>
+						<key>js</key>
+						<dict>
+							<key>isExpanded</key>
+							<true/>
+							<key>subItems</key>
+							<dict/>
+						</dict>
 					</dict>
 				</dict>
 			</dict>
 		</dict>
 	</dict>
 	<key>windowFrame</key>
-	<string>{{347, 4}, {1333, 969}}</string>
+	<string>{{72, 204}, {1333, 776}}</string>
 </dict>
 </plist>
