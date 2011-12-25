@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="/static/css/blog.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="/static/css/syntax.css" type="text/css" media="screen">
 </head>
-<body>
+<body onload='image_captions();'>
 	<div class='container_12'>
 		<div class='header'>
 			<div id='big-name' class='grid_7'>
@@ -46,11 +46,13 @@
 					<div>
 						Here be thoughts.
 					</div>
-					<div class='post-list-header'><h1>Bloggy Posts</h1></div>
+					<div class='post-list-header'><h1>Thoughts</h1></div>
 					{% for post in site.posts limit:10 %}
 					<div class='post-item'>
-						<div class='post-title'><a href="{{ post.url }}">{{ post.title }}</a></div>
-						<div class='caption'>{{ post.date | date_to_string }}</div>
+						<a href='{{ post.url }}'>
+							<div class='post-title'>{{ post.title }}</div>
+							<div class='caption'>{{ post.date | date_to_string }}</div>
+						</a>
 					</div>
 					{% endfor %}
 				</div>

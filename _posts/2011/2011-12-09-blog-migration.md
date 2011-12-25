@@ -30,4 +30,4 @@ I just start with some dollar signs, some notation, and **boom!** $r_{s} = \frac
 def hello:
 	print 'Hello!'
 {% endhighlight %}
-Just thing of all those fancy posts I'll get to write with some code. Oooh boy.
+Just think of all those fancy posts with code I'll get to write someday. Oooh boy my giblets are tingling already.
