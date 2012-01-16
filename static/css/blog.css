@@ -27,7 +27,7 @@ blockquote > p {
 .post-list-header {
 	margin-bottom:16px;
 	padding-left:16px;
-	border-left:4px solid orange;
+	border-left:4px solid #FFF;
 }
 
 .post-item {

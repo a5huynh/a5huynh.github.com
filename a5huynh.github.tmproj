@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>_posts/2011-12-23-black-holes.md</string>
+	<string>_posts/2012/2012-01-01-a-year-in-recap.md</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -35,63 +35,19 @@
 			<key>firstVisibleLine</key>
 			<integer>8</integer>
 		</dict>
-		<key>_posts/2011-12-09-blog-migration.md</key>
+		<key>_posts/2012/2012-01-01-a-year-in-recap.md</key>
 		<dict>
 			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>183</integer>
-				<key>line</key>
-				<integer>21</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>_posts/2011-12-16-fav-music-2011.md</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>190</integer>
-				<key>line</key>
-				<integer>9</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>7</integer>
-				<key>line</key>
-				<integer>95</integer>
-			</dict>
-		</dict>
-		<key>_posts/2011-12-23-black-holes.md</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>41</integer>
-				<key>line</key>
-				<integer>9</integer>
+				<integer>17</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>58</integer>
 		</dict>
 		<key>_site/index.html</key>
 		<dict>
@@ -202,10 +158,8 @@
 		<string>_site/index.html</string>
 		<string>static/css/layout.css</string>
 		<string>index.html</string>
-		<string>_posts/2011-12-09-blog-migration.md</string>
-		<string>_posts/2011-12-16-fav-music-2011.md</string>
-		<string>_posts/2011-12-23-black-holes.md</string>
 		<string>static/js/blackhole.js</string>
+		<string>_posts/2012/2012-01-01-a-year-in-recap.md</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<false/>
@@ -224,22 +178,15 @@
 					<key>isExpanded</key>
 					<true/>
 					<key>subItems</key>
-					<dict/>
-				</dict>
-				<key>static</key>
-				<dict>
-					<key>isExpanded</key>
-					<true/>
-					<key>subItems</key>
 					<dict>
-						<key>css</key>
+						<key>2011</key>
 						<dict>
 							<key>isExpanded</key>
 							<true/>
 							<key>subItems</key>
 							<dict/>
 						</dict>
-						<key>js</key>
+						<key>2012</key>
 						<dict>
 							<key>isExpanded</key>
 							<true/>
@@ -252,6 +199,6 @@
 		</dict>
 	</dict>
 	<key>windowFrame</key>
-	<string>{{72, 204}, {1333, 776}}</string>
+	<string>{{347, 148}, {1333, 776}}</string>
 </dict>
 </plist>
