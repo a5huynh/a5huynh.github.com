@@ -48,6 +48,7 @@
 					<div class='post-item'>
 						<a href='{{ post.url }}'>
 							<div class='post-title'>{{ post.title }}</div>
+							<div>{{ post.time.month }}</div>
 							<div class='caption'>{{ post.date | date_to_string }}</div>
 						</a>
 					</div>

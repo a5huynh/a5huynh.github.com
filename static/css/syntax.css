@@ -1,4 +1,4 @@
-.highlight  { background: #f5f5f5; font-size: 14px; }
+.highlight  { background: #f5f5f5; font-size: 14px; padding-left:16px; }
 .highlight .lineno { color:orange; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
