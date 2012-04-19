@@ -5,7 +5,7 @@ title: Blog migration
 
 {{ page.title }}
 ================
-<p class='meta'>09 Dec. 2011 - San Diego</p>
+<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
 
 Recently, it dawned upon me that I haven't sat down and wrote down anything of substance for a while. Oh sure, there's the occasional research paper that I spearhead, but that often feels like work. Additionally, I can't just put it up somewhere for everyone to see while it's under review. And even after review, who wants to read some random research paper anyways?
 

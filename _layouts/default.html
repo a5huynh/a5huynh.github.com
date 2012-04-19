@@ -44,11 +44,17 @@
 			<div class='grid_4' style='font-size:14pt;color:#666;'>
 				<div style='padding-left:32px;'>
 					<div class='post-list-header'><h1>Thoughts</h1></div>
-					{% for post in site.posts limit:10 %}
+					{% assign year = '0' %}
+					{% for post in site.posts limit:20 %}
+						{% capture pyear %}{{ post.date | date: '%Y' }}{% endcapture %}
+						{% if year != pyear %}
+							{% assign year = pyear %}
+							<div>{{ year }}</div>
+						{% endif %}
 					<div class='post-item'>
 						<a href='{{ post.url }}'>
 							<div class='post-title'>{{ post.title }}</div>
-							<div>{{ post.time.month }}</div>
+							<div class>{{ post.date.year }}</div>
 							<div class='caption'>{{ post.date | date_to_string }}</div>
 						</a>
 					</div>

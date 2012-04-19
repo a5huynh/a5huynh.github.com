@@ -5,7 +5,7 @@ title: 2011 - A Year in Recap
 
 {{ page.title }}
 ================
-<p class='meta'>01 Jan. 2012 - Santa's Palace</p>
+<p class='meta'>{{ page.date | date_to_string }} - Santa's Palace</p>
 
 Another year in closing, another one of those fantastic yearly recaps that I have the joy of writing. If I had these printed, why I could almost hear the sweet *crumple* *crumple* as people turn my riveting tales of adventure into a jump shot.
 

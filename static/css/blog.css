@@ -7,7 +7,7 @@ blockquote {
 
 blockquote > p {
 	margin:0;
-	padding:0;
+	padding:0 0 16px 0;
 	padding-left:16px;
 	border-left:2px solid orange;
 }
