@@ -12,16 +12,12 @@ blockquote > p {
 	border-left:2px solid orange;
 }
 
+p.meta {
+	color:#AAA;
+}
+
 .article > p {
 	padding-bottom: 8px;
-}
-
-.article a {
-	color:#1691d8;
-}
-
-.article a:hover {
-	text-decoration:underline;
 }
 
 .post-list-header {
