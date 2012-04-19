@@ -1,0 +1,175 @@
+---
+---
+// Font's used in the site
+$header-font: "Inconsolata", sans-serif;
+$content-font: "Droid Serif", Georgia, 'Times New Roman', serif;
+
+// Colors used in the site
+$orange: #ff8000;
+$blue:   #1691d8;
+$grey:	 #999;
+
+/* Import our HTML5 reset and 960 grid css */
+@import "reset";
+@import "960_12_col";
+
+body {
+	background: url('/static/img/light_wool.png') repeat;
+}
+
+body > div {
+	margin-top:16px;
+}
+
+emph {
+	color:$blue;
+}
+
+h2, .header {
+	font-family: $header-font;
+	/* A nice easy-to-use auto-clearing technique */
+	overflow: hidden;	
+	width: 100%;
+}
+
+A, A:hover, A:active, A:visited {
+	text-decoration:none;
+	color: $blue; 
+	border-bottom:1px dotted #999;
+}
+
+img {
+	vertical-align: middle; 
+}
+
+.section {
+	position: relative;
+}
+
+.subheader {
+	font-size:16px;
+	color: $blue;
+	font-weight: normal;
+	font-family: $header-font; 
+	margin-bottom:4px;
+}
+
+.article {
+	font-size:   16px;
+	font-family: $content-font;
+	line-height: 155%;
+	color:		 #000;
+	margin-bottom:16px;
+}
+
+#big-name {
+	border-right:4px solid orange;
+	font-size:84px;
+}
+
+#my-attrs {
+	float:left;
+	padding-left:20px;
+	padding-top:11px;
+	font-size:32px;
+	width: 288px;
+	margin-right:8px;
+}
+
+#social-icons {
+	text-align:right;
+	padding-top:8px;
+
+	/* Don't underline the social icon links */
+	a {
+		border-bottom: 0 !important;
+	}
+}
+
+/* Header's inside article will have a nice code comment effect */
+.article > h2:before {
+	content: '# '; 
+}
+
+.article > h2 {
+	font-family: $header-font;
+	font-size:		22px;
+	font-weight:	normal;
+	color:			orange; 
+	padding:0;
+	margin: 0 0 8px 0;
+}
+
+.article > .github-link {
+	margin-top:8px;
+	font-size:12px;
+	padding:8px;
+}
+
+.footer {
+	color: #AAA;
+	font-size:12px; 
+}
+
+/* Tab styles */
+.ido {
+	width: 398px;
+	cursor:pointer;
+	color: #DDD;
+	border-left:4px solid #FFF;
+	margin-bottom:16px;
+
+	a {
+		color: #DDD !important;		
+	}
+	
+	div {
+		padding: 16px 32px;
+		
+		img {
+			margin-right: 16px; 
+		} 
+	} 
+}
+
+.ido:hover {
+	border-left:4px solid $grey !important;
+	color:#000 !important; 
+
+	a {
+		color:#000 !important; 
+	}
+}
+
+.selected { 
+	color:#000 !important; 
+}
+
+/* Content pages */
+.infopages {
+	margin-right:0;
+}
+
+.infopage {
+	padding-right:16px;
+	display:none; 
+}
+
+.inview {
+	display:block !important; 
+}
+
+/* Some special style for the news clipping page */
+ul.news_clippings {
+	list-style-type:none;
+	padding:0;
+	margin:0; 
+	
+	li {
+		margin-bottom:16px;
+		
+		a {
+			font-style: italic;
+		}
+	}
+}
