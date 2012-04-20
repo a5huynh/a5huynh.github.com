@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Multitouch Table Prototype v2
+tags: code hardware
 ---
 
 {{ page.title }}

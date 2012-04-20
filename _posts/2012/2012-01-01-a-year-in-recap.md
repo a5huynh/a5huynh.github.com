@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 2011 - A Year in Recap
+tags: adventure
 ---
 
 {{ page.title }}

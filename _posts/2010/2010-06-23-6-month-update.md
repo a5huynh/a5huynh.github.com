@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 6-month Update!
+tags: adventure
 ---
 
 {{ page.title }}

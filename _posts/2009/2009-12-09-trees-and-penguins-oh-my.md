@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Trees and Penguins, Oh My!
+tags: code
 ---
 
 {{ page.title }}

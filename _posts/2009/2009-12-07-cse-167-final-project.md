@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CSE 167 Final Project
+tags: code
 ---
 
 {{ page.title }}

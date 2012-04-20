@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Javascript A* Implementation
+tags: code
 ---
 
 {{ page.title }}
