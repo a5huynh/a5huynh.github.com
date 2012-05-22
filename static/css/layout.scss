@@ -17,6 +17,21 @@ body {
 	background: url('/static/img/light_wool.png') repeat;
 }
 
+*::selection {
+	background:orange;
+	color:white;
+}
+
+*::-webkit-selectioN {
+	background:orange;
+	color:white;
+}
+
+*::-moz-selection {
+	background:orange;
+	color:white;
+}
+
 body > div {
 	margin-top:16px;
 }
@@ -55,7 +70,7 @@ img {
 }
 
 .article {
-	font-size:   16px;
+	font-size:   1em;
 	font-family: $content-font;
 	line-height: 155%;
 	color:		 #000;
