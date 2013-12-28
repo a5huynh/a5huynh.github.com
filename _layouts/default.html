@@ -3,7 +3,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>{{ page.title }}</title>
-	
+
+	<link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.rss">
+
 	<link href='http://fonts.googleapis.com/css?family=Inconsolata|Droid+Serif' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/static/css/layout.css" type="text/css">
 	<link rel="stylesheet" href="/static/css/blog.css" type="text/css">
@@ -51,19 +53,13 @@
 							{% assign year = pyear %}
 							<div class='post-year'>{{ year }}</div>
 						{% endif %}
-					<div class='post-item'>
+					<div class='post-item {% if page.title == post.title %}post-selected{% endif %}'>
 						<a href='{{ post.url }}'>
-						{% if page.title == post.title %}
-							<div class='post-title' style='color:orange !important;'>
-								{{ post.title }}
-							</div>
-						{% else %}
 							<div class='post-title'>
 								{{ post.title }}
 							</div>
-						{% endif %}
 						</a>
-					</div>		
+					</div>
 					{% endfor %}
 				</div>
 			</div>
@@ -78,7 +74,7 @@
 	MathJax.Hub.Config({
 	  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 	});
-	</script>	
+	</script>
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
