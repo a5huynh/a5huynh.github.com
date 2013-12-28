@@ -41,24 +41,24 @@ Our team this year had the lovely addition of Lynn and Leilani along with David 
 	<div class='caption'>Our application at a glance</div>
 </div>
 
-Without getting into the nitty gritty details of how everything was created and my eventual delirium and subsequent caffeine binges, our hack came out incredibly well-done. We had a couple weak spots, such as requiring a strong WiFi signal or the pressure sensors being a little spazzy, but in the end we were all happy with the product we created and nothing could rain on our parade. 
+Without getting into the nitty gritty details of how everything was created and my eventual delirium and subsequent caffeine binges, our hack came out incredibly well-done. We had a couple weak spots, such as requiring a strong WiFi signal or the pressure sensors being a little spazzy, but in the end we were all happy with the product we created and nothing could rain on our parade.
 
-The competition this year was intense with several other well-done ideas and fun implementations. We were all delirious from lack of sleep. 
+The competition this year was intense with several other well-done ideas and fun implementations. We were all delirious from lack of sleep.
 
 Third place was announced.
->> Me: You know guys, we should be happy that we did what we did in the time we had.
+> Me: You know guys, we should be happy that we did what we did in the time we had.
 
 Second place was announced.
->> Me: I wonder which team won this year. A lot of great contenders, not sure we're up to snuff this year honestly.
+> Me: I wonder which team won this year. A lot of great contenders, not sure we're up to snuff this year honestly.
 
 First place announced. It was us!
->> Me: BOO-YAH! SUCKERS! Wooooo. High-five guys. We did it!
+> Me: BOO-YAH! SUCKERS! Wooooo. High-five guys. We did it!
 
 A couple people have already asked whether David and I will taking another team to dominance next year. All I can say is that if we were to come back, we'll be taking home the national title next year as well.
 
 The Adventure
 -------------
->> Where we're going, we don't need roads
+> Where we're going, we don't need roads
 
 One year ago, if you had told me that next summer I would be riding horses, pushing trucks through mud, and become the MVP of an NatGeo vs Mongolia soccer match I'd have a hard time believing you. Heck, I still have a hard time believing I did any of the stuff I did on that expedition.
 
@@ -71,7 +71,7 @@ One year ago, if you had told me that next summer I would be riding horses, push
 
 I'm *still* not quite sure how much I'm allowed to divulge about our findings so I'll keep this short and sweet.
 
-I was involved in a National Geographic Expedition to Mongolia with the aim of uncovering the Tomb of Genghis Khan. I and a large group of scientists ranging from electrical engineers, to geophysicists, to historians and archaeologists traveled for days across hard terrain, torrential downpour, and run-ins with friendly and not-so-friendly natives. 
+I was involved in a National Geographic Expedition to Mongolia with the aim of uncovering the Tomb of Genghis Khan. I and a large group of scientists ranging from electrical engineers, to geophysicists, to historians and archaeologists traveled for days across hard terrain, torrential downpour, and run-ins with friendly and not-so-friendly natives.
 
 We spent a solid 3-4 weeks at our archaeological site doing some intense work. Roughly a month or two worth of work was finished in that small span of time by multi-tasking, parallelization, and just sheer will. If you were sitting still then you were doing something wrong. As a fine-tuned, well-oiled machine our work went from sun up til sun down and completely drained us. Even with those hardships, I consider those times were one of the best I have ever experienced. One moment we could be setting up to do some geophysics and the next we'd be scrambling to get equipment under cover as rain begins to pour down on us. Mosquitos devoured us and laughed at our puny bug sprays. Rushing up a mountain on horse back and then back down again because of the threat of lightning. Incredible moments just seemed to cease.
 
@@ -112,7 +112,7 @@ After approximately 24 plus hours we called it quits and took a nap for 4 hours.
 ### Drinks, Sushi, and then more Drinks ###
 New York is probably the finest city in the world in terms of culinary prowess. World famous chefs and restaurants create a delicious environment for our taste buds to inhabit and our short stint in New York was no exception.
 
-Matt and I share a mutual taste in what I like to call, *Damn Good Food*. Food that our taste buds will look back on and tell their grandchildren about. The problem with the majority of *Damn Good Food* is that it is *Damn Expensive*. However, I am willing shell out the money when it comes to fine dining and we spared no expense. Steaks, sushi, sandwiches, and even the wine. All of it absolutely divine. 
+Matt and I share a mutual taste in what I like to call, *Damn Good Food*. Food that our taste buds will look back on and tell their grandchildren about. The problem with the majority of *Damn Good Food* is that it is *Damn Expensive*. However, I am willing shell out the money when it comes to fine dining and we spared no expense. Steaks, sushi, sandwiches, and even the wine. All of it absolutely divine.
 
 A mere 4 hours after the hack event had ended we ( David, Matt and I ) made our way over to Anthony Bourdain's *Les Halles*. There I would savour and reminisce about the perfect slice of beef ever to be laid in front of me. Every cut as smooth and silky as a cut of butter, every bite an explosion of flavor and wonderful juices. We all shared tears of happiness and pure joy.
 

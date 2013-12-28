@@ -67,6 +67,12 @@ img {
 #big-name {
     border-right: 8px solid $orange;
     font-size: 84px;
+
+    a {
+        border: 0;
+        text-decoration: none;
+        color: black;
+    }
 }
 
 #my-attrs {
