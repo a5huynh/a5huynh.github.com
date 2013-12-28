@@ -34,8 +34,11 @@ As I created my poster, I tried to take all those observations to heart. Importa
 
 ### Layout
 Before placing any content, I sketched out an initial layout. The layout was designed to keep in mind a left to right and top to bottom reading path. Columns of information are clearly cut-out and encapsulated.
+
 <div class='captioned_img'>
-	<div><img width='280' src='/static/img/2012/research/igert-poster-thumbnail.png'></div>
+	<div>
+		<img width='280' src='/static/img/2012/research/igert-poster-thumbnail.png'/>
+	</div>
 	<div class='caption'>
 		A major problem I had with posters is the lack of structure and a clear flow of information. My design attempts to add a bit of that to aid reading and analysis.
 	</div>
@@ -43,12 +46,20 @@ Before placing any content, I sketched out an initial layout. The layout was des
 
 ### Contrast
 Readability is improved from normal posters by employing contrast in the correct amounts throughout the poster. The contrast shows up in the form of different colors and/or typography used to differentiate between different elements. For example, an image caption may be color highlighted with a different font in such a way that anybody skimming over the poster could easily jump over the information if needed.
+
 <div class='captioned_img'>
-	<div><img width='280' src='/static/img/2012/research/contrast-example.png'></div>
-	<div class='caption'>Image captions and important text are easily distinguishable from normal text.</div>
+	<div>
+		<img width='280' src='/static/img/2012/research/contrast-example.png'/>
+	</div>
+	<div class='caption'>
+		Image captions and important text are easily distinguishable from normal text.
+	</div>
 </div>
 
 And after all that work... the final product!
-<div style='text-align:center;'>
-	<img src='/static/img/2012/research/igert-poster-thumbnail.png'>
+
+<div class='captioned_img'>
+	<div>
+		<img src='/static/img/2012/research/igert-poster-thumbnail.png'/>
+	</div>
 </div>
