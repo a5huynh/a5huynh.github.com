@@ -59,7 +59,5 @@ Readability is improved from normal posters by employing contrast in the correct
 And after all that work... the final product!
 
 <div class='captioned_img'>
-	<div>
-		<img src='/static/img/2012/research/igert-poster-thumbnail.png'/>
-	</div>
+	<img src='/static/img/2012/research/igert-poster-thumbnail.png'/>
 </div>
