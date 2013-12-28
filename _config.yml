@@ -1,4 +1,8 @@
 safe: false
-auto: true
-server: truee
+plugins: ./_plugins
 pygments: true
+sass:
+  syntax: scss
+  style:  compressed
+
+exclude: [ '*.sublime*', 'README.md' ]
