@@ -1,8 +1,8 @@
 @import "_constants";
 
 /* Import our HTML5 reset and 960 grid css */
-@import "reset";
-@import "960_12_col";
+@import "_reset";
+@import "_960";
 
 *::selection {
     background: $orange;
