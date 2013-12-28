@@ -30,7 +30,7 @@ Additionally, even with a simple, decent design some posters still have difficul
 
 Design of My Poster
 --------------------
-As I created my poster, I tried to take all those observations to heart. Important elements are highlighted and cruft/filler are faded out but still easily found. 
+As I created my poster, I tried to take all those observations to heart. Important elements are highlighted and cruft/filler are faded out but still easily found.
 
 ### Layout
 Before placing any content, I sketched out an initial layout. The layout was designed to keep in mind a left to right and top to bottom reading path. Columns of information are clearly cut-out and encapsulated.
