@@ -1,12 +1,8 @@
 ---
-layout: default
 title: Javascript A* Implementation
+location: San Diego
 tags: code
 ---
-
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
 
 So a little background on my implementation (feel free to skip this)....
 
@@ -97,7 +93,7 @@ Astar.prototype._getBestNode = function() {
 		// Cycle through open list until the best node is found.
 		for( var index = 1; index < this._open.length; index++) {
 			var tmpF = this._open[index].f;
-			// Favors the last added node if there are 
+			// Favors the last added node if there are
 			// nodes with the same F.
 			if(tmpF <= bestF) {
 				bestNum = index;
@@ -137,7 +133,7 @@ Astar.prototype._fillChildren = function(node) {
 Astar.prototype._CreateNode = function(node, x, y) {
 	// Check to see if node is not on closed list
 	if(this._isAvailable(x, y)) {
-		var tmp = new Node(node, x, y, node.g+1, 
+		var tmp = new Node(node, x, y, node.g+1,
 				distance(this._dx - x, this._dy - y));
 		avail[y*NUM_ROWS + x] = 1;
 		this._open.push(tmp);

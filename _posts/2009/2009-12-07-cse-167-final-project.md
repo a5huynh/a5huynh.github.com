@@ -1,12 +1,8 @@
 ---
-layout: default
 title: CSE 167 Final Project
+location: San Diego
 tags: code
 ---
-
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
 
 ![Project screenshot](/static/img/CSE167/8394016-0-Screen_shot_2009-12-07_at_12.4.png.scaled.500.jpg)
 

@@ -1,11 +1,7 @@
 ---
-layout: default
 title: Academic Posters - Design and Content
+location: San Diego
 ---
-
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
 
 Recently I have been involved in the process of designing and creating an academic poster detailing portions of my research in a manner that conveys it in a clear, meaningful way. This turns out to be *very difficult task.*
 

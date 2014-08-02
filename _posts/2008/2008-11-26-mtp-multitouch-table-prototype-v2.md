@@ -1,20 +1,16 @@
 ---
-layout: default
 title: Multitouch Table Prototype v2
+location: San Diego
 tags: code hardware
 ---
 
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
-
 For those who don't know, I'm currently the President of the Computer Science and Engineering Society here at UCSD. We have multiple projects that we run each year and numerous events (such as programming contests, game nights, etc).
 
-One of our projects this year is an attempt to build a fully functional Multitouch table, very similar to the Microsoft Surface. The only difference is that we're building everything from the ground up. This is including the actual table itself with all its hardware, a framework to interact with the table, and finally an API for developers to write applications for the table. 
+One of our projects this year is an attempt to build a fully functional Multitouch table, very similar to the Microsoft Surface. The only difference is that we're building everything from the ground up. This is including the actual table itself with all its hardware, a framework to interact with the table, and finally an API for developers to write applications for the table.
 
 Whats great is that we'll be releasing as much information/tools/code as we can as we continually work on the project.
 
-We're currently in our "prototype" phase, as we hammer out the details for our much larger table. In parallel, we're also slowly ramping up development of our framework/API and learning a lot in the process. 
+We're currently in our "prototype" phase, as we hammer out the details for our much larger table. In parallel, we're also slowly ramping up development of our framework/API and learning a lot in the process.
 
 Last Saturday (November 22nd, 2008) was a significant day as we all got together (around 12 of us) to build our second prototype. Our first prototype was very much a hack and was put together rather hastily to actually prove that our method would work. The second prototype is a lot easier to move around and set up, and hopefully will allow us to garner a little support for our endeavor.
 

@@ -1,27 +1,19 @@
 {% include header.html %}
-<div class='section' style='margin-top:16px;'>
-	<div class='article grid_8'>
-		{{ content }}
-	</div>
-	<div class='grid_4' style='font-size:14pt;color:#666;'>
-		<div style='padding-left:32px;'>
-			<div class='post-list-header'><h1>Thoughts</h1></div>
-			{% assign year = '0' %}
-			{% for post in site.posts limit:20 %}
-				{% capture pyear %}{{ post.date | date: '%Y' }}{% endcapture %}
-				{% if year != pyear %}
-					{% assign year = pyear %}
-					<div class='post-year'>{{ year }}</div>
-				{% endif %}
-			<div class='post-item {% if page.title == post.title %}post-selected{% endif %}'>
-				<a href='{{ post.url }}'>
+<div class='section'>
+	<div class='grid_2'>&nbsp;</div>
+	<div class='grid_8'>
+		{% for post in site.posts limit:100 %}
+			<a href='{{ post.url }}'>
+				<div class='post-item'>
 					<div class='post-title'>
 						{{ post.title }}
+						<div class='post-date'>{{ post.date | date_to_string }}</div>
 					</div>
-				</a>
-			</div>
-			{% endfor %}
-		</div>
+					<div class='post-excerpt'>{{ post.excerpt | strip_html }}</div>
+				</div>
+			</a>
+		{% endfor %}
 	</div>
+	<div class='grid_2'>&nbsp;</div>
 </div>
 {% include footer.html %}

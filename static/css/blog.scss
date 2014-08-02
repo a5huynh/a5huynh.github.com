@@ -7,10 +7,10 @@
 
 blockquote {
 
-	color:#666;
-	font-size:14px;
+	color: #666;
+	font-family: $header-font;
 	margin: 0 0 8px -24px;
-	padding:0;
+	padding: 0;
 	border-left: 8px solid $orange;
 
 	> p {
@@ -38,6 +38,7 @@ p.meta {
 }
 
 div.section {
+	clear: both;
 	margin-top: 16px;
 }
 
@@ -48,35 +49,38 @@ div.section {
 }
 
 .post-item {
-	padding: 8px 0 8px 16px;
+	padding: 8px;
 	margin-bottom: 8px;
-	border-left: 4px solid transparent;
-
-	a {
-		color:#333;
-		font-family: $content-font;
-	}
 
 	.post-title {
-		font-size: 14px !important;
+		color: #333;
+		font-family: $content-font;
+		font-size: 20px;
+		border-bottom: 0;
+	}
+
+	.post-date {
+		font-size: 16px;
+		float: right;
+		color: #CCC;
+	}
+
+	.post-excerpt {
+		padding-top: 8px;
+		line-height: 24px;
+		font-size: 12px;
+		color: #999;
 	}
 }
 
 .post-item:hover {
-	border-left:4px solid gray;
-}
-
-.post-selected {
-	border-left:4px solid gray;
-
-	> a > div {
+	.post-title {
 		color: $orange;
 	}
-}
 
-.post-year {
-	color: #CCC;
-	margin-bottom:8px;
+	.post-excerpt {
+		color: #666;
+	}
 }
 
 .tags {

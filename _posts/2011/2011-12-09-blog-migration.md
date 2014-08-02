@@ -1,11 +1,7 @@
 ---
-layout: default
+location: San Diego
 title: Blog migration
 ---
-
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
 
 Recently, it dawned upon me that I haven't sat down and wrote down anything of substance for a while. Oh sure, there's the occasional research paper that I spearhead, but that often feels like work. Additionally, I can't just put it up somewhere for everyone to see while it's under review. And even after review, who wants to read some random research paper anyways?
 
@@ -13,7 +9,7 @@ So here's my thing ( which I hope I'll stick with ). I'm going to write. *All th
 
 GitHub Pages
 ------------
-I enjoy writing but it seems to me a lot of my time spent on blogging platforms ( such as Posterous, Blogger, etc. ) happened to reside with *formatting*. As a self-proclaimed design and typography geek, I could spend hours upon hours tweaking the look and feel of a particular blog post without really adding much content. In the end all I have is a really clean and nice looking sentence or two. 
+I enjoy writing but it seems to me a lot of my time spent on blogging platforms ( such as Posterous, Blogger, etc. ) happened to reside with *formatting*. As a self-proclaimed design and typography geek, I could spend hours upon hours tweaking the look and feel of a particular blog post without really adding much content. In the end all I have is a really clean and nice looking sentence or two.
 
 I looked around for ( and even thought of writing my own ) a solution to this fickly problem. While writing I enjoy using [Markdown](http://daringfireball.net/projects/markdown/syntax) because it allows me to write a well-formatted post in a plain ol' text editor without all that extra cruft that I didn't really need or care about. The difficulty was then putting that onto a site *and* making it look good in the process.
 

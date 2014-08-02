@@ -1,11 +1,7 @@
 ---
-layout: default
 title: New Beginnings
+location: Mammoth
 ---
-
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - Mammoth</p>
 
 The end of another year.
 

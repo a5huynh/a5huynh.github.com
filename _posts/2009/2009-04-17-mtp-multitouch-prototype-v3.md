@@ -1,12 +1,8 @@
 ---
-layout: default
 title: Multitouch Table Prototype v3
+location: San Diego
 tags: code hardware
 ---
-
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
 
 **Finally another update to our Multitouch project!**
 

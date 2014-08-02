@@ -1,27 +1,23 @@
 ---
-layout: default
 title: CSE 167 Final Project - Results!
+location: San Diego
 tags: code
 ---
 
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
-
 After a week of hard work and dedication my partner and I finally completed our final project for our Computer Graphics class. Below is the description we sent in to our professor as part of our project describing what we did.
 
-> Picture a lone survivor of a dangerous war that has ripped his world apart. Our hero, a penguin, 
+> Picture a lone survivor of a dangerous war that has ripped his world apart. Our hero, a penguin,
 > the last of a mighty and powerful race hurtles through space seeking shelter, refuge, and some cheesy snacks.
 >
-> Our final project scene consists of a procedurally generated planet that sits against a starry night sky. 
-> The planet is separated into 4 levels, ocean, coast, lush terrain, and mountains. 
-> The planet's lush terrain zone is spotted with fractal trees randomly dispersed across the planet. 
-> All of this is done in toon shading, modified slightly so that the world looks as if it was sketched. 
-> Zooming down from space following a bezier path, you'll fly past the planet's bump-mapped moon and 
-> once landed on the planet you'll be able to navigate the planet as a penguin using the keyboard 
-> W,A,S,D keys and the mouse. A scene graph is used to handle rendering and animation of the planet, 
-> trees and penguin. To handle drawing the huge amount of trees on the surface of the planet 
-> we use a combination of view frustum culling and a basic form of occlusion culling. 
+> Our final project scene consists of a procedurally generated planet that sits against a starry night sky.
+> The planet is separated into 4 levels, ocean, coast, lush terrain, and mountains.
+> The planet's lush terrain zone is spotted with fractal trees randomly dispersed across the planet.
+> All of this is done in toon shading, modified slightly so that the world looks as if it was sketched.
+> Zooming down from space following a bezier path, you'll fly past the planet's bump-mapped moon and
+> once landed on the planet you'll be able to navigate the planet as a penguin using the keyboard
+> W,A,S,D keys and the mouse. A scene graph is used to handle rendering and animation of the planet,
+> trees and penguin. To handle drawing the huge amount of trees on the surface of the planet
+> we use a combination of view frustum culling and a basic form of occlusion culling.
 >
 > The key 'T' can be used to toggle textures, 'O' toggles outlines, 'P' toggles the planet rendering,
 > 'G' toggles toon shader, 'N' toggles planet normals, '<' zooms out of the planet, '>'

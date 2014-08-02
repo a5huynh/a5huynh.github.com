@@ -1,12 +1,8 @@
 ---
-layout: default
 title: Trees and Penguins, Oh My!
+location: San Diego
 tags: code
 ---
-
-{{ page.title }}
-================
-<p class='meta'>{{ page.date | date_to_string }} - San Diego</p>
 
 Update #2 on our CSE 167 Final Project
 
