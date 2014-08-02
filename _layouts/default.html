@@ -1,87 +1,27 @@
-<!doctype html>
-<html lang='en'>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>{{ page.title }}</title>
-
-	<link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.rss">
-
-	<link href='http://fonts.googleapis.com/css?family=Inconsolata|Droid+Serif' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/static/css/blog.css" type="text/css">
-</head>
-<body>
-	<div class='container_12'>
-		<div class='header'>
-			<div id='big-name' class='grid_7'>
-				<a href='/'>Andrew Huynh</a>
-			</div>
-			<div id='my-attrs'>
-				<div id='short_word'>Thoughts</div>
-				<div id='short_word'>and ramblings.</div>
-			</div>
-			<div id='social-icons' class='grid_1'>
-				<div style='margin-bottom:4px;'>
-					<a href='http://www.google.com/recaptcha/mailhide/d?k=01riQqCHs4eJ535QVlNaD-lg==&amp;c=f66OrCHXc7tpnh7rSM6Cob_FBePpVLHtPh0VM6Bg1EA='>
-						<img src='/static/img/email.png'>
-					</a>
-				</div>
-				<div style='margin-bottom:4px;'>
-					<a href='http://twitter.com/a5huynh'>
-						<img src='/static/img/twitter.png'>
-					</a>
-				</div>
-				<div>
-					<a href='http://www.linkedin.com/profile/view?id=30602610'>
-						<img src='/static/img/linkedin.png'>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class='section' style='margin-top:16px;'>
-			<div class='article grid_8'>
-				{{ content }}
-			</div>
-			<div class='grid_4' style='font-size:14pt;color:#666;'>
-				<div style='padding-left:32px;'>
-					<div class='post-list-header'><h1>Thoughts</h1></div>
-					{% assign year = '0' %}
-					{% for post in site.posts limit:20 %}
-						{% capture pyear %}{{ post.date | date: '%Y' }}{% endcapture %}
-						{% if year != pyear %}
-							{% assign year = pyear %}
-							<div class='post-year'>{{ year }}</div>
-						{% endif %}
-					<div class='post-item {% if page.title == post.title %}post-selected{% endif %}'>
-						<a href='{{ post.url }}'>
-							<div class='post-title'>
-								{{ post.title }}
-							</div>
-						</a>
+{% include header.html %}
+<div class='section' style='margin-top:16px;'>
+	<div class='article grid_8'>
+		{{ content }}
+	</div>
+	<div class='grid_4' style='font-size:14pt;color:#666;'>
+		<div style='padding-left:32px;'>
+			<div class='post-list-header'><h1>Thoughts</h1></div>
+			{% assign year = '0' %}
+			{% for post in site.posts limit:20 %}
+				{% capture pyear %}{{ post.date | date: '%Y' }}{% endcapture %}
+				{% if year != pyear %}
+					{% assign year = pyear %}
+					<div class='post-year'>{{ year }}</div>
+				{% endif %}
+			<div class='post-item {% if page.title == post.title %}post-selected{% endif %}'>
+				<a href='{{ post.url }}'>
+					<div class='post-title'>
+						{{ post.title }}
 					</div>
-					{% endfor %}
-				</div>
+				</a>
 			</div>
+			{% endfor %}
 		</div>
 	</div>
-	<div class='footer container_12'>
-		<div class='grid_12'>
-			<p>An athlabs production. Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a></p>
-		</div>
-	</div>
-	<script type="text/x-mathjax-config">
-	MathJax.Hub.Config({
-	  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-	});
-	</script>
-	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-2618450-6', 'a5huynh.github.io');
-  ga('send', 'pageview');
-</script>
-</html>
+</div>
+{% include footer.html %}

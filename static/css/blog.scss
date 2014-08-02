@@ -1,3 +1,6 @@
+---
+---
+
 @import "_constants";
 @import "_layout";
 @import "_syntax";
@@ -32,6 +35,10 @@ p.meta {
 		padding-bottom: 8px;
 	}
 
+}
+
+div.section {
+	margin-top: 16px;
 }
 
 .post-list-header {

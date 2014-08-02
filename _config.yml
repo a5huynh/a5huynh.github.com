@@ -1,8 +1,22 @@
-safe: false
-plugins: ./_plugins
-pygments: true
-sass:
-  syntax: scss
-  style:  compressed
+highlighter: pygments
+safe: true
+lsi: false
 
 exclude: [ '*.sublime*', 'README.md' ]
+
+sass:
+    style: :compressed
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "post"
+    values:
+      layout: "post"
