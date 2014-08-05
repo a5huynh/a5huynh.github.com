@@ -19,7 +19,7 @@ If you don't write code for a living or as a hobby then GitHub will probably be 
 
 Additionally, I would have support for handy dandy things like...
 ### Latex Support! ###
-I just start with some dollar signs, some notation, and **boom!** $r_{s} = \frac{2Gm}{c^2}$ Schwarzschild radius.
+I just start with some dollar signs, some notation, and **boom!** $$r_{s} = \frac{2Gm}{c^2}$$ Schwarzschild radius.
 
 ### Code w/ syntax highlighting! ###
 {% highlight python linenos %}
