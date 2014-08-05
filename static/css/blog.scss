@@ -37,6 +37,13 @@ p.meta {
 
 }
 
+.footer {
+	clear: both;
+	text-align: center;
+
+	padding: 32px 0 48px 0;
+}
+
 div.section {
 	clear: both;
 	margin-top: 16px;
@@ -55,7 +62,7 @@ div.section {
 	.post-title {
 		color: #333;
 		font-family: $content-font;
-		font-size: 20px;
+		font-size: 18px;
 		border-bottom: 0;
 	}
 
@@ -128,4 +135,15 @@ h3:before{content:'# '}
 
 strong {
 	color:black;
+}
+
+div.image {
+	height: 256px;
+	overflow: hidden;
+	border-radius: 8px;
+
+	img {
+
+		width: 100%;
+	}
 }
