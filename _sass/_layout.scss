@@ -29,7 +29,7 @@ h2, .header {
     width: 100%;
 }
 
-a, A:hover, a:active, a:visited {
+a, a:hover, a:active, a:visited {
     text-decoration:none;
     color: $blue;
     border-bottom:1px dotted #999;
@@ -72,7 +72,7 @@ img {
     padding-top:11px;
     font-size:32px;
     width: 284px;
-    margin-right:8px;
+    margin-right: 8px;
 }
 
 #social-icons {

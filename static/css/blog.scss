@@ -4,6 +4,7 @@
 @import "_constants";
 @import "_layout";
 @import "_syntax";
+@import "_slider";
 
 blockquote {
 
@@ -21,6 +22,12 @@ blockquote {
 
 p.meta {
 	color:#AAA;
+}
+
+p > img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .article {
