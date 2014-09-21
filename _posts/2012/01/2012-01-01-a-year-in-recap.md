@@ -42,12 +42,17 @@ Without getting into the nitty gritty details of how everything was created and 
 The competition this year was intense with several other well-done ideas and fun implementations. We were all delirious from lack of sleep.
 
 Third place was announced.
-> Me: You know guys, we should be happy that we did what we did in the time we had.
+
+> Me: You know guys, we should be happy that we did what we did in the time we
+> had.
 
 Second place was announced.
-> Me: I wonder which team won this year. A lot of great contenders, not sure we're up to snuff this year honestly.
+
+> Me: I wonder which team won this year. A lot of great contenders, not sure
+> we're up to snuff this year honestly.
 
 First place announced. It was us!
+
 > Me: BOO-YAH! SUCKERS! Wooooo. High-five guys. We did it!
 
 A couple people have already asked whether David and I will taking another team to dominance next year. All I can say is that if we were to come back, we'll be taking home the national title next year as well.
