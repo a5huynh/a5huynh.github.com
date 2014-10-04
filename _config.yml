@@ -17,6 +17,12 @@ defaults:
   -
     scope:
       path: ""
+      type: "drafts"
+    values:
+      layout: "posts"
+  -
+    scope:
+      path: ""
       type: "posts"
     values:
       layout: "posts"
