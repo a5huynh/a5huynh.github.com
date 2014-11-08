@@ -35,7 +35,7 @@ dic/dict.org/) you may need. Dictionaries should be placed under
 
 ## Adding an alias for the define command
 
-Now that you have sdcv installed, why use and remember a obscure name such as
+Now that you have sdcv installed, why use and remember an obscure name such as
 sdcv to query your definitions. I added the following to my `.bash_profile` to
 define (hah) a function that will call sdcv with some good defaults with
 whatever word or phrase I pass to it.
