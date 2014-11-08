@@ -1,19 +1,7 @@
 {% include header.html %}
 <div class='section'>
 	<div class='grid_2'>&nbsp;</div>
-	<div class='grid_8'>
-		{% for post in site.posts limit:100 %}
-			<a href='{{ post.url }}'>
-				<div class='post-item'>
-					<div class='post-title'>
-						{{ post.title }}
-						<div class='post-date'>{{ post.date | date_to_string }}</div>
-					</div>
-					<div class='post-excerpt'>{{ post.excerpt | strip_html }}</div>
-				</div>
-			</a>
-		{% endfor %}
-	</div>
+	<div class='grid_8'>{{ content }}</div>
 	<div class='grid_2'>&nbsp;</div>
 </div>
 {% include footer.html %}
