@@ -43,7 +43,8 @@ longterm.
 
 ## Late nights & long days
 
-> I love sleep. My life has the tendency to fall apart while I awake, you know?
+> I love sleep.    
+> My life has the tendency to fall apart while I'm awake, you know?
 
 Here we are a more than halfway through the accelerator and the feeling in
 the air is one of hazy optimism. The weeks have grown shorter and the task
