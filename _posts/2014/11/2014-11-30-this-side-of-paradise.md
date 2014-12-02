@@ -25,20 +25,23 @@ you can't help but feel that there is something amiss.
 > Outside of a dog, a book is man's best friend.   
 > Inside of a dog, it's too dark to read.
 
-At least that's how it seems from the outside where the only source of
-information comes from eye-catching headlines. It can be difficult to believe
-that everyone can build products that save the world. Instead, perhaps the
-discussion should be towards the notion of [social
+At least that's how it seems when the only source of information comes from
+eye-catching headlines. Speaking to founders you get the sense that they're all
+creating products to improve some small part of the world. While optimistic, it
+can be difficult to believe that every product will save the world. Perhaps
+instead, the discussion should be towards the notion of [social
 design](http://en.wikipedia.org/wiki/Social_design). At the time of it's
 conceptualization, the onus of social design fell on designers. However, in a
-world where anyone can create, *everyone* has the ability to envision and give
-form to products that can address human problems on a broad scale and
-contribute to social well-being.
+world where anyone can create, where everyone is creating, *everyone* has the
+ability to envision and give form to products that address human problems on a
+broad scale and contribute to social well-being.
+
+> What will your verse be?
 
 Products that connect people who would have never connected, who give a voice
 to those that had none, who make humans more productive, these are the breeds
-of product that address human ills. Products that facilitate distraction,
-shallow connections, these are the products that create human ills. The bar
-should be set as a product that makes you a better human. Better because you
-yourself have contributed something to the greater community through the use of
-the product or better because the product has made you better.
+that address human ills. Products that facilitate distraction, shallow
+connections, these are the products that *create* human ills. The bar should be
+set at a product that makes you, the user, a better human. Better as a human or
+better because you yourself have contributed something to the greater
+community.
