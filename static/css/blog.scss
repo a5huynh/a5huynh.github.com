@@ -1,10 +1,10 @@
 ---
 ---
 
+@import "_code";
 @import "_constants";
 @import "_layout";
 @import "_syntax";
-//@import "_slider";
 
 blockquote {
 
@@ -31,7 +31,26 @@ p > img {
 }
 
 .article {
+    font-size:     1em;
+    font-family:   $content-font;
+    line-height:   175%;
+    color:         #000;
+    margin-bottom: 16px;
 	padding:0 !important;
+
+	/* Header's inside article will have a nice code comment effect */
+	> h2:before {
+    	content: '# ';
+	}
+
+	> h2 {
+    	font-family:    $header-font;
+    	font-size:      22px;
+    	font-weight:    normal;
+    	color:          $orange;
+    	padding:        0;
+    	margin:         0 0 8px 0;
+	}
 
 	> .captioned_img {
 		text-align:center;
@@ -62,15 +81,28 @@ div.section {
 	border-left:4px solid transparent;
 }
 
+ul.posts {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 .post-item {
 	padding: 8px;
 	margin-bottom: 8px;
 
 	.post-title {
-		color: #333;
 		font-family: $content-font;
 		font-size: 18px;
 		border-bottom: 0;
+
+		a {
+			color: #333;
+		}
+
+		a:hover {
+			color: $orange;
+		}
 	}
 
 	.post-date {
@@ -84,16 +116,6 @@ div.section {
 		line-height: 24px;
 		font-size: 12px;
 		color: #999;
-	}
-}
-
-.post-item:hover {
-	.post-title {
-		color: $orange;
-	}
-
-	.post-excerpt {
-		color: #666;
 	}
 }
 
