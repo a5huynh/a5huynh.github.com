@@ -1,0 +1,31 @@
+@import "constants";
+
+#big-name {
+    border-right: 8px solid $orange;
+    font-size: 84px;
+
+    a {
+        border: 0;
+        text-decoration: none;
+        color: black;
+    }
+}
+
+#my-attrs {
+    float:left;
+    padding-left:20px;
+    padding-top:11px;
+    font-size:32px;
+    width: 284px;
+    margin-right: 8px;
+}
+
+#social-icons {
+    text-align:right;
+    padding-top:8px;
+
+    /* Don't underline the social icon links */
+    a {
+        border-bottom: 0 !important;
+    }
+}

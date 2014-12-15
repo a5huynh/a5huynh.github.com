@@ -1,10 +1,14 @@
 ---
 ---
+@import "constants";
 
-@import "_code";
-@import "_constants";
-@import "_layout";
-@import "_syntax";
+@import "components/header";
+@import "components/footer";
+
+@import "code/layout";
+@import "code/syntax";
+
+@import "layout";
 
 blockquote {
 
@@ -31,6 +35,7 @@ p > img {
 }
 
 .article {
+
     font-size:     1em;
     font-family:   $content-font;
     line-height:   175%;
@@ -38,15 +43,7 @@ p > img {
     margin-bottom: 16px;
 	padding:0 !important;
 
-	/* Header's inside article will have a nice code comment effect */
-	> h2:before {
-    	content: '# ';
-	}
-
 	> h2 {
-    	font-family:    $header-font;
-    	font-size:      22px;
-    	font-weight:    normal;
     	color:          $orange;
     	padding:        0;
     	margin:         0 0 8px 0;
@@ -61,13 +58,6 @@ p > img {
 		padding-bottom: 8px;
 	}
 
-}
-
-.footer {
-	clear: both;
-	text-align: center;
-
-	padding: 32px 0 48px 0;
 }
 
 div.section {

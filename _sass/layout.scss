@@ -1,8 +1,8 @@
-@import "_constants";
+@import "constants";
 
 /* Import our HTML5 reset and 960 grid css */
-@import "_reset";
-@import "_960";
+@import "reset";
+@import "960";
 
 *::selection {
     background: $orange;
@@ -25,6 +25,8 @@ body > div {
 
 h2, .header {
     font-family: $header-font;
+    font-size: 22px;
+    font-weight: normal;
     overflow: hidden;
     width: 100%;
 }
@@ -45,39 +47,4 @@ img {
 
 .section {
     position: relative;
-}
-
-#big-name {
-    border-right: 8px solid $orange;
-    font-size: 84px;
-
-    a {
-        border: 0;
-        text-decoration: none;
-        color: black;
-    }
-}
-
-#my-attrs {
-    float:left;
-    padding-left:20px;
-    padding-top:11px;
-    font-size:32px;
-    width: 284px;
-    margin-right: 8px;
-}
-
-#social-icons {
-    text-align:right;
-    padding-top:8px;
-
-    /* Don't underline the social icon links */
-    a {
-        border-bottom: 0 !important;
-    }
-}
-
-.footer {
-    color: #AAA;
-    font-size:12px;
 }
