@@ -26,12 +26,16 @@ blockquote {
 }
 
 .article {
-
   font-family:   $content-font;
   line-height:   175%;
-  color:         black;
+  color:         lighten( black, 25% );
   margin-bottom: 16px;
   padding: 0 !important;
+
+  // Meta information about an article (date written/number of words/etc.)
+  p.meta {
+    color: $grey;
+  }
 
 }
 

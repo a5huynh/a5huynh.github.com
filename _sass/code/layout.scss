@@ -1,9 +1,11 @@
+@import "constants";
+
 /**
  * Code formatting
  */
 pre,
 code {
-    font-size: 15px;
+    font-size: $content-size;
     border-radius: 3px;
     background-color: #eee;
 }
