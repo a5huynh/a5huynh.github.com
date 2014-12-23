@@ -2,6 +2,10 @@
 $header-font: "Inconsolata", sans-serif;
 $content-font: "Droid Serif", Georgia, 'Times New Roman', serif;
 
+$golden-ratio: 1.6;
+$content-size: 16px;
+$header-size: $content-size * 2;
+
 // Colors used in the site
 $orange: #ff8000;
 $blue:   #1691d8;
