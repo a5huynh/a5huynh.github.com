@@ -3,6 +3,7 @@
 /* Import our HTML5 reset and 960 grid css */
 @import "reset";
 @import "960";
+@import "instagram";
 
 *::selection {
     background: $orange;
@@ -43,8 +44,4 @@ ol {
 
 img {
     vertical-align: middle;
-}
-
-.section {
-    position: relative;
 }
