@@ -12,7 +12,7 @@
 
 blockquote {
 
-  color: $grey;
+  color: darken( $grey, 10% );
   font-family: $header-font;
   border-left: 8px solid $orange;
 
@@ -104,7 +104,10 @@ h1 {
 
 h2 {
   font-size: $header-size / $golden-ratio;
-  &:before { content: '# '; }
+  &:before {
+    content: '# ';
+    margin-left: -18px;
+  }
 }
 
 strong {
