@@ -25,6 +25,12 @@ blockquote {
   }
 }
 
+hr {
+  margin: 32px auto;
+  border: 1px solid lighten( $orange, 25% );
+  width: 50%;
+}
+
 .article {
   font-family:   $content-font;
   line-height:   175%;
