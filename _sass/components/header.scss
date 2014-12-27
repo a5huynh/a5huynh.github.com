@@ -32,11 +32,9 @@
 }
 
 #social-icons {
-  text-align:right;
-  padding-top:8px;
+  text-align: right;
+  padding-top: 4px;
 
   /* Don't underline the social icon links */
-  a {
-    border-bottom: 0 !important;
-  }
+  a { border-bottom: 0 !important; outline: none; }
 }
