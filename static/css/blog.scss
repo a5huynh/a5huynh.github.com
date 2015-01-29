@@ -10,6 +10,12 @@
 
 @import "layout";
 
+p {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  padding: 0;
+}
+
 blockquote {
 
   color: darken( $grey, 10% );
@@ -17,7 +23,7 @@ blockquote {
   border-left: 8px solid $orange;
 
   padding: 0;
-  margin: 0 0 8px -17px;
+  margin: 1.5em 0 1.5em -17px;
 
   > p {
     margin: 0;
@@ -39,8 +45,17 @@ hr {
   padding: 0 !important;
 
   // Meta information about an article (date written/number of words/etc.)
+  h1 {
+    margin-bottom: .5em;
+  }
+
   p.meta {
     color: $grey;
+    margin-top: 0;
+  }
+
+  ul, ol {
+    padding-bottom: 0;
   }
 
 }
@@ -99,9 +114,8 @@ ul.posts {
 
 h1, h2 {
   font-family: $content-font;
-  font-weight: lighter;
+  font-weight: normal;
   color: $orange;
-  margin-bottom:4px;
 }
 
 h1 {
@@ -110,6 +124,7 @@ h1 {
 
 h2 {
   font-size: $header-size / $golden-ratio;
+
   &:before {
     content: '# ';
     margin-left: -18px;
