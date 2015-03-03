@@ -57,6 +57,7 @@ if` you spend a little more tweaking this and tweaking that. `what if` you made 
 > check.
 > 
 > - Ben Horowitz, The Hard Things About Hard Things
+> 
 
 The mind is our greatest asset but it might as well be our greatest enemy. In a
 field where acting quickly is the name of the game, analysis paralysis becomes
@@ -68,4 +69,4 @@ company.
 
 Managing your own thoughts and psychology is by far the most difficult part of
 entrepreneurship. There may be tips and there may be tricks, but ultimately it
-will always fall to you.
+will always fall back to you.
