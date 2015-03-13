@@ -24,7 +24,7 @@ importantly -- mentally. This becomes significant seeing as how nagging feelings
 When you are focusing on the distance from the ground or worrying about stray
 rocks, you block out the very actions that protect you the most. Remembering to
 clip in or check your placement; keeping correct form so that you don't get too
-tire; and of course, having that clarity of mind to react in case there
+tired; and of course, having that clarity of mind to react in case there
 is an emergency.
 
 
@@ -64,7 +64,7 @@ field where acting quickly is the name of the game, analysis paralysis becomes
 a detrimental addition to one's day-to-day. Startups are *agile*, they are
 *lean*, and idyllically are meant to move fast and break things. But they are
 also run by people, the same people who have nagging feelings of doubt when it
-comes to even simple concerns, much less those of come up when running a
+comes to even simple concerns, much less those that come up when running a
 company.
 
 Managing your own thoughts and psychology is by far the most difficult part of
