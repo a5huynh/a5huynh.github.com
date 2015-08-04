@@ -23,21 +23,21 @@ effort.
     </div>
 </div>
 
-The rally around the space race was incredibly important and very intentional
+JFK's rally around the space race was incredibly important and very intentional
 at the time. The year the speech was delivered, there was a perception that the
 Americans were losing the space race. The Soviets had launched Sputnik and put
 the [first man](http://en.wikipedia.org/wiki/Yuri_Gagarin) in space. Landing on
 the moon seemed like an impossible feat, especially when it seemed that the
 nation was already far behind.
 
-Ever since I've heard about the speech, Kennedy's words continue to resonate
-with me, a reminder in tough instances that sometimes we do things simply
-because they are difficult, because they are uncomfortable, and because the
-challenge is one that will push us farther than we ever could before. In a
-single powerfully compelling moment, Kennedy turns the act of facing the
-challenge itself into one that serves to push us as a human race and as humans.
-Kennedy wants us to relish the fact that we are seemingly behind because the
-the act of landing on the moon will be that much greater of a victory in the end.
+Ever since hearing about the speech, Kennedy's words continue to resonate with
+me, a reminder in tough instances that sometimes we do things simply because
+they are difficult, because they are uncomfortable, and because the challenge
+is one that will push us farther than we ever could before. In a single
+powerfully compelling moment, Kennedy turns the act of facing the challenge
+itself into one that serves to push us as a human race and as humans. Kennedy
+wants us to relish the fact that we are seemingly behind because the the act of
+landing on the moon will be that much greater of a victory in the end.
 
 However, it can be silly to do something because it's hard, as the following
 [XKCD](http://what-if.xkcd.com/124/) bit illustrates. There has to be a little
@@ -56,8 +56,8 @@ heard by millions, if not billions, of people around the world. Some have
 [lamented the youth][problemmatic-youth] stating that there seems to be a
 disconnect between what they believe is worthwhile and what is not. Others
 point to our generation as largely [mission driven][kpcb-trends] and moreso
-than previous ones. As part of the lamented youth, all I can say is that time
-will tell.
+than previous ones. Personal observations suggest a mixture of both and as part
+of the lamented youth, all I can say is that time will tell.
 
 After Kennedy's speech in 1962, it wasn't until 1969 that the United States
 landed the first humans on the moon, ending the Space Race and creating the
