@@ -5,7 +5,7 @@ lsi: false
 exclude: [ '*.sublime*', 'README.md' ]
 
 sass:
-    style: :compressed
+  style: :compressed
 
 defaults:
   -
