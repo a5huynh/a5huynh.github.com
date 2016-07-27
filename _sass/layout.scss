@@ -19,8 +19,8 @@
 }
 
 body {
-  font-size: $content-size;
-  margin-top:16px;
+  font-size: $base-size;
+  margin-top: 1em;
 }
 
 a, a:hover, a:active, a:visited {
@@ -29,10 +29,12 @@ a, a:hover, a:active, a:visited {
 }
 
 ol {
-  padding-bottom: 32px;
+  padding-bottom: 2em;
 }
 
-img {
+p > img {
+  display: block;
+  margin: 0 auto;
   vertical-align: middle;
-  text-align: center;
+  width: 496px;
 }

@@ -14,11 +14,12 @@ p {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   padding: 0;
+  position: relative;
 }
 
 blockquote {
-
   color: darken( $grey, 10% );
+  font-size: 0.8em;
   font-family: $header-font;
   border-left: 8px solid $orange;
 
@@ -38,11 +39,11 @@ hr {
 }
 
 .article {
-  font-family:   $content-font;
-  line-height:   175%;
-  color:         lighten( black, 25% );
-  margin-bottom: 16px;
-  padding: 0 !important;
+  color:          lighten( black, 25% );
+  font-family:    $content-font;
+  line-height:    150%;
+  margin-bottom:  1em;
+  padding:        0 !important;
 
   // Meta information about an article (date written/number of words/etc.)
   h1 {
@@ -63,7 +64,7 @@ hr {
 div.section {
   clear: both;
   position: relative;
-  margin-top: 16px;
+  margin-top: 1em;
 }
 
 ul.posts {
@@ -74,8 +75,8 @@ ul.posts {
 
 .post-item {
   font-family: $content-font;
-  padding: 8px;
-  margin-bottom: 8px;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
 
   .post-title {
     padding: 0;
@@ -93,15 +94,15 @@ ul.posts {
   }
 
   .post-date {
-    font-size: $content-size;
+    font-size: $content-size * 0.75;
     float: right;
     color: $grey;
   }
 
   .post-excerpt {
-    padding-top: 8px;
-    line-height: 24px;
-    font-size: 12px;
+    padding-top: 0.5em;
+    line-height: 150%;
+    font-size: $content-size * 0.75;
     color: $grey;
   }
 }
@@ -114,6 +115,19 @@ ul.posts {
   font-size: $content-size / $golden-ratio;
   color: $grey;
 }
+
+img + em {
+  font-size: $content-size * 0.75;
+  font-style: normal;
+  line-height: $content-size * 1.25;
+  margin-right: -160px;
+  padding-top: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 160px;
+}
+
 
 h1, h2 {
   font-family: $content-font;
@@ -135,6 +149,7 @@ h2 {
 }
 
 h3.year-group {
+  font-size: ( $header-size / $golden-ratio ) * .8;
   font-weight: normal;
   color: lighten( $grey, 25% );
   padding: 0;
@@ -144,5 +159,5 @@ h3.year-group {
 }
 
 strong {
-  color:black;
+  color: black;
 }
