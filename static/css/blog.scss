@@ -1,6 +1,7 @@
 ---
 ---
 @import "constants";
+@import "reset";
 
 @import "components/header";
 @import "components/footer";
@@ -8,7 +9,9 @@
 @import "code/layout";
 @import "code/syntax";
 
-@import "layout";
+@import "layout/main";
+@import "layout/captions";
+@import "layout/links";
 
 p {
   margin-top: 1.5em;
@@ -81,16 +84,6 @@ ul.posts {
   .post-title {
     padding: 0;
     margin: 0;
-
-    a {
-      color: darken( $grey, 30% );
-      cursor: pointer;
-
-      &:hover {
-        box-shadow: 0px -2px 0px $orange inset;
-      }
-    }
-
   }
 
   .post-date {
@@ -106,28 +99,6 @@ ul.posts {
     color: $grey;
   }
 }
-
-.captioned_img {
-  text-align: center;
-}
-
-.caption {
-  font-size: $content-size / $golden-ratio;
-  color: $grey;
-}
-
-img + em {
-  font-size: $content-size * 0.75;
-  font-style: normal;
-  line-height: $content-size * 1.25;
-  margin-right: -160px;
-  padding-top: 20px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 160px;
-}
-
 
 h1, h2 {
   font-family: $content-font;
