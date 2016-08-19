@@ -13,10 +13,8 @@ And so it begins!
 Creating a Hack-a-thon Dynasty
 ------------------------------
 
-<div class='captioned_img'>
-	<div><img src='/static/misc/hacku.jpg' alt='Our application at a glance'/></div>
-	<div class='caption'>A taste of what sort of monsters haunt you on caffeine fueled deliriums.</div>
-</div>
+![Our application at a glance](/static/misc/hacku.jpg)
+*A taste of what sort of monsters haunt you on caffeine fueled deliriums.*
 
 Many may know of my friend and <strike>lover</strike> roommate David Vanoni with whom I share many victories. Over the past couples years we have taken home the grand prize in countless, innumerable events. I can't even begin to recount the 2-3 things we've won over the years.
 
@@ -32,10 +30,8 @@ Honestly now, could anyone really remember *exactly* what they have in their fri
 ### The Fab Four ###
 Our team this year had the lovely addition of Lynn and Leilani along with David and I. We had all worked together on projects in the past and have been friends for millennia. Needless to say our group formed a formidable force of brain power and technological prowess. David lead the hardware side with an initial prototype created by me involving an Arduino, WiFly board, and pressure sensors. The sensors turned out to be not as accurate and precise as we had originally wanted, but David was able to work around that and have the sensors talking to our server ( which was also setup by him ). During most of the 24 hours I worked intently on the client side creating interface mockups and writing the code necessary to get it all running. Lynn and Leilani also helped out on the client side and worked on the recipe search and friend collaboration code.
 
-<div class='captioned_img'>
-	<div><img src='/static/misc/WIMF.png' alt='Our application at a glance'/></div>
-	<div class='caption'>Our application at a glance</div>
-</div>
+![Our application at a glance](/static/misc/WIMF.png)
+*Our application at a glance*
 
 Without getting into the nitty gritty details of how everything was created and my eventual delirium and subsequent caffeine binges, our hack came out incredibly well-done. We had a couple weak spots, such as requiring a strong WiFi signal or the pressure sensors being a little spazzy, but in the end we were all happy with the product we created and nothing could rain on our parade.
 
@@ -65,10 +61,8 @@ One year ago, if you had told me that next summer I would be riding horses, push
 
 ### The Path Less Taken ###
 
-<div class='captioned_img'>
-	<div><img src='/static/misc/camel.jpg'/></div>
-	<div class='caption'>Hurggh?</div>
-</div>
+![It's a camel, nuff said.](/static/misc/camel.jpg)
+*Hurggh?*
 
 I'm *still* not quite sure how much I'm allowed to divulge about our findings so I'll keep this short and sweet.
 
@@ -79,10 +73,8 @@ We spent a solid 3-4 weeks at our archaeological site doing some intense work. R
 ### A Day of Games ###
 A couple days of our expedition was spent next a nice large river in which we could bathe and relax after 4 weeks of intense work. Here we also had horse races, foot races, and a soccer match pitting the scientists/engineers and the mongolians against each other in feats of skill and athleticism.
 
-<div class='captioned_img'>
-	<div><img src='/static/misc/thunder_lightning.jpg'/></div>
-	<div class='caption'>This is when we decided it was a good time to stop.</div>
-</div>
+![](/static/misc/thunder_lightning.jpg)
+*This is when we decided it was a good time to stop.*
 
 The backdrop for our soccer game was a seemingly never-ending field of lush green grass contrasted by a slow moving thunderhead sweeping visible torrents of rain and lightning towards us as we played. I had scored an early goal much to the delight of my European comrades and assisted several attacks which lead to another goal by our NatGeo photographer. At the end of the first half the mongolians scored a goal and I swapped with the goalie after a light ankle sprain on my dominant foot left much to be desired in my kicking ability. After many spectacular saves, a slide tackle, and fruitless attacks by both sides, the second half ended as the thunderhead finally came close. Victory was ours, a close 2-1, but a victory nonetheless. All of us then joined together to rain-proof our gers and dig in for the storm to come.
 
