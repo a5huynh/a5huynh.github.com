@@ -15,8 +15,8 @@ getting maps, etc. So long story short, I needed a pathfinding algorithm
 for the game engine, and my experiment with the A* algorithm began.
 
 
-A Little Theory
----------------
+## A Little Theory
+
 For those who don't know, A* is a best-first, graph searching algorithm
 based on the infamous [Dijkstra's
 Algorithm](http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm). The A*
@@ -47,8 +47,8 @@ from the graph, forcing the algorithm to take into account "holes" in the
 graph.
 
 
-Implementation
---------------
+## Implementation
+
 Now that we've gotten the theory behind A* out of the way, lets dive into
 my implementation.
 
@@ -216,7 +216,7 @@ is the sum of the absolute differences of two coordinates Changing this
 formula to other ones can speed up the process of pathfinding with worse
 results or impede the process with better results.
 
-References
-----------
+## References
+
 * [A* Algorithm Wikipedia Entry](http://en.wikipedia.org/wiki/A*_search_algorithm)
 * [An excellent page containing tons of information about variations you can make](http://theory.stanford.edu/~amitp/GameProgramming/)

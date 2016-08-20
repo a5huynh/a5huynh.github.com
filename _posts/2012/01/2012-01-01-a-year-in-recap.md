@@ -10,8 +10,7 @@ First off, before I begin my long ramble I would like to thank those of you who 
 
 And so it begins!
 
-Creating a Hack-a-thon Dynasty
-------------------------------
+## Creating a Hack-a-thon Dynasty
 
 ![Our application at a glance](/static/misc/hacku.jpg)
 *A taste of what sort of monsters haunt you on caffeine fueled deliriums.*
@@ -53,8 +52,8 @@ First place announced. It was us!
 
 A couple people have already asked whether David and I will taking another team to dominance next year. All I can say is that if we were to come back, we'll be taking home the national title next year as well.
 
-The Adventure
--------------
+## The Adventure
+
 > Where we're going, we don't need roads
 
 One year ago, if you had told me that next summer I would be riding horses, pushing trucks through mud, and become the MVP of an NatGeo vs Mongolia soccer match I'd have a hard time believing you. Heck, I still have a hard time believing I did any of the stuff I did on that expedition.
@@ -86,8 +85,8 @@ After 4 weeks of rolling around in dirt, trudging through mud, and a little some
 ### Further Inquiries ###
 I don't want this to become too long so I'll leave it at that. I have many more tales to tell, some funny, some not-so-much and all end on good note. So for those of you who know the story, know that I left my mark on a Mongolian park bench. For those who don't, buy me a beer and I promise I will regale you with tales of adventure, horror, and laughter.
 
-From the Plains of Mongolia to the Urban Jungles of New York
-------------------------------------------------------------
+## From the Plains of Mongolia to the Urban Jungles of New York
+
 New York, New York. The Big Apple. I'll never forget the moment I landed in JFK after gazing down at the city lights below. People abuzz on their phones calling their mothers, friends, bookies and the charming hustle and bustle as everyone forced their way out of the aircraft at the exact same moment.
 
 We made it big! After our victories last and this year at the Yahoo! Hacks the winning teams flew to New York to participate in a global version of the event. People from all across the globe ( including Brazil, India, and more ) flew in, creating a total of 19 world-class groups of tremendous skill and talent. Again our goals were the same -- come up with an idea, implement the idea, and present the idea. All within 24 hours.
@@ -109,8 +108,8 @@ Matt and I share a mutual taste in what I like to call, *Damn Good Food*. Food t
 
 A mere 4 hours after the hack event had ended we ( David, Matt and I ) made our way over to Anthony Bourdain's *Les Halles*. There I would savour and reminisce about the perfect slice of beef ever to be laid in front of me. Every cut as smooth and silky as a cut of butter, every bite an explosion of flavor and wonderful juices. We all shared tears of happiness and pure joy.
 
-Cheers
-------
+## Cheers
+
 Once again thank you for making thus far. I hope you enjoyed the journey as I much as I did creating it.
 
 Andrew
