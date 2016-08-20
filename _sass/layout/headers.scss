@@ -1,0 +1,27 @@
+h1, h2 {
+  font-weight: normal;
+  color: $orange;
+}
+
+h1 {
+  font-size: $header-size;
+}
+
+h2 {
+  font-size: $header-size / $golden-ratio;
+
+  &:before {
+    content: '# ';
+    margin-left: -18px;
+  }
+}
+
+h3.year-group {
+  font-size: $header-size / $golden-ratio;
+  font-weight: normal;
+  color: lighten( $grey, 25% );
+  padding: 0;
+  margin-top: 10px;
+  margin-left: -72px;
+  float: left;
+}
