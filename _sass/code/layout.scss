@@ -16,7 +16,7 @@ code {
 }
 
 pre {
-  padding: 0;
+  padding: 16px;
   margin: 0;
   overflow-x: scroll;
 
@@ -45,4 +45,10 @@ code.highlighter-rouge {
   font-size: 0.75em;
   color: #4271AE;
   padding: 4px;
+}
+
+figure.highlight {
+  pre {
+    padding: 0;
+  }
 }
