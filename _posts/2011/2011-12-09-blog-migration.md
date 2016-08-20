@@ -24,6 +24,6 @@ I just start with some dollar signs, some notation, and **boom!** $$r_{s} = \fra
 ### Code w/ syntax highlighting! ###
 {% highlight python linenos %}
 def hello:
-	print 'Hello!'
+    print 'Hello!'
 {% endhighlight %}
 Just think of all those fancy posts with code I'll get to write someday. Oooh boy my giblets are tingling already.
