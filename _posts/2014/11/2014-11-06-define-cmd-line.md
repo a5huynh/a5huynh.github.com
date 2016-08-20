@@ -42,7 +42,7 @@ your definitions. I added the following to my `.bash_profile` to define (hah) a
 function that will call sdcv with some good defaults with whatever word or
 phrase I pass to it.
 
-{% highlight bash %}    
+{% highlight bash linenos %}
 define () {
     # Check if sdcv is installed
     if command -v sdcv > /dev/null; then
