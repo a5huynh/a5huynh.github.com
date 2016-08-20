@@ -5,7 +5,7 @@
  */
 pre,
 code {
-  font-size: $content-size * 0.8 !important;
+  font-size: 0.9em;
   line-height: 150%;
   border-radius: 3px;
   background-color: #EEE;
@@ -39,4 +39,10 @@ td.gutter {
 
 td.code {
   padding: 8px;
+}
+
+code.highlighter-rouge {
+  font-size: 0.75em;
+  color: #4271AE;
+  padding: 4px;
 }
