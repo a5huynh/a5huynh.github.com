@@ -12,3 +12,13 @@ img + em {
   top: 0;
   width: 160px;
 }
+
+.caption {
+  font-size: $content-size * 0.75;
+  font-style: normal;
+  line-height: $content-size * 1.25;
+  margin-right: -160px;
+  position: absolute;
+  right: 0;
+  width: 160px;
+}
