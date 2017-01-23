@@ -29,6 +29,11 @@ h3.year-group {
   color: lighten( $grey, 25% );
   padding: 0;
   margin-top: 0.2em;
-  margin-left: -2.5em;
+  margin-left: -3em;
   float: left;
+
+  &:before {
+    content: none;
+    margin: 0;
+  }
 }
