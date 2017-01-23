@@ -1,5 +1,3 @@
-@import "constants";
-@import "reset";
 @import "960";
 @import "instagram";
 
@@ -18,21 +16,13 @@
   color: white;
 }
 
-body {
-  font-size: $content-size;
-  margin-top:16px;
-}
-
-a, a:hover, a:active, a:visited {
-  text-decoration: none;
-  color: $orange;
-}
-
 ol {
-  padding-bottom: 32px;
+  padding-bottom: 2em;
 }
 
-img {
+p > img {
+  display: block;
+  margin: 0 auto;
   vertical-align: middle;
-  text-align: center;
+  width: 496px;
 }

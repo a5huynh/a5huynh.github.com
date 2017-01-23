@@ -23,8 +23,8 @@ But as they go on in the article, this isn't always the case. The major hurdle
 in the end is not the research itself but *communicating* the information to
 the reader. This leads me to my next point:
 
-Academic Posters Suck
----------------------
+## Academic Posters Suck
+
 There I said it. They do. Perhaps not all of them, but definitely a large
 number of the posters I have run across.
 
@@ -33,8 +33,8 @@ a small rectangular area. Others are aimless and seem to be splatter of charts
 and graphs with no coherence. But most of all, they all suffer from lack of
 design and lack of readability.
 
-Design and Readability
------------------------
+## Design and Readability
+
 Lack of design indicates the lack of structure and coherence in the poster and
 **not** simply the lack of aesthetics. Although the two may go hand-in-hand.
 
@@ -46,8 +46,8 @@ locations that are simply not conducive to normal reading and scanning.
 Additionally, even with a simple, decent design some posters still have
 difficultly conveying the information to the user.
 
-Design of My Poster
---------------------
+## Design of My Poster
+
 As I created my poster, I tried to take all those observations to heart.
 Important elements are highlighted and cruft/filler are faded out but still
 easily found.
@@ -57,14 +57,11 @@ Before placing any content, I sketched out an initial layout. The layout was
 designed to keep in mind a left to right and top to bottom reading path.
 Columns of information are clearly cut-out and encapsulated.
 
-<div class='captioned_img'>
-	<div>
-		<img width='280' src='/static/img/2012/research/igert-poster-thumbnail.png'/>
-	</div>
-	<div class='caption'>
-		A major problem I had with posters is the lack of structure and a clear flow of information. My design attempts to add a bit of that to aid reading and analysis.
-	</div>
-</div>
+![](/static/img/2012/research/igert-poster-thumbnail.png)
+*A major problem I had with posters is the lack of structure and a clear
+flow of information. My design attempts to add a bit of that to aid reading
+and analysis.*
+
 
 ### Contrast
 Readability is improved from normal posters by employing contrast in the
@@ -74,17 +71,10 @@ elements. For example, an image caption may be color highlighted with a
 different font in such a way that anybody skimming over the poster could easily
 jump over the information if needed.
 
-<div class='captioned_img'>
-	<div>
-		<img width='280' src='/static/img/2012/research/contrast-example.png'/>
-	</div>
-	<div class='caption'>
-		Image captions and important text are easily distinguishable from normal text.
-	</div>
-</div>
+![](/static/img/2012/research/contrast-example.png)
+*Image captions and important text are easily distinguishable from normal text.*
+
 
 And after all that work... the final product!
 
-<div class='captioned_img'>
-	<img src='/static/img/2012/research/igert-poster-thumbnail.png'/>
-</div>
+![](/static/img/2012/research/igert-poster-thumbnail.png)

@@ -1,35 +1,19 @@
 ---
 ---
 @import "constants";
+@import "reset";
+
+@import "layout/main";
+@import "layout/captions";
+@import "layout/headers";
+@import "layout/links";
+@import "layout/text";
 
 @import "components/header";
 @import "components/footer";
 
 @import "code/layout";
 @import "code/syntax";
-
-@import "layout";
-
-p {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  padding: 0;
-}
-
-blockquote {
-
-  color: darken( $grey, 10% );
-  font-family: $header-font;
-  border-left: 8px solid $orange;
-
-  padding: 0;
-  margin: 1.5em 0 1.5em -17px;
-
-  > p {
-    margin: 0;
-    padding: 16px 0 16px 24px;
-  }
-}
 
 hr {
   margin: 32px auto;
@@ -38,11 +22,10 @@ hr {
 }
 
 .article {
-  font-family:   $content-font;
-  line-height:   175%;
-  color:         lighten( black, 25% );
-  margin-bottom: 16px;
-  padding: 0 !important;
+  color:          lighten( black, 25% );
+  line-height:    150%;
+  margin-bottom:  1em;
+  padding:        0 !important;
 
   // Meta information about an article (date written/number of words/etc.)
   h1 {
@@ -63,7 +46,7 @@ hr {
 div.section {
   clear: both;
   position: relative;
-  margin-top: 16px;
+  margin-top: 1em;
 }
 
 ul.posts {
@@ -73,76 +56,25 @@ ul.posts {
 }
 
 .post-item {
-  font-family: $content-font;
-  padding: 8px;
-  margin-bottom: 8px;
+  padding: 0.25em;
+  margin-bottom: 0.25em;
 
   .post-title {
     padding: 0;
     margin: 0;
-
-    a {
-      color: darken( $grey, 30% );
-      cursor: pointer;
-
-      &:hover {
-        box-shadow: 0px -2px 0px $orange inset;
-      }
-    }
-
   }
 
   .post-date {
-    font-size: $content-size;
+    margin-top: 0.25em;
+    font-size: 0.7em;
     float: right;
     color: $grey;
   }
 
   .post-excerpt {
-    padding-top: 8px;
-    line-height: 24px;
-    font-size: 12px;
+    font-size: 0.75em;
+    padding-top: 0.5em;
+    line-height: 150%;
     color: $grey;
   }
-}
-
-.captioned_img {
-  text-align: center;
-}
-
-.caption {
-  font-size: $content-size / $golden-ratio;
-  color: $grey;
-}
-
-h1, h2 {
-  font-family: $content-font;
-  font-weight: normal;
-  color: $orange;
-}
-
-h1 {
-  font-size: $header-size;
-}
-
-h2 {
-  font-size: $header-size / $golden-ratio;
-
-  &:before {
-    content: '# ';
-    margin-left: -18px;
-  }
-}
-
-h3.year-group {
-  font-weight: normal;
-  color: lighten( $grey, 25% );
-  padding: 0;
-  margin-top: 10px;
-  margin-left: -72px;
-  float: left;
-}
-
-strong {
-  color:black;
 }

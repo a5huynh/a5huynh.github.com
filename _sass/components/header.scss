@@ -1,9 +1,7 @@
-@import "constants";
-
 .header {
   font-family: $header-font;
   font-weight: normal;
-  font-size: 22px;
+  font-size: $header-size;
 
   margin-bottom: 32px;
   overflow: hidden;
@@ -13,9 +11,9 @@
 
 #big-name {
   border-right: 8px solid $orange;
-  font-size: 84px;
 
   a {
+    font-size: 84px;
     border: 0;
     text-decoration: none;
     color: black;
@@ -26,15 +24,24 @@
   float:left;
   padding-left:20px;
   padding-top:11px;
-  font-size:32px;
   width: 284px;
   margin-right: 8px;
+
+  div {
+    font-size: 32px;
+  }
 }
 
 #social-icons {
   text-align: right;
-  padding-top: 4px;
+  font-size: 24px;
+  padding-top: 2px;
 
-  /* Don't underline the social icon links */
-  a { border-bottom: 0 !important; outline: none; }
+  a {
+    /* Display the links as blocks */
+    /* Don't underline the social icon links */
+    line-height: 100%;
+    border-bottom: 0 !important;
+    outline: none;
+  }
 }

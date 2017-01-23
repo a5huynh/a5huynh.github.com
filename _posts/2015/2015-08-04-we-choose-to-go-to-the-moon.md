@@ -13,15 +13,9 @@ effort.
 >  that challenge is one that we are willing to accept, one we are unwilling to
 >  postpone, and one which we intend to win, and the others, too.
 
-<div class='captioned_img'>
-    <img src='/static/img/2015/July/moon-landings.gif' width='256px'>
-    <div class='caption'>
-        Every Apollo moon landing.
-        [<a href='http://www.psrd.hawaii.edu/Jan01/lunarCataclysm.html'>
-            source
-        </a>]
-    </div>
-</div>
+
+![](/static/img/2015/July/moon-landings.gif)
+*Every Apollo moon landing. [[source](http://www.psrd.hawaii.edu/Jan01/lunarCataclysm.html)]*
 
 JFK's rally around the space race was incredibly important and very intentional
 at the time. The year the speech was delivered, there was a perception that the
@@ -43,12 +37,8 @@ However, it can be silly to do something because it's hard, as the following
 [XKCD](http://what-if.xkcd.com/124/) bit illustrates. There has to be a little
 substance to make the challenge worthwhile.
 
-<div class='captioned_img'>
-    <img src='/static/img/2015/July/kennedy.png' width='256px'>
-    <div class='caption'>
-        Sourced from <a href='http://what-if.xkcd.com/124/'>Lunar Swimming</a>
-    </div>
-</div>
+![](/static/img/2015/July/kennedy.png)
+*Sourced from [Lunar Swimming](http://what-if.xkcd.com/124/)*
 
 Of course, a worthwhile challenge is hard to define and find. This is
 especially evident in an age where any issue, big or small, can be instantly
@@ -73,7 +63,7 @@ that brought us here in the first place. Maybe it was the desire to push forth
 the human race, save the planet, or maybe it was to push ourselves into
 uncharted terrority. Whatever the reason, no matter how far we feel we may be
 behind, or how difficult it may seem in the moment, the challenge must be one that motivates, accept with, and relish with every single fiber of our being.
-And, most of all, one that we intend to *win*. 
+And, most of all, one that we intend to *win*.
 
 Otherwise, why bother?
 

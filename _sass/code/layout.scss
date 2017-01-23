@@ -5,22 +5,52 @@
  */
 pre,
 code {
-    font-size: $content-size;
-    border-radius: 3px;
-    background-color: #eee;
+  font-family: $code-font;
+  font-size: 0.9em;
+  font-weight: 400;
+  line-height: 150%;
+  border-radius: 3px;
+  background-color: #FAFAFA;
 }
 
 code {
-    padding: 1px 5px;
+  padding: 0 4px;
 }
 
 pre {
-    padding: 8px 12px;
-    overflow-x: scroll;
+  padding: 16px;
+  margin: 0;
+  overflow-x: scroll;
 
-    > code {
-        border: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
+  > code {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+
+td.gutter {
+  border-right: 1px solid $orange;
+  padding: 8px;
+
+  pre.lineno {
+    color: lighten( black, 60% );
+  }
+}
+
+td.code {
+  padding: 8px;
+}
+
+code.highlighter-rouge {
+  font-size: 0.75em;
+  color: $orange;
+  padding: 4px;
+}
+
+figure.highlight {
+  pre {
+    padding: 0;
+  }
 }
