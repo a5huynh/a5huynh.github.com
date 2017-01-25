@@ -4,9 +4,9 @@ location: San Diego
 tags: code
 ---
 
-![Project screenshot](/static/img/CSE167/8394016-0-Screen_shot_2009-12-07_at_12.4.png.scaled.500.jpg)
-
 CSE 167 is a course I'm taking this quarter having to do with Computer Graphics. We've been working with OpenGL creating cool scenes while learning more about the underlying concepts. It's loads of work, but loads of fun as well.
+
+![Project screenshot](/static/img/CSE167/8394016-0-Screen_shot_2009-12-07_at_12.4.png.scaled.500.jpg)
 
 To end the quarter, our final project is to come up with a cool scene using a variety of effects.
 
