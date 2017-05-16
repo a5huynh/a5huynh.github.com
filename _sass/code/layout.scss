@@ -6,7 +6,7 @@
 pre,
 code {
   font-family: $code-font;
-  font-size: 0.9em;
+  font-size: 0.85em;
   font-weight: 400;
   line-height: 150%;
   border-radius: 3px;
@@ -40,7 +40,7 @@ td.gutter {
 }
 
 td.code {
-  padding: 8px;
+  padding: 8px 0;
 }
 
 code.highlighter-rouge {
