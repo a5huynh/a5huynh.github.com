@@ -1,12 +1,13 @@
 // Image captions
 // Any text wrapped in an "<em>" tag after an image will be considered the
 // image caption
-img + em {
+figure + em,
+img + em  {
   font-size: $content-size * 0.75;
   font-style: normal;
   line-height: $content-size * 1.25;
-  margin-right: -160px;
-  padding-top: 20px;
+  margin-right: -176px;
+  padding-top: 16px;
   position: absolute;
   right: 0;
   top: 0;
