@@ -1,8 +1,12 @@
-highlighter: rouge 
+highlighter: rouge
 safe: true
 lsi: false
 
-exclude: [ '*.sublime*', 'README.md' ]
+exclude: [
+  '*.sublime*',
+  'Gemfile*',
+  'README.md'
+]
 
 sass:
   style: :compressed
