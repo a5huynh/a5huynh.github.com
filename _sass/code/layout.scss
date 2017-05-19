@@ -11,28 +11,36 @@ code {
   line-height: 150%;
   border-radius: 3px;
   background-color: #FAFAFA;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 code {
   padding: 0 4px;
+
+  table, tbody, tr, td {
+    background: #FAFAFA;
+    border-collapse: collapse;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 pre {
-  padding: 16px;
-  margin: 0;
   overflow-x: scroll;
 
   > code {
-    border: 0;
-    padding-right: 0;
-    padding-left: 0;
+    padding: 8px 0;
+    margin: 0;
   }
 }
 
 
 td.gutter {
   border-right: 1px solid $orange;
-  padding: 8px;
+  padding: 0 8px 0 8px;
 
   pre.lineno {
     color: lighten( black, 60% );
@@ -40,7 +48,9 @@ td.gutter {
 }
 
 td.code {
+  border: 0;
   padding: 8px 0;
+  margin: 0;
 }
 
 code.highlighter-rouge {
@@ -50,7 +60,10 @@ code.highlighter-rouge {
 }
 
 figure.highlight {
+  border: 0;
+
   pre {
+    border: 0;
     padding: 0;
   }
 }
