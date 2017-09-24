@@ -83,7 +83,7 @@ _face( x: number, y: number, z: number ): THREE.Face3 {
 
 Now that we have the vertex colorization accomplished, let's take a stab at
 fixing the distortion in the UV sphere geometry through the use of another
-sphere type known as the icosahedron.
+sphere geometry -- the icosahedron.
 
 ## Icosahedron
 
@@ -105,7 +105,7 @@ non-distorted sphere as seen below.
 
 The algorithm to generate the sphere is pretty straightforward. The
 icosahedron starts off with 20 faces created using a set of 12 initial
-vertices as seen below:
+vertices.
 
 <div style="position:relative;">
 {% highlight typescript linenos %}
@@ -141,7 +141,7 @@ golden ratio (\(\tau\)) and then applying that around the sphere.
 </div>
 
 Afterwards, we'll setup the initial faces and based on the level of detail
-we want, subdivide the triangles into smaller and smaller ones.
+we want, divide the initial faces into smaller and smaller triangles.
 
 {% highlight typescript linenos %}
 setupInitialFaces( ) {
@@ -209,6 +209,9 @@ getHeight( x: number, y: number, z:number ): number {
         hx += 0.5;
     }
 
+    // Since texture coordinates are between 0 and 1
+    // we multiply by the terrain size to give us
+    // a grid location within the terrain map.
     hx = Math.floor( hx * (this.terrain_size - 1) );
     hy = Math.floor( hy * (this.terrain_size - 1) );
 
@@ -232,7 +235,7 @@ reference a height map.
 </div>
 
 Combined with the vertex coloring functionality developed earlier, we now
-have the following, more naturally looking planetoid.
+have the following, more colorful looking planetoid.
 
 <iframe scrolling="no"
         class="full-width"
@@ -242,6 +245,12 @@ have the following, more naturally looking planetoid.
 &amp;zoom=3
 &amp;particleNumIslands=15">
 </iframe>
+
+Further tweaking of the terrain generation and blending of the vertex
+colors would fix some of the artifacts you'll probably see in the planet
+below, such as the water/grass terrain stretching up into the mountains and
+hard cutoffs rather than smooth transitions between terrain types.
+
 
 > You can view the code used in this post
 > [here](https://github.com/a5huynh/planet-generator).

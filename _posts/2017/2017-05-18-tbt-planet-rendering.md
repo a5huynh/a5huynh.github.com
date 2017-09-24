@@ -117,7 +117,7 @@ As we continued with the terrain generation, one of the main issues we faced was
 due to how a UV sphere is represented in 3D space. As mentioned previously, the
 sphere is divided up into meridians and parallels, which creates an effect
 where faces towards the top and bottom of the sphere are smaller and more
-bunched together, while the faces that are closer to the middle of spehere are
+bunched together, while the faces that are closer to the middle of sphere are
 larger and more spread out.
 
 > Fun fact: This sort problem also exists in how we represent Earth. Different
