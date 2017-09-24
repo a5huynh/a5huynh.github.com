@@ -1,5 +1,5 @@
 ---
-title: "TBT: Planet rendering"
+title: "TBT: Planet Rendering"
 location: San Francisco
 ---
 
