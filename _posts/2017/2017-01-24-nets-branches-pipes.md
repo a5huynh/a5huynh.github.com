@@ -47,7 +47,7 @@ we can just add all those inputs together. But what if we want to ignore one of
 the inputs? This is where the set of the weights for each input comes into
 play. Adjusting the weight to be closer to 0 means that input should have
 little impact on the overall decision. Adjusting the weight to be very large
-either negatively or postively means that input should have a very strong
+either negatively or positively means that input should have a very strong
 impact on the overall decision. Putting it all together, if we were to compute
 the impact it would look something like this:
 
@@ -65,7 +65,7 @@ $$
     \begin{array}{ll}
         0 & \mbox{if} \sum_i x_i * w_i  \leq \mbox{threshold} \\
         1 & \mbox{if} \sum_i x_i * w_i > \mbox{threshold}
-    \end{array} 
+    \end{array}
     \right .
 \end{eqnarray}
 $$
