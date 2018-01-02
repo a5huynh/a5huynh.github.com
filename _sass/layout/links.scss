@@ -7,7 +7,7 @@ a, a:hover, a:active, a:visited {
 // Title links
 .post-title {
   a {
-    color: darken( $grey, 30% );
+    color: $black;
     cursor: pointer;
 
     &:hover {

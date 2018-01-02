@@ -3,7 +3,7 @@
 // image caption
 figure + em,
 img + em  {
-  font-size: $content-size * 0.75;
+  font-size: $small-content-size;
   font-style: normal;
   line-height: $content-size * 1.25;
   margin-right: -176px;
@@ -15,7 +15,7 @@ img + em  {
 }
 
 .caption {
-  font-size: $content-size * 0.75;
+  font-size: $small-content-size;
   font-style: normal;
   line-height: $content-size * 1.25;
   margin-right: -160px;

@@ -14,8 +14,8 @@ p {
 
 // Quoting something?
 blockquote {
-  color: darken( $grey, 10% );
-  font-size: 0.8em;
+  color: $grey;
+  font-size: $small-content-size;
   font-family: $header-font;
   border-left: 8px solid $orange;
 
