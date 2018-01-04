@@ -1,30 +1,20 @@
-h1, h2 {
-  font-weight: normal;
-  color: $orange;
-}
+h1 { color: $orange; font-weight: normal; }
+h2, h3, h4 { color: $black; font-weight: normal; }
 
-h1 {
-  font-size: $header-size;
-}
+h1 { font-size: $h1-size; }
+h2 { font-size: $h2-size; }
+h3 { font-size: $h3-size; }
+h4 { font-size: $h4-size; }
 
-h2 {
-  font-size: $header-size / $golden-ratio;
-
+h2, h3 {
   &:before {
     content: '# ';
-    margin-left: -18px;
-  }
-}
-
-h3 {
-  &:before {
-    content: '# ';
-    margin-left: -18px;
+    color: $orange;
+    margin-left: -0.75em;
   }
 }
 
 h3.year-group {
-  font-size: $header-size / $golden-ratio;
   font-weight: normal;
   color: lighten( $grey, 25% );
   padding: 0;
