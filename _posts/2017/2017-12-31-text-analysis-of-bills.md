@@ -143,7 +143,7 @@ def txt_to_token(txt : str):
 [nltk]: http://www.nltk.org
 
 
-## Running the Analysis
+## Running Simple Analyses
 
 When I started down the path for this blog post I was interested in
 uncovering a couple things from the dataset:
@@ -223,8 +223,10 @@ for the full image.*
 
 ## Discussion & Next Time
 
-That's it for now. In the next part of this series, I'll dig a little
-deeper into the content of the bills and correlate topics with how likely
-things are to make it all the way through the Senate. We'll additionally
-take a look at the `BILLSTATUS` dataset and use it conjunction with the
-`BILLS` dataset for more interesting insights.
+That's it for now!
+
+In the next part of this series, I'll dig a little deeper into the content
+of the bills and correlate topics with how likely things are to make it all
+the way through the Senate. We'll additionally take a look at the
+`BILLSTATUS` dataset and use it conjunction with the `BILLS` dataset for
+more interesting insights.
