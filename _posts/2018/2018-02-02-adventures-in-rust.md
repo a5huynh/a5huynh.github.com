@@ -279,13 +279,13 @@ And there it is in action!
 
 ![Red triangle shoots green square](/static/img/2018/collisions.gif)
 
-All that's missing is an explosions and bits of green square scattered
+All that's missing are explosions and bits of green square scattered
 across the screen.
 
 ## Keeping Score & End Game
 
 In the previous section, you'll notice that every time a player hits an
-enemy square, we update the score. Currently theres no way for the player
+enemy square, we update the score. Currently there is no way for the player
 to know what score they have and no way for the game to end. Let's render
 the score on screen and handle an end-game status.
 
@@ -296,8 +296,7 @@ source code for the `piston2d-opengl_graphics` library to figure out the
 exact incantation. In the end, it was a simple two lines of code to load
 the font we want and use it to render the score.
 
-First and foremost, we need to load the font we want to use. I chose the
-[IBM VGA font][old-school] to really accentuate the nostalgic look.
+First and foremost, we need to load the font we want to use. I chose a fantastic [old school IBM font][old-school] to really accentuate the nostalgic look.
 
 [old-school]: https://int10h.org/oldschool-pc-fonts/readme/
 
