@@ -75,11 +75,12 @@ fn main() {
     }
 }
 {% endhighlight %}
-***Note:** There is an `App` struct that is not present in the "Getting Started" example where
-I move useful game state, such as the square position (`x`,`y`) and `rotation`.*
+***Note:** There is an `App` struct that is not present in the "Getting
+Started" example where I move useful game state, such as the square
+position (`x`,`y`) and `rotation`.*
 
-While in `lib.rs` we have the basic render and update loops to blank out the screen,
-draw a red square, and then rotate it as seen below.
+While in `lib.rs` we have the basic render and update loops to blank out
+the screen, draw a red square, and then rotate it as seen below.
 
 {% highlight rust linenos %}
 // Handle rendering any objects on screen.
@@ -367,20 +368,21 @@ what worked and what didn't work throughout the entire dev process.
 It's been a while since I've thought about pointers and references, heap
 allocation vs. stack allocation, and even types but jumping into Rust felt
 really good. It brings a lot of familiar syntax from C-based languages
-(such as [structs][structs], references, and pointers) while also introducing
-a lot of compelling new functionality such as [closures][rust-closures],
-[traits][traits], and [lifetimes][rust-lifetimes].
+(such as [structs][structs], [references, and pointers][rust-refs]) while
+also introducing a lot of compelling new functionality such as
+[closures][rust-closures], [traits][traits], and [lifetimes][rust-lifetimes].
 
 [structs]: https://en.wikipedia.org/wiki/Struct_(C_programming_language)
 [rust-closures]: https://rustbyexample.com/fn/closures.html
 [rust-lifetimes]: https://doc.rust-lang.org/book/second-edition/ch10-03-lifetime-syntax.html
+[rust-refs]: https://doc.rust-lang.org/book/second-edition/ch04-02-references-and-borrowing.html
 
 * Cargo is an excellent tool.
 
 [Cargo] is Rust's package manager that is a sort of mixture between
 traditionally package managers and a Makefile. Cargo can handle
 dependencies while also building and running your code as well. There is
-also a flourishing community of [third-party subcommands] that do
+also a flourishing community of [third-party subcommands][third-party] that do
 everything from watching for changes and auto-building to auditing for
 security vulnerabilities.
 
@@ -394,3 +396,5 @@ the framework is not 100% stable quite yet. There's still plenty
 of development going on that may create breaking changes from version
 to version. However, it's exciting to get up and running as quickly as
 I could in a scripting language such as Python.
+
+*Edited (2018-02-08): Added missing links in appendix.*
