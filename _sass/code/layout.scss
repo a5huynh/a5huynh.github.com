@@ -3,6 +3,10 @@
 /**
  * Code formatting
  */
+pre {
+  padding: 4px 8px;
+}
+
 pre,
 code {
   font-family: $code-font;
@@ -13,13 +17,10 @@ code {
   border-radius: 3px;
   background-color: $white;
   border: 0;
-  margin: 0;
-  padding: 0;
 }
 
 code {
   color: $white;
-  padding: 0 4px;
 
   table, tbody, tr, td {
     border-collapse: collapse;
@@ -33,7 +34,7 @@ pre {
   overflow-x: auto;
 
   > code {
-    padding: 8px 0;
+    padding: 0;
     margin: 0;
   }
 }
@@ -42,6 +43,11 @@ pre {
 td.gutter {
   border-right: 1px dotted $orange;
   padding: 0 8px 0 8px;
+
+  pre {
+    padding: 0;
+    margin: 0;
+  }
 
   pre.lineno {
     color: $grey;
@@ -52,6 +58,11 @@ td.code {
   border: 0;
   padding: 8px 0 8px 8px;
   margin: 0;
+
+  pre {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 code.highlighter-rouge {
