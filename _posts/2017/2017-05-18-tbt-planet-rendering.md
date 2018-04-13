@@ -144,5 +144,8 @@ Hope you enjoyed this short foray into sphere rendering and terrain generation.
 > You can view the old project and newer code used in this post
 > [here](https://github.com/a5huynh/planet-generator).
 
+## Edits
 
-[pd-link]: https://webcache.googleusercontent.com/search?q=cache:d4OcoMsCHMkJ:www.lighthouse3d.com/opengl/terrain/index.php3%3Fparticle+&cd=2&hl=en&ct=clnk&gl=us
+* 2018-04-13: Updated link to particle deposition tutorial.
+
+[pd-link]: http://www.lighthouse3d.com/opengl/terrain/index.php?particle
