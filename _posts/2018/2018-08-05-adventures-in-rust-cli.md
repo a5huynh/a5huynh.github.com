@@ -1,6 +1,6 @@
 ---
 title: "Adventures in Rust: CLI"
-Location: "San Francisco"
+location: "San Francisco"
 ---
 
 My second project in Rust is a little more practical than my first (which
