@@ -40,11 +40,11 @@ in such devices as the [Gameboy][gb] and [Gameboy Color][gbc].
 
 ## Compiling the Source Code
 
-Due to its popularity, there are a lot of tools out there for the Z80
-spanning decades. It took a little digging around but I was able to find an
-assembler that worked on OSX (and other Unix based systems) called `zasm`
-that is still being actively worked on today! It’s available as a [binary
-download][zasm-dl] or if you’re more homebrew inclined, I added a
+Due to its popularity, there are a lot of tools out there for the Z80,
+spanning decades of work. It took a little digging around but I was able to
+find an assembler that worked on OSX (and other Unix based systems) called
+`zasm` that is still being actively worked on today! It’s available as a
+[binary download][zasm-dl] or if you’re more homebrew inclined, I added a
 [formula][zasm-formula] to my personal homebrew repository that makes
 installing it a cinch.
 
@@ -66,8 +66,6 @@ in file MiniRPG.asm:
 assembled file: MiniRPG.asm
     54 lines, 1 pass, 0.0044 sec.
     1 error
-
-make: *** [build] Error 1
 ```
 
 Well, nobody said it was going to be easy.
@@ -89,7 +87,7 @@ To find this missing file, I went to the incredibly useful
 [ticalc.org](ti-asm) file archives to see if there are include files I
 could use and stumbled upon the [Ultimate TI-86 Include File][ti-inc]. A
 cursory look through the file showed me that it had all the missing symbols
-the assembler had complained about.
+that the assembler would be expecting from an include file.
 
 [ti-asm]: https://www.ticalc.org/pub/86/asm
 [ti-inc]: https://www.ticalc.org/pub/86/asm/source/include/ti86.zip
@@ -136,7 +134,7 @@ format specifications to analyze existing TI-86 binaries and a packer to
 pack the final output of the `zasm` assembler into something that can be
 transferred and run by the TI-86 emulator.
 
-> You can check out the pack & unpacker code [here](http://github.com/a5huynh/z80-minirpg)
+> You can check out the pack & unpacker code [here](https://github.com/a5huynh/z80-minirpg/tree/master/scripts)
 
 For example, analyzing the final output of assembled and packed game would look
 like so:
@@ -250,8 +248,8 @@ Z80 assembly.
 
 * Grayscale rendering
 
-If you take a look at a gif of the running game in Wabbit, you'll see that
-it oddly flashes due to the grayscale rendering, as seen below:
+If you take a look at a closeup gif of the running game in Wabbit, you'll
+see that it oddly flashes due to the grayscale rendering, as seen below:
 
 ![Game Flashing](/static/img/2018/z80-game-flashing.gif)
 
