@@ -16,10 +16,6 @@
   color: white;
 }
 
-ol {
-  padding-bottom: 2em;
-}
-
 p {
   & > img,
   & > a img {
@@ -41,4 +37,8 @@ iframe {
     margin: 0 -100%;
     margin: 0 calc( 50% - 50vw );
   }
+}
+
+img {
+  border-radius: 8px;
 }
