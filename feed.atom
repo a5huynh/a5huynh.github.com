@@ -12,7 +12,7 @@ layout: nil
   <author>
     <name>Andrew Huynh</name>
   </author>
-  <rights>Copyright (c) 2010-2017, Andrew Huynh; all rights reserved.</rights>
+  <rights>Copyright (c) 2010-2018, Andrew Huynh; all rights reserved.</rights>
 
   {% for post in site.posts limit:20 %}
   <entry>
