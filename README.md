@@ -2,8 +2,8 @@ thoughts and ramblings
 ======================
 
 My [thoughts and ramblings](http://a5huynh.github.io) in markdown are
-automagically transformed by [Jekyll](http://github.com/mojombo/jekyll)
-into a static site whenever I push to this repository to GitHub.
+automagically transformed by [Zola](http://getzola.org) into a static site
+whenever I push to this repository to GitHub.
 
 license
 =======
@@ -12,7 +12,7 @@ The following directories and their contents are Copyright Andrew Huynh.
 You may not reuse anything therein without my permission:
 
 * _drafts/
-* _posts/
+* content/
 * static/img/
 * static/misc/
 
