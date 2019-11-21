@@ -42,19 +42,23 @@ thick, versus the 20+ inch height required for the camera.
 Hope you enjoy this little update! I'm planning on posting more updates
 for the projects as we get moving along, so stay tuned!
 
-![](/img/MTPv3/646961-0-frame.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0830.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0829.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0828.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0827.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0826.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0825.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0824.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0823.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0822.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0820.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0819.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0818.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMAGE_019.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMAGE_018.jpg.scaled.500.jpg)
-![](/img/MTPv3/646961-0-IMG_0831.jpg.scaled.500.jpg)
+{{
+    gallery(images=[
+        "/img/MTPv3/646961-0-frame.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0830.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0829.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0828.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0827.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0826.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0825.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0824.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0823.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0822.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0820.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0819.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0818.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMAGE_019.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMAGE_018.jpg.scaled.500.jpg",
+        "/img/MTPv3/646961-0-IMG_0831.jpg.scaled.500.jpg",
+    ])
+}}

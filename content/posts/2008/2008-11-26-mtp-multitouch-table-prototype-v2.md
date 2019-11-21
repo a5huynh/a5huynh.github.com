@@ -37,14 +37,17 @@ little support for our endeavor.
 I'll try to post as many updates of our progress as I can. I should have a
 little more time for such follies next quarter
 
-![Img0141](/img/MTPv2/242879-0-IMG_0142.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0151.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0150.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0149.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0148.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0147.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0146.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0145.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0144.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0143.jpg.scaled.500.jpg)
-![Img0141](/img/MTPv2/242879-0-IMG_0152.jpg.scaled.500.jpg)
+
+{{ gallery(images=[
+    "/img/MTPv2/242879-0-IMG_0142.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0151.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0150.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0149.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0148.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0147.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0146.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0145.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0144.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0143.jpg.scaled.500.jpg",
+    "/img/MTPv2/242879-0-IMG_0152.jpg.scaled.500.jpg",
+]) }}
