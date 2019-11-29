@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='container_12'>
+    <div class='header'>
+      <div id='big-name' class='grid_7'>
+        <a href='/'>Andrew Huynh</a>
+      </div>
+      <div id='my-attrs'>
+        <div>Thoughts</div>
+        <div>and ramblings.</div>
+      </div>
+      <div id='social-icons' class='grid_1'>
+        <div style='margin-bottom:4px;'>
+          <a
+            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
+          </a>
+        </div>
+        <div style='margin-bottom:4px;'>
+          <a href='http://twitter.com/a5huynh'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
+          </a>
+        </div>
+        <div>
+          <a href='http://www.linkedin.com/profile/view?id=30602610'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+<div class='section'>
+  <div class='grid_2'>&nbsp;</div>
+  <div class='article grid_8'>
+    <h1>TBT: Planet Rendering</h1>
+    <p class='meta'>
+      2017 May 18 - San Francisco |
+      <span>1073 words</span>
+    </p>
+    
+    <p>Many moons ago, I worked on a college project that required procedurally
+generating a &quot;realistic&quot; planet in 3D space. The original implementation created
+a mesh in the form of the <a href="https://en.wikipedia.org/wiki/UV_mapping">UV sphere</a>
+and then applied a <a href="http://www.lighthouse3d.com/opengl/terrain/index.php?particle">particle deposition</a> to create the terrain.</p>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<p>I thought it would be a fun project to revisit my implementation and use modern
+tooling to re-create what I had done close to 10 years ago in vanilla javascript
+and WebGL with <a href="https://www.typescriptlang.org">Typescript</a> and
+<a href="https://threejs.org/">Three.js</a>.</p>
+<blockquote>
+<p>You can view the old project and newer code used in this post
+<a href="https://github.com/a5huynh/planet-generator">here</a>.</p>
+</blockquote>
+<h2 id="rendering-the-sphere">Rendering the sphere</h2>
+<p>The UV sphere was originally chosen due to time constraints. The code (shown
+below) to generate a UV sphere is relatively compact and easy to follow
+making for a quick implementation and allowing us to focus on the terrain
+generation and animation used in the project.</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">    </span><span style="color:#75715e;">// Columns
+    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">gamma </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">;
+    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">gammaStep </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">2 </span><span style="color:#f92672;">* </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.PI </span><span style="color:#f92672;">/ </span><span style="color:#f8f8f2;">numFaces;
+
+    </span><span style="color:#75715e;">// Rows
+    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">theta </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">;
+    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">thetaStep </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.PI </span><span style="color:#f92672;">/ </span><span style="color:#f8f8f2;">numFaces;
+
+    </span><span style="color:#75715e;">// Loop through each row &amp; col in spherical coordinates.
+    //
+    // Note: numPoints = numFaces + 1. You need n + 1 points to
+    // represent n faces.
+    </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">row </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; row </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">numPoints; row</span><span style="color:#f92672;">++</span><span style="color:#f8f8f2;">) {
+        gamma </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">row </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">gammaStep;
+        </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">col </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; col </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">numPoints; col</span><span style="color:#f92672;">++</span><span style="color:#f8f8f2;">) {
+            theta </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">col </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">thetaStep;
+
+            </span><span style="color:#75715e;">// Convert to cartesian coordinates
+            </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">x </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.sin(theta) </span><span style="color:#f92672;">* </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.cos(gamma);
+            </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">y </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.cos(theta);
+            </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">z </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.sin(theta) </span><span style="color:#f92672;">* </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.sin(gamma);
+
+            </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">v </span><span style="color:#f92672;">= new </span><span style="color:#f8f8f2;">Vector3(x, y, z).normalize();
+            this.vertices.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(v);
+        }
+    }
+</span></pre>
+<p><em>Using latitudinal and longitudinal lines as a grid, we can loop through each
+row/column and generate points for the sphere.</em></p>
+<p>Combining the above code with some Three.js materials and lighting, we get the
+following scene below, a blank canvas in which we can start transforming the
+surface into believable terrain. Unfortunately at the time, we didn't notice how
+the area of the faces changed as you moved closer to the equator and poles of
+the sphere. As you'll see later on, this will come back to bite us when we start
+to apply the tranformations.</p>
+<iframe
+    scrolling="no"
+    class="full-width"
+    src="/webgl/planet-generator/index.html?sphereType=uv&zoom=3"
+></iframe>
+<p>Now onto the terrain generation! How do we take this flat spherical surface and turn it into
+the rugged planet we want for our scene?</p>
+<h2 id="particle-deposition">Particle Deposition</h2>
+<p>Particle deposition starts with a single point and slowly builds out a land mass
+around that area by randomly moving different directions adding additional
+height displacement as it goes. If we'd like, at the end of the terrain
+generation we can then apply a smoothing function on the resulting land mass to
+make it look a little less jagged.</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">    </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">( </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">i </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; i </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">numIslands; i</span><span style="color:#f92672;">++ </span><span style="color:#f8f8f2;">) {
+        </span><span style="color:#75715e;">// Find a random spot on the planet to grow an island
+        </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">sx </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">randomInt</span><span style="color:#f8f8f2;">( </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, width );
+        </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">sy </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">randomInt</span><span style="color:#f8f8f2;">( </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, height );
+
+        </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">( </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">itNum </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; itNum </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">iterations; itNum</span><span style="color:#f92672;">++ </span><span style="color:#f8f8f2;">) {
+            </span><span style="color:#75715e;">// Add the displacement to the current height
+            </span><span style="color:#a6e22e;">set</span><span style="color:#f8f8f2;">( sx, sy, </span><span style="color:#a6e22e;">get</span><span style="color:#f8f8f2;">( sx, sy ) </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">displacement );
+
+            </span><span style="color:#75715e;">// Pick a direction to go next
+            </span><span style="color:#f92672;">switch</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_randomInt</span><span style="color:#f8f8f2;">( </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">3 </span><span style="color:#f8f8f2;">) ) {
+                </span><span style="color:#f92672;">case </span><span style="color:#f8f8f2;">NORTH: sx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">sx </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">; </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
+                </span><span style="color:#f92672;">case </span><span style="color:#f8f8f2;">EAST:  sy </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">sy </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">; </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
+                </span><span style="color:#f92672;">case </span><span style="color:#f8f8f2;">SOUTH: sx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">sx </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">; </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
+                </span><span style="color:#f92672;">case </span><span style="color:#f8f8f2;">WEST:  sy </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">sy </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">; </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
+            }
+        }
+    }
+</span></pre>
+<p><em>Note that it's possible to continue moving along a single direction,
+generating a ridge. We can box in land masses by making sure future directions are
+with <code>n</code> of the initial growth point.</em></p>
+<p>To see the results of the above code, lets start off with a single landmass and
+apply particle deposition. In the following example, I've bumped up the
+resolution of the sphere so that a single island is more noticeable.</p>
+<iframe
+    scrolling="no"
+    class="full-width"
+    src="/webgl/planet-generator/index.html?sphereType=uv&amp;terrainType=particle&amp;planetDetail=50&amp;zoom=3&amp;islands=1"
+></iframe>
+<h3 id="trouble-in-paradise">Trouble in Paradise</h3>
+<p>As we continued with the terrain generation, one of the main issues we faced was
+due to how a UV sphere is represented in 3D space. As mentioned previously, the
+sphere is divided up into meridians and parallels, which creates an effect
+where faces towards the top and bottom of the sphere are smaller and more
+bunched together, while the faces that are closer to the middle of sphere are
+larger and more spread out.</p>
+<blockquote>
+<p>Fun fact: This sort problem also exists in how we represent Earth. Different
+<a href="https://en.wikipedia.org/wiki/Map_projection">map projections</a> will show
+landmasses in different ways and may distort the actual area/size/shape.</p>
+</blockquote>
+<p>This distortion can be seen in full effect by bumping up the number of land
+masses. It wasn't ideal, but since we were only using the planet as part of an
+animation, as long as we focused on the mid-section of the sphere the distortion
+isn't as evident.</p>
+<iframe
+    scrolling="no"
+    class="full-width"
+    src="/webgl/planet-generator/index.html?sphereType=uv&amp;terrainType=particle&amp;planetDetail=50&amp;zoom=3&amp;particleNumIslands=20">
+</iframe>
+<h2 id="for-next-time">For Next Time</h2>
+<p>In the next post, we'll look at how we can apply height based vertex coloring
+to give our planet more personality as well as other sphere rendering methods
+that lead to a more natural looking planetoid.</p>
+<p>Hope you enjoyed this short foray into sphere rendering and terrain generation.</p>
+<blockquote>
+<p>You can view the old project and newer code used in this post
+<a href="https://github.com/a5huynh/planet-generator">here</a>.</p>
+</blockquote>
+<h2 id="edits">Edits</h2>
+<ul>
+<li>2018-04-13: Updated link to particle deposition tutorial.</li>
+</ul>
+
+    <span id='#thats-all-folks'>&#8718;</span>
+  </div>
+  <div class='grid_2'>&nbsp;</div>
+</div>
+</div>
+  <div class='footer container_12'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

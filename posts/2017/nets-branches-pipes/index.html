@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='container_12'>
+    <div class='header'>
+      <div id='big-name' class='grid_7'>
+        <a href='/'>Andrew Huynh</a>
+      </div>
+      <div id='my-attrs'>
+        <div>Thoughts</div>
+        <div>and ramblings.</div>
+      </div>
+      <div id='social-icons' class='grid_1'>
+        <div style='margin-bottom:4px;'>
+          <a
+            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
+          </a>
+        </div>
+        <div style='margin-bottom:4px;'>
+          <a href='http://twitter.com/a5huynh'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
+          </a>
+        </div>
+        <div>
+          <a href='http://www.linkedin.com/profile/view?id=30602610'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+<div class='section'>
+  <div class='grid_2'>&nbsp;</div>
+  <div class='article grid_8'>
+    <h1>Nets, Branches, and Pipes.</h1>
+    <p class='meta'>
+      2017 January 24 - San Francisco |
+      <span>1457 words</span>
+    </p>
+    
+    <p>With all the talk about deep learning and neural networks, I thought it'd be
+fun to revisit one of my favorite applications of artificial neural networks
+(ANNs) -- <a href="https://en.wikipedia.org/wiki/Branch_predictor" title="Branch Prediction">dynamic branch prediction</a>.</p>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<h2 id="instruction-pipelines">Instruction Pipelines</h2>
+<p>To understand what branch predication is and why it's needed, we first need to
+take a look at how CPUs process instructions. A cycle in a CPU is often broken
+up into a series of steps known as the <a href="https://en.wikipedia.org/wiki/Instruction_pipelining" title="Instruction Pipelining">instruction pipeline</a>,
+creating a form of parallelism within the CPU as shown below.</p>
+<p><img src="/img/2017/01/instruction-pipeline.png" alt="example pipeline" />
+<em>An example of a simple instruction pipeline: Fetching the instruction,
+decoding it, executing it, and writing the value back to memory. <a href="https://en.wikipedia.org/wiki/Instruction_pipelining" title="Instruction Pipelining">Image source
+</a></em></p>
+<p>Branches are a problem because the jump to a different area of code in memory
+can not be determined until that specific instruction is executed, potentially
+making the instructions in the pipeline after it useless and leading to a loss
+of precious CPU cycles.</p>
+<p>All of this can be avoided by having branch prediction logic as instructions
+are being read. A predictor can be as simple as predicting that the branch will
+always/never be taken and become as complex as a multi-layer perceptron.</p>
+<h2 id="perceptrons">Perceptrons</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Perceptron" title="Perceptron">perceptron</a>, which dates back to 1957, is the simplest example of an
+ANN, learning a binary (meaning either 0 or 1, yes or no, etc.) classifier
+based on a set of binary inputs, a set of weights for each input, and a single
+threshold.</p>
+<p><img src="/img/2017/01/perceptron-example.svg" alt="example perceptron" />
+<em>An example of a perceptron taking inputs \(x_1, x_2, x_3\) leading to the
+output</em></p>
+<p>Lets take the example shown above. We want the decision (the output) made by
+the perceptron to be related to each of the inputs. To do this mathematically,
+we can just add all those inputs together. But what if we want to ignore one of
+the inputs? This is where the set of the weights for each input comes into
+play. Adjusting the weight to be closer to 0 means that input should have
+little impact on the overall decision. Adjusting the weight to be very large
+either negatively or positively means that input should have a very strong
+impact on the overall decision. Putting it all together, if we were to compute
+the impact it would look something like this:</p>
+<p>$$ \mbox{output} = x_1 * w_1 + x_2 * w_2 + x_3 * w_3 $$</p>
+<p>To turn this sum into either a <code>0</code> (no) or <code>1</code> (yes), we can apply a cutoff
+point or a <em>threshold</em> to the sum. For instance, if we have a threshold of <code>5</code>
+and \(\mbox{output} \leq 5\) it will be classified as <code>1</code>. If the
+\(\mbox{output} \gt 5\) then it will be classified as <code>1</code>. This can be more
+compactly respresented with the following equation:</p>
+<p>$$
+\begin{eqnarray}
+\mbox{output} &amp; = &amp; \left \{
+\begin{array}{ll}
+0 &amp; \mbox{if} \sum_i x_i * w_i \leq \mbox{threshold} \\
+1 &amp; \mbox{if} \sum_i x_i * w_i &gt; \mbox{threshold}
+\end{array}
+\right .
+\end{eqnarray}
+$$</p>
+<p>We may understand the perceptron mathematically, but what does it mean when
+used in decision making? Say we want to use a perceptron to create a model of
+whether we should eat a bowl of ice cream for breakfast. We could weigh that
+decision using several different factors:</p>
+<ol>
+<li>Is it chocolate ice cream?</li>
+<li>Is it a warm summer day?</li>
+<li>Are you going on a run today?</li>
+</ol>
+<p>Each one of these factors may be more or less important than the other. Perhaps
+a bowl of ice cream is a preemptive reward for a run and you will not eat it
+otherwise, meaning #3 would be highly weighted while the others would be not.</p>
+<p>You can think of the threshold as how much all the factors contribute to your
+overall motivation to each a bowl of ice cream. For example, if you have a
+threshold of <code>0</code>, then eating the ice cream is an easy decision, almost
+regardless of the inputs. If you have a higher threshold, then it will take
+more motivation from each of those factors before you make your decision. By
+varying the number of inputs, weights for each input, and the overall threshold
+you can create all sorts of different decision-making models, and not just for
+ice cream!</p>
+<h2 id="learning-from-the-past">Learning from the Past</h2>
+<p>Now that we know a little more about perceptrons, this section will apply these
+concepts to branch prediction. Learning from branch prediction is
+straightforward since we know whether we made the right prediction right after
+the branch occurs.</p>
+<p>The first instance of using neural networks for branch prediction appeared
+around the year 2000, in a paper titled <a href="https://www.cs.utexas.edu/%7Elin/papers/hpca01.pdf" title="Dynamic Branch Prediction with Perceptrons">&quot;Dynamic Branch Prediction with
+Perceptrons&quot;</a>. It proposed a method that used perceptrons to learn
+the correlations behind the history of the branch and the outcome of a branch.
+The intuition is that the history of whether a branch was taken or not taken in
+the past could have bearing on whether this branch will be taken now. An
+example of this in action would be in code loops where we iterate over many
+items and make some sort of check.</p>
+<p>So how does this work? First we need to answer some questions:</p>
+<ol>
+<li>How do you encode a history of branches?</li>
+<li>How is this information passed to the perceptron for a prediction?</li>
+</ol>
+<h3 id="global-history-register-ghr">Global History Register (GHR)</h3>
+<p>If we consider a the outcome of a branch as a binary output (either taken or
+not) we can represent the history of that branch as a series of bits. For
+example, if the first time a branch is seen its taken, we start off with <code>0000 0001</code>. Then if it's not taken taken, we have <code>0000 0010</code>. As we take more
+branches, we continually shift the history left and capture the outcome of the
+branch.</p>
+<p><img src="/img/2017/01/ghr.svg" alt="global history register" />
+<em>Representing history using a single 8-bit register is beneficial in the space limited world of CPUs</em></p>
+<p>Now when a branch is being considered, we can now use the history as inputs to
+our perceptron. But what about the weights? And how do we take it account
+right/wrong predictions after a branch happens?</p>
+<h3 id="training-the-perceptron">Training the Perceptron</h3>
+<p>Once the perceptron makes a prediction we can use it and the actual outcome of
+the branch as a means to adjust the input weights and train the perceptron.</p>
+<p>Intuitively, if a piece of the branch history has a positive correlation to
+whether a branch is predicted taken we want the weight for that input to be
+large. If there is negative correlation, we want the weight for that input to
+be negative. And if there is a weak or no correlation, the weight should remain
+close to 0 so that it contributes little to the final output of the perceptron.</p>
+<p>In the example below, to make our math a little easier, we'll treat a branch
+being taken as <code>1</code> and not taken as <code>-1</code>. The actual outcome will increment the weight if it agrees and decrement if it disagrees -- satisfying our intuition above.</p>
+<p><img src="/img/2017/01/training-example.svg" alt="training the perceptron" />
+<em>Here we train a perceptron using the actual outcome and branch history, shifting the history once we're done to make the next prediction.</em></p>
+<p>And that's all there is to it! As time goes on, the perceptron sees more and
+more branches creating a correlation (or negative correlation) in the inputs
+and weights with the ultimate outcome of the branch.</p>
+<p>If you're interested in learning more about the branch predictor and the <a href="https://www.cs.utexas.edu/%7Elin/papers/hpca01.pdf" title="Dynamic Branch Prediction with Perceptrons">paper
+</a> goes much more in-depth on how this is can be done in hardware and
+also provides a nice comparison to other techniques.</p>
+<h2 id="the-branch-less-taken">The branch less taken</h2>
+<p>While Jiménez finds that the perceptron predictor has a lower misprediction
+rate on all except two different benchmarks when compared to two other
+techniques, we don't really see the perceptron predictor in modern day CPUs
+despite being used in most state of the art prediction schemes. A quick search
+brought up a <a href="http://www.amd.com/en-us/press-releases/Pages/amd-takes-computing-2016dec13.aspx">press release</a> from AMD that touts &quot;Neural Net Prediction&quot;,
+but not much else.</p>
+<p>A major disadvantage and one that may be the biggest blocker to uptake of the
+perceptron predictor is the increased computational complexity when compared to
+the relatively simple counters used in other techniques. This overhead may not
+be worth it when there are easier ways to add CPU performance, such as
+additional cores, increased L1/L2 caches, and/or single instruction, multiple
+data (SIMD) instructions.</p>
+<p>Thanks for taking the time! I hope you enjoyed reading and learning about the application of perceptrons in the world of branch prediction.</p>
+
+    <span id='#thats-all-folks'>&#8718;</span>
+  </div>
+  <div class='grid_2'>&nbsp;</div>
+</div>
+</div>
+  <div class='footer container_12'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='container_12'>
+    <div class='header'>
+      <div id='big-name' class='grid_7'>
+        <a href='/'>Andrew Huynh</a>
+      </div>
+      <div id='my-attrs'>
+        <div>Thoughts</div>
+        <div>and ramblings.</div>
+      </div>
+      <div id='social-icons' class='grid_1'>
+        <div style='margin-bottom:4px;'>
+          <a
+            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
+          </a>
+        </div>
+        <div style='margin-bottom:4px;'>
+          <a href='http://twitter.com/a5huynh'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
+          </a>
+        </div>
+        <div>
+          <a href='http://www.linkedin.com/profile/view?id=30602610'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+<div class='section'>
+  <div class='grid_2'>&nbsp;</div>
+  <div class='article grid_8'>
+    <h1>Adventures in IoT: Dev Environment</h1>
+    <p class='meta'>
+      2018 April 10 - San Francisco |
+      <span>1168 words</span>
+    </p>
+    
+    <p>As part of an Arduino hobby project, I wanted to set up a development
+environment that steered clear of the Arduino IDE and gave me an
+easy-to-use toolchain that fit in with my existing tools. While the Arduino
+IDE is useful for simple sketches, once I moved into anything remotely
+complex I yearned for the features provided by modern day text editors such
+as Sublime Text or VS Code. This post documents my journey to the almost
+perfect (for me) dev environment for Arduino and other micro-controllers.</p>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<h2 id="requirements">Requirements</h2>
+<p>Before I started down the path of customizing everything I had a couple
+constraints:</p>
+<ul>
+<li>Standard text editor, with standard text editing features.</li>
+<li>Syntax highlighting, customized to my liking.</li>
+<li>Code completion/IntelliSense.</li>
+<li>Command line compilation and upload.</li>
+<li>And if possible, support for other devices and good documentation.</li>
+</ul>
+<h2 id="vs-code-arduino-extension">VS Code Arduino Extension</h2>
+<p>My daily text editor for a while has been <a href="https://code.visualstudio.com">Visual Studio Code</a>, an
+electron based editor that wooed me over from native editors like Sublime
+Text through a rich ecosystem of extensions and just really great sane
+defaults. Hoping I’d still be able to use VS Code as part of my Arduino dev
+process, I was able to find the <a href="https://github.com/Microsoft/vscode-arduino">VS Code Arduino extension</a>
+developed by none other than Microsoft.</p>
+<p>The extension is currently in preview, with a couple issues that may or may
+not affect your workflow. It interfaces with the Arduino IDE to bring over
+some handy functionality:</p>
+<ul>
+<li>Board &amp; library manager.</li>
+<li>Serial monitor.</li>
+<li>Integrated Arduino debugging (through <a href="http://openocd.org">OpenOCD</a>).</li>
+</ul>
+<h3 id="getting-intellisense-to-work">Getting IntelliSense to work</h3>
+<p>Fortunately and unfortunately the extension only get us 80% of the way
+there. I ran into errors where Arduino symbols like <code>pinMode</code> or <code>LOW/HIGH</code>
+were undefined and which seemed to be a <a href="https://github.com/Microsoft/vscode-arduino/issues/438">common issue</a> that
+other Arduino hobbyists encountered.</p>
+<p>The fix is simple, we need to set up our include paths so that VS Code
+C/C++ IntelliSense parser knows where to look. Since part of the issue is
+the inability to recursively walk through the include folders, we'll need
+to explicitly add each folder. This can be accomplished by editing the
+<code>c_cpp_properties.json</code> file to include the following paths:</p>
+<blockquote>
+<p>Note: The <code>c_cpp_properties.json</code> file can be accessed via the command
+palette: <code>⌘⬆P -&gt; C/Cpp: Edit Configurations</code>.</p>
+</blockquote>
+<pre style="background-color:#272822;">
+<span style="color:#75715e;">// note to save some space,
+// $PACKAGES = $HOME/Library/Arduino15/packages/arduino
+</span><span style="color:#e6db74;">&quot;includePath&quot;</span><span style="color:#f8f8f2;">: [
+    </span><span style="color:#e6db74;">&quot;$PACKAGES/hardware/avr/1.6.21/cores/arduino&quot;</span><span style="color:#f8f8f2;">,
+    </span><span style="color:#e6db74;">&quot;$PACKAGES/hardware/avr/1.6.21/libraries&quot;</span><span style="color:#f8f8f2;">,
+    </span><span style="color:#e6db74;">&quot;$PACKAGES/hardware/avr/1.6.21/variants/standard&quot;</span><span style="color:#f8f8f2;">,
+    </span><span style="color:#e6db74;">&quot;$PACKAGES/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include&quot;</span><span style="color:#f8f8f2;">,
+    </span><span style="color:#e6db74;">&quot;$PACKAGES/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include&quot;</span><span style="color:#f8f8f2;">,
+    </span><span style="color:#e6db74;">&quot;${workspaceFolder}&quot;
+</span><span style="color:#f8f8f2;">]
+</span></pre>
+<p>The versions in the paths will change depending on how often you update
+your Arduino IDE libraries, but should cover all the standard Arduino
+includes. If you need additional libraries, you should be able to find the
+paths for those roughly around the same area. Custom libraries, such as
+ones you’ve written yourself, should ideally be in a <code>lib</code> folder under
+the same folder as your main sketch file. For example if you have a
+<code>sensor</code> library it’d look like below. The importance of the <code>lib</code> folder
+structure will come into play in the toolchain section.</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">project/
+├── lib/
+│   └── sensor/
+│       ├── sensor.cpp
+│       └── sensor.h
+├── Makefile
+└── main.ino
+</span></pre>
+<p>Lastly and most importantly, we need to add <code>#include &lt;Arduino.h&gt;</code> at the
+top of our main sketch file so that the VS Code IntelliSense to start
+working its magic.</p>
+<h2 id="arduino-toolchain">Arduino Toolchain</h2>
+<p>With the text editor now working within the requirements I set earlier, I
+looked towards compiling and uploading an Arduino sketch file using nothing
+but the command line. After a little searching I stumbled upon
+<a href="https://github.com/sudar/Arduino-Makefile">Arduino Makefile</a>, a fantastic open source project with a very
+configurable workflow for sketch compilation and upload.</p>
+<h3 id="issues-and-fixes">Issues and Fixes</h3>
+<p>Following the example Makefiles, getting up and running with a single
+sketch file was easy. As more files were added to the project there
+were a couple non-obvious changes I needed to make to my project structure
+and the Makefile to support user-defined libraries.</p>
+<p>First, user-defined libraries should have a folder structure that follows a
+familiar format:</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">lib/
+└── &lt;library&gt;/
+│   ├── &lt;library&gt;.cpp
+│   └── &lt;library&gt;.h
+</span></pre>
+<p>In the Makefile, we’ll need to define two variables which define the
+libraries that should be included in the compilation process and the path
+to the user-defined libraries.</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">BOARD_TAG = uno
+ARDUINO_LIBS = </span><span style="color:#f92672;">&lt;</span><span style="color:#f8f8f2;">library name</span><span style="color:#f92672;">&gt; &lt;</span><span style="color:#f8f8f2;">library name two</span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;">
+USER_LIB_PATH = $(PWD)/lib
+
+</span><span style="color:#75715e;"># The following path may be different for you. This path
+# is for OSX users who installed Arduino Makefile via Homebrew
+</span><span style="color:#f8f8f2;">include /usr/local/opt/arduino-mk/Arduino.mk
+</span></pre>
+<p>Now we should be able to run <code>make</code>  to compile the project and <code>make upload</code> to upload the sketch to the connected Arduino board. The Arduino
+Makefile will attempt to auto-detect variables based on your current OS and
+settings that you have setup already in the Arduino IDE. If you need to
+override any of variables, such as setting the <code>BOARD_TAG</code> to the board
+you’re using, simply put the user-defined variable before including the
+Arduino Makefile.</p>
+<p>For easier project management, the best practice is to include Arduino
+Makefile as a git submodule in your project repo and set the include path
+to the submodule.</p>
+<h2 id="serial-monitor-debugging">Serial Monitor/Debugging</h2>
+<p>Once we’re able to upload a sketch to our Arduino, the last step would be
+to monitor and interactively input data into the serial port connection.
+This can be for any logs we’re outputting, setting up configurations, etc.
+Luckily, if you’re using any of the tools above there are plenty of ways to
+accomplish this.</p>
+<p>If you’re using VS Code, the Arduino extension has commands to open a
+serial connection, set the baud rate, and select the serial port.
+Unfortunately, the Arduino extension only allows you to read from the
+serial port.</p>
+<p>Arduino Makefile has a built-in command, <code>make monitor</code> that connects to
+the Arduino with the correct incantations through the <code>screen</code> command.</p>
+<p>While this works just fine, I’ve always enjoyed using the feature-ful
+<code>minicom</code> to connect to serial ports. It takes a little configuration but
+the end result is a more powerful way to interact with the Arduino serial
+connection.</p>
+<p>Minicom is available on OSX via homebrew:</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">homebrew install minicom
+</span></pre>
+<p>To configure minicom, start it up with <code>minicom -s</code> to prevent it from
+immediately attempting to connect to any serial ports.  From here you can
+set the serial device to point to the usb serial port
+(<code>/dev/cu.usbserial-XXXX</code>) and set <code>Hardware Flow Control</code> to <code>Off</code> so that
+you can send data through the serial port. Save these settings as the default
+and every time you run <code>minicom</code> it’ll start up with those settings and
+immediately connect to the serial port.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>And that's it! I've so far used the above configuration for about a month
+so far with no major problems. Next up on this adventure, I dive deeper
+into a project which involves sensors, pumps, and even WiFi communication
+for a more automated home.</p>
+
+    <span id='#thats-all-folks'>&#8718;</span>
+  </div>
+  <div class='grid_2'>&nbsp;</div>
+</div>
+</div>
+  <div class='footer container_12'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
