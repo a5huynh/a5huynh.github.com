@@ -2,7 +2,7 @@
 // Any text wrapped in an "<em>" tag after an image will be considered the
 // image caption
 figure + em,
-img + em  {
+img + em {
   font-size: $small-content-size;
   font-style: normal;
   line-height: $content-size * 1.25;
@@ -41,4 +41,19 @@ figure + p > em {
   position: absolute;
   right: 0;
   width: 160px;
+}
+
+.caption_container {
+  position: relative;
+
+  .caption {
+    font-size: $small-content-size;
+    font-style: normal;
+    line-height: $content-size * 1.25;
+    margin-right: -160px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 160px;
+  }
 }

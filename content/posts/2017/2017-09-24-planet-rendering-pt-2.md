@@ -57,11 +57,9 @@ _color( height: number ): THREE.Color {
     }
 }
 ```
-<em>
-Coloring is as simple as finding a cutoff for the terrain type we're trying
+*Coloring is as simple as finding a cutoff for the terrain type we're trying
 to represent. In this case, we're splitting the terrain into ocean, sand,
-grassland, and mountains.
-</em>
+grassland, and mountains.*
 
 Secondly, we modify how we create `Face3` objects, using the `_color`
 function above to assign a color upon creation.
@@ -134,10 +132,8 @@ _setupInitialVertices() {
     );
 }
 ```
-<em>
-All we need to generate the initial vertices is a single calculation of the
-golden ratio (\(\tau\)) and then applying that around the sphere.
-</em>
+*All we need to generate the initial vertices is a single calculation of the
+golden ratio (\(\tau\)) and then applying that around the sphere.*
 
 Afterwards, we'll setup the initial faces and based on the level of detail
 we want, divide the initial faces into smaller and smaller triangles.
@@ -225,11 +221,9 @@ getHeight( x: number, y: number, z:number ): number {
     return this.terrain.getHeight( hx, hy );
 }
 ```
-<em>
-Here we use the inverse trigonometry functions `atan2` and `asin` to
+*Here we use the inverse trigonometry functions `atan2` and `asin` to
 convert the vertex coordinates into the `x, y` coordinates we can use to
-reference a height map.
-</em>
+reference a height map.*
 
 Combined with the vertex coloring functionality developed earlier, we now
 have the following, more colorful looking planetoid.

@@ -56,8 +56,8 @@ generation and animation used in the project.
         }
     }
 ```
-<em>Using latitudinal and longitudinal lines as a grid, we can loop through each
-row/column and generate points for the sphere.</em>
+*Using latitudinal and longitudinal lines as a grid, we can loop through each
+row/column and generate points for the sphere.*
 
 Combining the above code with some Three.js materials and lighting, we get the
 following scene below, a blank canvas in which we can start transforming the
@@ -104,9 +104,9 @@ make it look a little less jagged.
         }
     }
 ```
-<em>Note that it's possible to continue moving along a single direction,
+*Note that it's possible to continue moving along a single direction,
 generating a ridge. We can box in land masses by making sure future directions are
-with <code>n</code> of the initial growth point.</em>
+with `n` of the initial growth point.*
 
 To see the results of the above code, lets start off with a single landmass and
 apply particle deposition. In the following example, I've bumped up the
