@@ -147,7 +147,7 @@ calculate the index into the grid array. Now every time we generate a new
 point, we can simply call `self.insert_point(new_point)` to add the point
 to the grid.
 
-```
+``` rust
 fn insert_point(&mut self, point: (usize, usize)) {
     // Calculate the (x, y) coordinate when place inside the grid.
     let cell_x = (point.0 as f64 / self.cell_size).floor();

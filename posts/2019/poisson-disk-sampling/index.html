@@ -43,7 +43,7 @@
     <h1>Generating Blue Noise w&#x2F; Poisson Disk Sampling</h1>
     <p class='meta'>
       2019 May 16 - San Francisco |
-      <span>2882 words</span>
+      <span>2931 words</span>
     </p>
     
     <p>&quot;<a href="https://www.redblobgames.com/articles/noise/introduction.html#colors">Blue noise</a>&quot; is a term used in computer graphics to describe
@@ -159,14 +159,14 @@ calculate the index into the grid array. Now every time we generate a new
 point, we can simply call <code>self.insert_point(new_point)</code> to add the point
 to the grid.</p>
 <pre style="background-color:#272822;">
-<span style="color:#f8f8f2;">fn insert_point(&amp;mut self, point: (usize, usize)) {
-    // Calculate the (x, y) coordinate when place inside the grid.
-    let cell_x = (point.0 as f64 / self.cell_size).floor();
-    let cell_y = (point.1 as f64 / self.cell_size).floor();
-    // Calculate the index within our flat array and place the point
+<span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">insert_point</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">point</span><span style="color:#f8f8f2;">: (</span><span style="font-style:italic;color:#fd971f;">usize</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">usize</span><span style="color:#f8f8f2;">)) {
+    </span><span style="color:#75715e;">// Calculate the (x, y) coordinate when place inside the grid.
+    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> cell_x </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(point.</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span style="color:#f8f8f2;">self.cell_size).</span><span style="color:#66d9ef;">floor</span><span style="color:#f8f8f2;">();
+    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> cell_y </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(point.</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span style="color:#f8f8f2;">self.cell_size).</span><span style="color:#66d9ef;">floor</span><span style="color:#f8f8f2;">();
+    </span><span style="color:#75715e;">// Calculate the index within our flat array and place the point
     // there.
-    let cell_idx = (cell_y * self.cell_width + cell_x) as usize;
-    self.grid[cell_idx] = Some(point);
+    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> cell_idx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(cell_y </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">self.cell_width </span><span style="color:#f92672;">+</span><span style="color:#f8f8f2;"> cell_x) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span style="color:#f8f8f2;">;
+    self.grid[cell_idx] </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Some</span><span style="color:#f8f8f2;">(point);
 }
 </span></pre><h3 id="selecting-an-initial-point">Selecting an initial point</h3>
 <p>For the next step of the algorithm, we need to select an initial sample.
