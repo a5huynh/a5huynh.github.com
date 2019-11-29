@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='container_12'>
+    <div class='header'>
+      <div id='big-name' class='grid_7'>
+        <a href='/'>Andrew Huynh</a>
+      </div>
+      <div id='my-attrs'>
+        <div>Thoughts</div>
+        <div>and ramblings.</div>
+      </div>
+      <div id='social-icons' class='grid_1'>
+        <div style='margin-bottom:4px;'>
+          <a
+            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
+          </a>
+        </div>
+        <div style='margin-bottom:4px;'>
+          <a href='http://twitter.com/a5huynh'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
+          </a>
+        </div>
+        <div>
+          <a href='http://www.linkedin.com/profile/view?id=30602610'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+<div class='section'>
+  <div class='grid_2'>&nbsp;</div>
+  <div class='article grid_8'>
+    <h1>Planet Rendering Pt. 2</h1>
+    <p class='meta'>
+      2017 September 24 - Tokyo&#x2F;San Francisco |
+      <span>1521 words</span>
+    </p>
+    
+    <p>A long-awaited continuation of my <a href="/2017/tbt-planet-rendering">previous post</a>,
+in this one we will go into the exciting intricacies of:</p>
+<ul>
+<li>Applying vertex coloring to give our planet a little more personality,</li>
+<li>Rendering a new type of sphere, the icosahedron, and</li>
+<li>Projecting a terrain map onto the icosahedron.</li>
+</ul>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<blockquote>
+<p>You can view the code used in this post
+<a href="https://github.com/a5huynh/planet-generator">here</a>.</p>
+</blockquote>
+<h2 id="vertex-coloring">Vertex Coloring</h2>
+<p>Adding a little color to our planet will turn it from the boring blue orb
+we've seen previously to the more realistic, colorful planet seen below!</p>
+<iframe scrolling="no"
+        class="full-width"
+        src="/webgl/planet-generator-v2/index.html?sphereType=uv
+&amp;terrainType=particle
+&amp;planetDetail=50
+&amp;zoom=3
+&amp;particleNumIslands=10">
+</iframe>
+<p>To accomplish this task, we first divide the terrain height map into
+different regions and assign a color based on the height of that particular
+vertex as we create the sphere. This only requires a tiny refactoring of
+our current code due to how Three.js handles vertex colors. Choosing
+offsets is a bit of trial and error depending on how large we choose the
+displacement factor in terrain generation. In this particular case, since
+our displacement factor is pretty tiny (0.1), our offsets reflect that.</p>
+<pre style="background-color:#272822;">
+<span style="color:#a6e22e;">_color</span><span style="color:#f8f8f2;">( height: number ): THREE.Color {
+    </span><span style="color:#75715e;">// Ocean
+    </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">( height </span><span style="color:#f92672;">&lt;= </span><span style="color:#ae81ff;">1.01 </span><span style="color:#f8f8f2;">) {
+        </span><span style="color:#f92672;">return new </span><span style="color:#f8f8f2;">THREE.Color(</span><span style="color:#ae81ff;">0x55bbff</span><span style="color:#f8f8f2;">);
+    </span><span style="color:#75715e;">// Sand
+    </span><span style="color:#f8f8f2;">} </span><span style="color:#f92672;">else if</span><span style="color:#f8f8f2;">( height </span><span style="color:#f92672;">&lt;= </span><span style="color:#ae81ff;">1.05 </span><span style="color:#f8f8f2;">) {
+        </span><span style="color:#f92672;">return new </span><span style="color:#f8f8f2;">THREE.Color(</span><span style="color:#ae81ff;">0xffff00</span><span style="color:#f8f8f2;">);
+    </span><span style="color:#75715e;">// Grassland
+    </span><span style="color:#f8f8f2;">} </span><span style="color:#f92672;">else if</span><span style="color:#f8f8f2;">( height </span><span style="color:#f92672;">&lt;= </span><span style="color:#ae81ff;">1.15 </span><span style="color:#f8f8f2;">) {
+        </span><span style="color:#f92672;">return new </span><span style="color:#f8f8f2;">THREE.Color(</span><span style="color:#ae81ff;">0x00ff00</span><span style="color:#f8f8f2;">);
+    </span><span style="color:#75715e;">// Mountains
+    </span><span style="color:#f8f8f2;">} </span><span style="color:#f92672;">else </span><span style="color:#f8f8f2;">{
+        </span><span style="color:#f92672;">return new </span><span style="color:#f8f8f2;">THREE.Color(</span><span style="color:#ae81ff;">0xfffffff</span><span style="color:#f8f8f2;">);
+    }
+}
+</span></pre>
+<p><em>Coloring is as simple as finding a cutoff for the terrain type we're trying
+to represent. In this case, we're splitting the terrain into ocean, sand,
+grassland, and mountains.</em></p>
+<p>Secondly, we modify how we create <code>Face3</code> objects, using the <code>_color</code>
+function above to assign a color upon creation.</p>
+<pre style="background-color:#272822;">
+<span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( x: number, y: number, z: number ): THREE.Face3 {
+    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">face </span><span style="color:#f92672;">= new </span><span style="color:#f8f8f2;">THREE.Face3( x, y, z );
+    face.vertexColors[</span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">] </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.</span><span style="color:#a6e22e;">_color</span><span style="color:#f8f8f2;">(
+        this.geometry.vertices[face.a].length()
+    );
+    face.vertexColors[</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">] </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.</span><span style="color:#a6e22e;">_color</span><span style="color:#f8f8f2;">(
+        this.geometry.vertices[face.a].length()
+    );
+    face.vertexColors[</span><span style="color:#ae81ff;">2</span><span style="color:#f8f8f2;">] </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.</span><span style="color:#a6e22e;">_color</span><span style="color:#f8f8f2;">(
+        this.geometry.vertices[face.a].length()
+    );
+    </span><span style="color:#f92672;">return </span><span style="color:#f8f8f2;">face;
+}
+</span></pre>
+<p>Now that we have the vertex colorization accomplished, let's take a stab at
+fixing the distortion in the UV sphere geometry through the use of another
+sphere geometry -- the icosahedron.</p>
+<h2 id="icosahedron">Icosahedron</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Icosahedron">icosahedron</a> is a
+polyhedron with 20 faces where each face retains its form no matter where
+it appears on the sphere, unlike the UV sphere.</p>
+<p>Due this handy property, we can use the icosahedron as a starting point for
+a more realistic looking planetoid. Through subdividing the faces in
+increasing levels of detail, the icosahedron becomes a smooth,
+non-distorted sphere as seen below.</p>
+<iframe scrolling="no"
+        class="full-width"
+        src="/webgl/planet-generator-v2/index.html?sphereType=iso
+&amp;sphereDetail=20
+&amp;zoom=3">
+</iframe>
+<p>The algorithm to generate the sphere is pretty straightforward. The
+icosahedron starts off with 20 faces created using a set of 12 initial
+vertices.</p>
+<pre style="background-color:#272822;">
+<span style="color:#a6e22e;">_setupInitialVertices</span><span style="color:#f8f8f2;">() {
+    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">t </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">( </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">+ </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">sqrt</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">5.0</span><span style="color:#f8f8f2;">)) </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">2.0</span><span style="color:#f8f8f2;">;
+
+    this.geometry.vertices.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  t,  </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  t,  </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t,  </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t,  </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">),
+    );
+
+    this.geometry.vertices.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  t ),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  t ),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t ),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t ),
+    );
+
+    this.geometry.vertices.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  t,  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  t,  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t,  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">),
+        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t,  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">)
+    );
+}
+</span></pre>
+<p><em>All we need to generate the initial vertices is a single calculation of the
+golden ratio ((\tau)) and then applying that around the sphere.</em></p>
+<p>Afterwards, we'll setup the initial faces and based on the level of detail
+we want, divide the initial faces into smaller and smaller triangles.</p>
+<pre style="background-color:#272822;">
+<span style="color:#a6e22e;">setupInitialFaces</span><span style="color:#f8f8f2;">( ) {
+    </span><span style="color:#75715e;">// 5 faces around point 0
+    </span><span style="color:#f8f8f2;">this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">11</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">5 </span><span style="color:#f8f8f2;">) );
+    this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">5</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">) );
+    this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">7 </span><span style="color:#f8f8f2;">) );
+    this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">7</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">10 </span><span style="color:#f8f8f2;">) );
+    this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">10</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">11 </span><span style="color:#f8f8f2;">) );
+
+    </span><span style="color:#75715e;">// ... see code for the rest of the face setup code.
+</span><span style="color:#f8f8f2;">}
+
+</span><span style="color:#75715e;">// Refine the icosahedron geometry based on the
+// level of detail we want.
+</span><span style="color:#a6e22e;">refineGeometry</span><span style="color:#f8f8f2;">() {
+    </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">( </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">i </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; i </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">level_of_detail; i</span><span style="color:#f92672;">++ </span><span style="color:#f8f8f2;">) {
+        </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">refinedFaces </span><span style="color:#f92672;">= new </span><span style="color:#f8f8f2;">Array&lt;THREE.Face3&gt;();
+        </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">( </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">triangle </span><span style="color:#f92672;">of </span><span style="color:#f8f8f2;">this.faces ) {
+            </span><span style="color:#75715e;">// Replace the triangle with 4 new triangles.
+            </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">a </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getMidPoint</span><span style="color:#f8f8f2;">( triangle.a, triangle.b );
+            </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">b </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getMidPoint</span><span style="color:#f8f8f2;">( triangle.b, triangle.c );
+            </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">c </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getMidPoint</span><span style="color:#f8f8f2;">( triangle.c, triangle.a );
+
+            refinedFaces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(
+                this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( triangle.a, a, c ),
+                this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( triangle.b, b, a ),
+                this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( triangle.c, c, b ),
+                this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( a, b, c ),
+            )
+        }
+        this.faces </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">refinedFaces;
+    }
+}
+</span></pre>
+<p>And voila! One complication with the icosahedron geometry is the mapping of
+the generated terrain heights to the vertices. Since the icosahedron
+geometry is not a grid like the UV sphere, we'll have to estimate where a
+particular vertex would be in the grid.</p>
+<p>Ideally, we'd update our terrain generation code to work nicely with the
+icosahedron geometry, but this saves us a little bit of time and makes it
+so we can reuse the same terrain generation code with different geometries.</p>
+<h2 id="2d-terrain-map-on-a-3d-surface">2D terrain map on a 3D surface</h2>
+<p>Projecting a 2D terrain map onto the 3D surface will require a little
+trigonometry. As we're creating the vertices for the planet, we'll convert
+the <code>(x, y, z)</code> coordinate into a <code>(x, y)</code> coordinate that maps onto the
+terrain. This technique is actually very similar to how you would generate
+texture coordinates to apply a texture to the icosahedron geometry.</p>
+<p>Lets take a look at the updated <code>getHeight</code> function in the icosahedron planet
+generator below:</p>
+<pre style="background-color:#272822;">
+<span style="color:#a6e22e;">getHeight</span><span style="color:#f8f8f2;">( x: number, y: number, z:number ): number {
+    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">hx </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">atan2</span><span style="color:#f8f8f2;">( x, z ) </span><span style="color:#f92672;">/ </span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">2.0 </span><span style="color:#f92672;">* </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">PI </span><span style="color:#f8f8f2;">);
+    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">hy </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">asin</span><span style="color:#f8f8f2;">( y ) </span><span style="color:#f92672;">/ </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">PI </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">0.5</span><span style="color:#f8f8f2;">;
+
+    </span><span style="color:#f92672;">if </span><span style="color:#f8f8f2;">( hx </span><span style="color:#f92672;">&lt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">) {
+        hx </span><span style="color:#f92672;">+= </span><span style="color:#ae81ff;">0.5</span><span style="color:#f8f8f2;">;
+    }
+
+    </span><span style="color:#75715e;">// Since texture coordinates are between 0 and 1
+    // we multiply by the terrain size to give us
+    // a grid location within the terrain map.
+    </span><span style="color:#f8f8f2;">hx </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">floor</span><span style="color:#f8f8f2;">( hx </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">(this.terrain_size </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">) );
+    hy </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">floor</span><span style="color:#f8f8f2;">( hy </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">(this.terrain_size </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">) );
+
+    </span><span style="color:#75715e;">// Handle wrapping correctly.
+    </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">( </span><span style="color:#66d9ef;">isNaN</span><span style="color:#f8f8f2;">( hx ) ) {
+        hx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.terrain_size </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">;
+    }
+
+    </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">( </span><span style="color:#66d9ef;">isNaN</span><span style="color:#f8f8f2;">( hy ) ) {
+        hy </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.terrain_size </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">;
+    }
+
+    </span><span style="color:#f92672;">return </span><span style="color:#f8f8f2;">this.terrain.</span><span style="color:#a6e22e;">getHeight</span><span style="color:#f8f8f2;">( hx, hy );
+}
+</span></pre>
+<p><em>Here we use the inverse trigonometry functions <code>atan2</code> and <code>asin</code> to
+convert the vertex coordinates into the <code>x, y</code> coordinates we can use to
+reference a height map.</em></p>
+<p>Combined with the vertex coloring functionality developed earlier, we now
+have the following, more colorful looking planetoid.</p>
+<iframe scrolling="no"
+        class="full-width"
+        src="/webgl/planet-generator-v2/index.html?sphereType=iso
+&amp;terrainType=particle
+&amp;planetDetail=16
+&amp;zoom=3
+&amp;particleNumIslands=15">
+</iframe>
+<p>Further tweaking of the terrain generation and blending of the vertex
+colors would fix some of the artifacts you'll probably see in the planet
+below, such as the water/grass terrain stretching up into the mountains and
+hard cutoffs rather than smooth transitions between terrain types.</p>
+<blockquote>
+<p>You can view the code used in this post
+<a href="https://github.com/a5huynh/planet-generator">here</a>.</p>
+</blockquote>
+
+    <span id='#thats-all-folks'>&#8718;</span>
+  </div>
+  <div class='grid_2'>&nbsp;</div>
+</div>
+</div>
+  <div class='footer container_12'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
