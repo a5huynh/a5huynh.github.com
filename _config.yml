@@ -1,0 +1,32 @@
+highlighter: rouge
+safe: true
+lsi: false
+
+exclude: [
+  '*.sublime*',
+  'Gemfile*',
+  'README.md'
+]
+
+sass:
+  style: :compressed
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "drafts"
+    values:
+      layout: "posts"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "posts"
