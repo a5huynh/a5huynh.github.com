@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='container_12'>
+    <div class='header'>
+      <div id='big-name' class='grid_7'>
+        <a href='/'>Andrew Huynh</a>
+      </div>
+      <div id='my-attrs'>
+        <div>Thoughts</div>
+        <div>and ramblings.</div>
+      </div>
+      <div id='social-icons' class='grid_1'>
+        <div style='margin-bottom:4px;'>
+          <a
+            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
+          </a>
+        </div>
+        <div style='margin-bottom:4px;'>
+          <a href='http://twitter.com/a5huynh'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
+          </a>
+        </div>
+        <div>
+          <a href='http://www.linkedin.com/profile/view?id=30602610'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class='section'>
+  <div class='grid_2'>&nbsp;</div>
+  <div class='grid_8'>
+    
+    <h3 class="year-group">2019</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2019/poisson-disk-sampling/'>Generating Blue Noise w&#x2F; Poisson Disk Sampling</a>
+          <span class='post-date'>May 16</span>
+        </h3>
+        <div class='post-excerpt'><p>&quot;<a href="https://www.redblobgames.com/articles/noise/introduction.html#colors">Blue noise</a>&quot; is a term used in computer graphics to describe
+<a href="https://en.wikipedia.org/wiki/Image_noise#Quantization_noise_(uniform_noise)">noise</a> that is uniformly distributed. It is often used in
+procedural generation techniques to place objects during terrain generation
+that require a roughly even distribution across a landscape. This post will go
+into an implementation of Poisson Disk sampling, a super straightforward
+blue noise generator that I've been using on recent projects. 😄</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2018</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2018/chip8-emulator/'>Rust &amp; Wasm CHIP-8 Emulator</a>
+          <span class='post-date'>November 11</span>
+        </h3>
+        <div class='post-excerpt'><p>What started as an attempt to demonstrate how interrupts and grayscale
+rendering works on the TI series graphing calculators turned into a
+full-blown attempt at writing an emulator that would be runnable in a
+modern browser using a combination of <a href="https://doc.rust-lang.org/book/second-edition">Rust</a> 🦀 and
+<a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> 🕸. The idea came to me while walking through the
+<a href="https://rustwasm.github.io/book/game-of-life/introduction.html">Rust + WebAssembly tutorial</a>, where I realized that many of the
+same abstractions could apply to an emulated system.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2018/tbt-building-ti86-apps/'>tbt: Building TI-86 apps on OSX</a>
+          <span class='post-date'>August 23</span>
+        </h3>
+        <div class='post-excerpt'><p>Through some backups, I recently re-discovered a folder with some high
+school/college projects that I thought had been lost to the sands of time.
+One of them was an early attempt at a small RPG written in Z80 assembly for
+the TI-86 graphing calculator. I know what you’re thinking -- what did I do
+wrong to be tortured in such a way?</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2018/adventures-in-rust-cli/'>Adventures in Rust: CLI</a>
+          <span class='post-date'>August 05</span>
+        </h3>
+        <div class='post-excerpt'><p>My second project in Rust is a little more practical than my first (which
+you can read <a href="https://a5huynh.github.io/2018/02/02/adventures-in-rust.html">here</a>). This project involves creating a
+command-line utility that is able to interact with the <a href="https://bear-writer.com">Bear Writer</a>
+application, an OS X app that I use for taking notes, writing blogs, and
+generally keeping my life organized in a single, cloud-synced place.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2018/adventures-in-iot/'>Adventures in IoT: Dev Environment</a>
+          <span class='post-date'>April 10</span>
+        </h3>
+        <div class='post-excerpt'><p>As part of an Arduino hobby project, I wanted to set up a development
+environment that steered clear of the Arduino IDE and gave me an
+easy-to-use toolchain that fit in with my existing tools. While the Arduino
+IDE is useful for simple sketches, once I moved into anything remotely
+complex I yearned for the features provided by modern day text editors such
+as Sublime Text or VS Code. This post documents my journey to the almost
+perfect (for me) dev environment for Arduino and other micro-controllers.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2018/adventures-in-rust/'>Adventures in Rust: A Basic 2D Game</a>
+          <span class='post-date'>February 02</span>
+        </h3>
+        <div class='post-excerpt'><p>In an effort to do more fun side projects, I've been learning <a href="https://rust-lang.org">Rust</a>,
+a wonderful systems programming language developed by the Mozilla
+Foundation. It's been a while since I've touched a compiled language as my
+day-to-day often deals with Python and Javascript variants. I was inspired
+after seeing a lot of <a href="https://blog.rust-lang.org/2017/12/21/rust-in-2017.html">interesting</a> <a href="https://blog.rust-lang.org/2017/11/14/Fearless-Concurrency-In-Firefox-Quantum.html">articles</a> about
+Rust usage and decided to dive into learning Rust by creating a very basic 2D
+game, inspired by the classic <a href="https://en.wikipedia.org/wiki/Defender_(1981_video_game)">Defender</a> arcade game.</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2017</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2017/text-analysis-of-bills/'>Text Analysis of U.S. Bills</a>
+          <span class='post-date'>December 31</span>
+        </h3>
+        <div class='post-excerpt'><p>As a fun side project, I've been <a href="https://getversed.io">gathering data</a> on bills that are
+going through the U.S Senate. So far, the site itself is a pretty simple
+web app to display bill status information in an easier to digest format.
+This is the first step of many in my goal for an in-depth analysis of the
+different of bills that are going through the Senate (and eventually House
+of Representatives). Through integration with other publicly available data
+hopefully we can gather some interesting insights that are not normally
+readily available to a layperson.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2017/planet-rendering-pt-2/'>Planet Rendering Pt. 2</a>
+          <span class='post-date'>September 24</span>
+        </h3>
+        <div class='post-excerpt'><p>A long-awaited continuation of my <a href="/2017/tbt-planet-rendering">previous post</a>,
+in this one we will go into the exciting intricacies of:</p>
+<ul>
+<li>Applying vertex coloring to give our planet a little more personality,</li>
+<li>Rendering a new type of sphere, the icosahedron, and</li>
+<li>Projecting a terrain map onto the icosahedron.</li>
+</ul>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2017/tbt-planet-rendering/'>TBT: Planet Rendering</a>
+          <span class='post-date'>May 18</span>
+        </h3>
+        <div class='post-excerpt'><p>Many moons ago, I worked on a college project that required procedurally
+generating a &quot;realistic&quot; planet in 3D space. The original implementation created
+a mesh in the form of the <a href="https://en.wikipedia.org/wiki/UV_mapping">UV sphere</a>
+and then applied a <a href="http://www.lighthouse3d.com/opengl/terrain/index.php?particle">particle deposition</a> to create the terrain.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2017/nets-branches-pipes/'>Nets, Branches, and Pipes.</a>
+          <span class='post-date'>January 24</span>
+        </h3>
+        <div class='post-excerpt'><p>With all the talk about deep learning and neural networks, I thought it'd be
+fun to revisit one of my favorite applications of artificial neural networks
+(ANNs) -- <a href="https://en.wikipedia.org/wiki/Branch_predictor" title="Branch Prediction">dynamic branch prediction</a>.</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2016</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2016/a-journey-through-time/'>A Journey Through Time</a>
+          <span class='post-date'>July 11</span>
+        </h3>
+        <div class='post-excerpt'><p>2015 has come and gone in a hurry and we are already 1/2th of the
+way into 2016. Reflecting on the past year it seems as if the list of things I
+wish to accomplish has grown larger and the time in which to accomplish them
+seems to have grown shorter. Startups tend to do that.</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2015</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2015/we-choose-to-go-to-the-moon/'>We Choose To Go To The Moon</a>
+          <span class='post-date'>August 04</span>
+        </h3>
+        <div class='post-excerpt'><p>In an inspirational and aspirational <a href="http://en.wikipedia.org/wiki/We_choose_to_go_to_the_Moon">speech</a> to a crowd of 35,000 on
+September 12, 1962 John F. Kennedy outlined his goals for the nation's space
+effort.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2015/the-fury-in-your-head/'>The Fury In Your Head</a>
+          <span class='post-date'>February 28</span>
+        </h3>
+        <div class='post-excerpt'><p>Climbers who lead routes often speak of having good &quot;lead head&quot; (lead as in
+leader), a mental state that lets you break through plateaus in training or
+climb challenging routes without that irrationally rational doubt and
+uncertainty plaguing your mind. There are even classes where the very purpose
+is to mentally train those who wish to push their limits.</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2014</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2014/into-the-wild/'>Into the Wild</a>
+          <span class='post-date'>December 31</span>
+        </h3>
+        <div class='post-excerpt'><p>Amid the flurry of preparation for a new year, I sat down to reflect upon the
+one that has just passed. Every year I enter the next a little more optimistic
+and a little more excited. Part of it due to the potential of unknown unknowns
+(be it good or bad), and part of it due to thought of spending another year
+with those that I truly care about and those that I enjoy being around.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2014/this-side-of-paradise/'>This Side of Paradise</a>
+          <span class='post-date'>November 30</span>
+        </h3>
+        <div class='post-excerpt'><p>There would be those who see a lot of glamour in start-ups and the whole
+concept of entrepreneurship. It is romanticized by the media who broadcasts
+million dollar valuations and billion dollar acquisitions. And for many, it is
+the ultimate meritocracy, appealing to those whom other cracies never appealed.
+The meritocracy was a guarantee that those with the smarts and know-how were
+adequately rewarded while those who fell short of godliness, failed. It evened
+the playing field for all, so much so that even the most out of place could
+still find a place.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2014/define-cmd-line/'>Define: Command Line</a>
+          <span class='post-date'>November 06</span>
+        </h3>
+        <div class='post-excerpt'><p>If you didn't know, Google has a really useful <a href="http://www.google.com/intl/en/help/features.html">search
+feature</a> that allows you to
+find the definition of any word or phrase when using the <code>define:</code> prefix on
+your search term. This along with the built-in OSX dictionary provides an
+incredibly useful set of tools to find any definition as quickly as possible.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2014/a-moveable-feast/'>A Moveable Feast</a>
+          <span class='post-date'>September 21</span>
+        </h3>
+        <div class='post-excerpt'><p>Hemingway recalled his experiences as a young man living in Paris as a
+moveable feast. The people he met, the skills he learned and refined, and
+the ideas he was exposed to during those times stuck with him until the
+very end. It molded him into the person he would become.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2014/an-unexpected-expected-journey/'>An Unexpected Expected Journey</a>
+          <span class='post-date'>August 05</span>
+        </h3>
+        <div class='post-excerpt'><p>For as long as I could remember I have always wanted to <em>create</em>. To create
+programs, to create art, to create ideas -- to just create! And these creations
+never had to be in any creative or even practical capacity. Hell, they
+don't even have to be good or useful in anyway. There lay an incredible
+feeling of joy in my ability to make something that did not exist before.</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2013</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2013/new-beginnings/'>New Beginnings</a>
+          <span class='post-date'>December 28</span>
+        </h3>
+        <div class='post-excerpt'><p>The end of another year.</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2012</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2012/academic-posters-design-and-content/'>Academic Posters - Design and Content</a>
+          <span class='post-date'>May 22</span>
+        </h3>
+        <div class='post-excerpt'><p>Recently I have been involved in the process of designing and creating an
+academic poster detailing portions of my research in a manner that conveys it
+in a clear, meaningful way. This turns out to be <em>very difficult task.</em></p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2012/a-year-in-recap/'>2011 - A Year in Recap</a>
+          <span class='post-date'>January 01</span>
+        </h3>
+        <div class='post-excerpt'><p>Another year in closing, another one of those fantastic yearly recaps that I have the joy of writing. If I had these printed, why I could almost hear the sweet <em>crumple</em> <em>crumple</em> as people turn my riveting tales of adventure into a jump shot.</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2011</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2011/fav-music-2011/'>Andrew&#x27;s Fav Music ( 2011 )</a>
+          <span class='post-date'>December 16</span>
+        </h3>
+        <div class='post-excerpt'><p>Every December I make a list of my favorite songs from the past year. Or at
+least I try. My musical tastes are eclectic and sometimes a little quirky
+which makes creating a list and checking it twice not so very nice. But
+enough talk! On to the music! Most of these picks were released this year,
+but there are the occasional that are not.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2011/blog-migration/'>Blog migration</a>
+          <span class='post-date'>December 09</span>
+        </h3>
+        <div class='post-excerpt'><p>Recently, it dawned upon me that I haven't sat down and wrote down anything of substance for a while. Oh sure, there's the occasional research paper that I spearhead, but that often feels like work. Additionally, I can't just put it up somewhere for everyone to see while it's under review. And even after review, who wants to read some random research paper anyways?</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2011/mothers-day-anecdotes/'>Mother&#x27;s Day Anecdotes</a>
+          <span class='post-date'>May 09</span>
+        </h3>
+        <div class='post-excerpt'><p>Yesterday, if you weren't aware, was Mother's Day. As the years go by I
+find that my mother doesn't quite enjoy my hand paintings and macaroni
+encrusted picture frames as much as she had when I was five. Nowadays I
+simply opt for her favorite candies, which are so much her favorite that it
+has become almost mandatory with whatever else I intend to get. This candy
+has become so prevalent in holidays that I consider it a tax, an 'Andrew'
+tax if you will, that I'll be paying for years to come due the hassle of
+raising me.</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2010</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2010/6-month-update/'>6-month Update!</a>
+          <span class='post-date'>June 23</span>
+        </h3>
+        <div class='post-excerpt'><p>Woohoo! Well it's been a while hasn't it? I had such delusions of blogging
+grandeur, but alas it's been a good 6 months since my last post. Let's
+remedy that, shall we?</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2009</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2009/cse-167-final-project-results/'>CSE 167 Final Project - Results!</a>
+          <span class='post-date'>December 12</span>
+        </h3>
+        <div class='post-excerpt'><p>After a week of hard work and dedication my partner and I finally completed
+our final project for our Computer Graphics class. Below is the description
+we sent in to our professor as part of our project describing what we did.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2009/trees-and-penguins-oh-my/'>Trees and Penguins, Oh My!</a>
+          <span class='post-date'>December 09</span>
+        </h3>
+        <div class='post-excerpt'><p>Update #2 on our CSE 167 Final Project</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2009/cse-167-final-project/'>CSE 167 Final Project</a>
+          <span class='post-date'>December 07</span>
+        </h3>
+        <div class='post-excerpt'><p>CSE 167 is a course I'm taking this quarter having to do with Computer
+Graphics. We've been working with OpenGL creating cool scenes while
+learning more about the underlying concepts. It's loads of work, but loads
+of fun as well.</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2009/mtp-multitouch-prototype-v3/'>Multitouch Table Prototype v3</a>
+          <span class='post-date'>April 17</span>
+        </h3>
+        <div class='post-excerpt'><p><strong>Finally another update to our Multitouch project!</strong></p>
+<p>After months of planning and preparation, we are finally ready to get
+the project rolling. The major bottleneck was getting a project room to
+store all of our equipment (which took nearly a quarter to get =[ ),
+but now that that's out of the way, we're good to go! (See picture for
+a glimpse of our great view of the engineering courtyard!)</p>
+</div>
+      </li>
+    
+    </ul>
+    <h3 class="year-group">2008</h3>
+    <ul class='posts'>
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2008/mtp-multitouch-table-prototype-v2/'>Multitouch Table Prototype v2</a>
+          <span class='post-date'>November 26</span>
+        </h3>
+        <div class='post-excerpt'><p>For those who don't know, I'm currently the President of the Computer
+Science and Engineering Society here at UCSD. We have multiple projects
+that we run each year and numerous events (such as programming contests,
+game nights, etc).</p>
+</div>
+      </li>
+    
+    
+      <li class='post-item'>
+        <h3 class='post-title'>
+          <a href='https://a5huynh.github.io/posts/2008/javascript-a-implementation/'>Javascript A* Implementation</a>
+          <span class='post-date'>September 07</span>
+        </h3>
+        <div class='post-excerpt'><p>So a little background on my implementation (feel free to skip this)....</p>
+<p>In my freshman year at UCSD I was recruited by <a href="http://cses.ucsd.edu">CSES</a>
+to work on a small game project. It was supposed to be generic enough so
+that the frontend (my game engine) could connect to a back-end that could
+be written in any language as long as it conformed to a set of standards we
+had. Things like retrieving player position, setting player position,
+getting maps, etc. So long story short, I needed a pathfinding algorithm
+for the game engine, and my experiment with the A* algorithm began.</p>
+</div>
+      </li>
+    </ul>
+    
+    </div>
+</div>
+</div>
+  <div class='footer container_12'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

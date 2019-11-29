@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='container_12'>
+    <div class='header'>
+      <div id='big-name' class='grid_7'>
+        <a href='/'>Andrew Huynh</a>
+      </div>
+      <div id='my-attrs'>
+        <div>Thoughts</div>
+        <div>and ramblings.</div>
+      </div>
+      <div id='social-icons' class='grid_1'>
+        <div style='margin-bottom:4px;'>
+          <a
+            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
+          </a>
+        </div>
+        <div style='margin-bottom:4px;'>
+          <a href='http://twitter.com/a5huynh'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
+          </a>
+        </div>
+        <div>
+          <a href='http://www.linkedin.com/profile/view?id=30602610'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+<div class='section'>
+  <div class='grid_2'>&nbsp;</div>
+  <div class='article grid_8'>
+    <h1>Adventures in Rust: CLI</h1>
+    <p class='meta'>
+      2018 August  5 - San Francisco |
+      <span>1202 words</span>
+    </p>
+    
+    <p>My second project in Rust is a little more practical than my first (which
+you can read <a href="https://a5huynh.github.io/2018/02/02/adventures-in-rust.html">here</a>). This project involves creating a
+command-line utility that is able to interact with the <a href="https://bear-writer.com">Bear Writer</a>
+application, an OS X app that I use for taking notes, writing blogs, and
+generally keeping my life organized in a single, cloud-synced place.</p>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<p>Bear is a truly wonderful app that lacks a CLI so when I’m in the terminal
+it’s requires tediously switching back and forth between two screens.
+Honestly, it’s not that big of a deal, but why not use it as an excuse to
+build a little utility that I can use.</p>
+<p>Plus I thought up a fantastic name for the utility, <code>cub</code> for
+<strong>C</strong>ommand-line <strong>U</strong>tility for <strong>B</strong>ear.</p>
+<p>You can check out the code for this <a href="https://github.com/a5huynh/cub-cli">project here</a>.</p>
+<h2 id="what-this-will-cover">What this will cover</h2>
+<p>Here are the things I cover in this post in case you want to skip around:</p>
+<ul>
+<li>Using <code>clap</code> to read values from the command-line.</li>
+<li>Using <code>rusqlite</code> to query the Bear note database.</li>
+<li>Some thoughts after I finished the first iteration of the application.</li>
+</ul>
+<h2 id="setting-up-a-cli">Setting up a CLI</h2>
+<p>After checking out a couple ways of extracting arguments from the command
+line, I settled on <a href="https://clap.rs">clap</a> mainly due to the ability to
+configure the parser using a yaml file. This keeps my rust code focused on
+the implementation logic of the utility and moves most of the configuration
+boilerplate into a completely separate non-rust file.</p>
+<p>For a real life example of how this works, below is the configuration I use
+to split the arguments and subcommands with their accompanying
+flags/options:</p>
+<pre style="background-color:#272822;">
+<span style="color:#f92672;">name</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">cub
+version</span><span style="color:#f8f8f2;">: </span><span style="color:#e6db74;">&quot;0.1.0&quot;
+</span><span style="color:#f92672;">author</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Andrew Huynh &lt;a5thuynh@gmail.com&gt;
+about</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Command-line Utility for Bear.
+args</span><span style="color:#f8f8f2;">:
+  - </span><span style="color:#f92672;">db</span><span style="color:#f8f8f2;">:
+      </span><span style="color:#f92672;">help</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Bear data file to pull data from.
+      short</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">d
+      global</span><span style="color:#f8f8f2;">: </span><span style="color:#ae81ff;">true
+      </span><span style="color:#f92672;">takes_value</span><span style="color:#f8f8f2;">: </span><span style="color:#ae81ff;">true
+</span><span style="color:#f92672;">subcommands</span><span style="color:#f8f8f2;">:
+  - </span><span style="color:#f92672;">ls</span><span style="color:#f8f8f2;">:
+      </span><span style="color:#f92672;">about</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">List notes.
+      args</span><span style="color:#f8f8f2;">:
+        - </span><span style="color:#f92672;">all</span><span style="color:#f8f8f2;">:
+            </span><span style="color:#f92672;">short</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">a
+            help</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Show *all* notes.
+            conflicts_with</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">limit
+  </span><span style="color:#f8f8f2;">- </span><span style="color:#f92672;">show</span><span style="color:#f8f8f2;">:
+      </span><span style="color:#f92672;">about</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Show a single note.
+      args</span><span style="color:#f8f8f2;">:
+        - </span><span style="color:#f92672;">NOTE</span><span style="color:#f8f8f2;">:
+            </span><span style="color:#f92672;">help</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Note ID
+            required</span><span style="color:#f8f8f2;">: </span><span style="color:#ae81ff;">true
+            </span><span style="color:#f92672;">index</span><span style="color:#f8f8f2;">: </span><span style="color:#ae81ff;">1
+</span></pre>
+<p>This then enables me to initialize the parser in two very simple lines as seen below:</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">#[macro_use]
+</span><span style="color:#f92672;">extern crate</span><span style="color:#f8f8f2;"> clap;
+</span><span style="color:#f92672;">use </span><span style="color:#f8f8f2;">clap::App;
+
+</span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">main</span><span style="color:#f8f8f2;">() {
+    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> yaml </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">load_yaml!(</span><span style="color:#e6db74;">&quot;cli.yml&quot;</span><span style="color:#f8f8f2;">);
+    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> matches </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">App::from_yaml(yaml).</span><span style="color:#66d9ef;">get_matches</span><span style="color:#f8f8f2;">();
+    </span><span style="color:#f92672;">...</span><span style="background-color:#f92672;color:#f8f8f0;">do</span><span style="color:#f8f8f2;"> stuff</span><span style="color:#f92672;">...
+</span><span style="color:#f8f8f2;">}
+</span></pre>
+<p>In addition to setting up the subcommands and flags, <code>clap</code> also generates
+useful documentation that shows up when you run <code>--help</code>.</p>
+<p><img src="/img/2018/cub-help.gif" alt="CUB example" /></p>
+<h2 id="speaking-to-the-bear">Speaking to the Bear</h2>
+<p>Great, now that we have a way to take subcommands and arguments, lets look
+into how we can list out notes and run some basic queries. The Bear app
+stores the notes and associated metadata in a sqlite database, I’m assuming
+due to the use of Apple’s CoreData frameworks.</p>
+<p>To keep things safe, this first version will only do read only actions.
+With a little poking around I was able to determine that the local storage
+for note data is under:</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">$HOME/Library/Containers/net.shinyfrog.bear/Data/Documents/Application Data
+</span></pre><h3 id="reverse-engineering-the-data-format">Reverse Engineering the Data Format</h3>
+<p>Luckily, if you know your way around sqlite, it’s trivial to look through
+how the application stores its data. Let's start with determining how notes
+and the associated tags are stored. We can list out all the tables in a
+database file using the <code>.tables</code> command.</p>
+<pre style="background-color:#272822;">
+<span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> sqlite3 database.sqlite
+sqlite</span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> .tables
+ZSFCHANGE      ZSFLOCATION    ZSFNOTETAG     ZSFURL
+Z_MODELCACHE   ZSFCHANGEITEM  ZSFNOTE        ZSFSTATICNOTE
+Z_5TAGS        Z_PRIMARYKEY   ZSFFOLDER      ZSFNOTEFILE
+ZSFTODO        Z_METADATA
+sqlite</span><span style="color:#f92672;">&gt;
+</span></pre>
+<p>Here we can see some potentially useful tables to rifle through. <code>ZSFNOTE</code>
+looks the most promising and we can use the <code>.schema</code> command to determine
+the structure of the table.</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">sqlite</span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> .schema ZSFNOTE
+CREATE TABLE ZSFNOTE (
+    Z_PK INTEGER PRIMARY KEY,
+    ...
+    ZARCHIVEDDATE TIMESTAMP,
+    ZCREATIONDATE TIMESTAMP,
+    ...
+    ZSUBTITLE VARCHAR,
+    ZTEXT VARCHAR,
+    ZTITLE VARCHAR,
+    ...
+)</span><span style="color:#f92672;">;
+</span></pre>
+<p><em><strong>NOTE:</strong> I left out some columns to make the schema more readable</em></p>
+<p>Perfect! This has the entire note text data as well as some useful flags
+for that particular note that we can use to apply filters to our CLI.
+Looking at the schema of <code>ZSFNOTETAG</code> and <code>Z_5TAGS</code> we also have the
+connection between notes and tags.</p>
+<h3 id="running-queries">Running Queries</h3>
+<p>To connect to the database, I’m using the
+<a href="https://github.com/jgallagher/rusqlite">rusqlite</a> framework. Setting up
+<code>rusqlite</code> is very straightforward. Here’s a small example where I connect
+to the database and run a simple select query on the notes table just to
+really hammer home how simple it is.</p>
+<pre style="background-color:#272822;">
+<span style="color:#f92672;">use </span><span style="color:#f8f8f2;">rusqlite::{ Connection };
+</span><span style="color:#f92672;">use </span><span style="color:#f8f8f2;">libcub::note::{ Note };
+
+</span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">connect_to_db</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#fd971f;">datafile</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#66d9ef;">str</span><span style="color:#f8f8f2;">) -&gt; Connection {
+    </span><span style="color:#f92672;">return </span><span style="color:#f8f8f2;">Connection::open(datafile).</span><span style="color:#66d9ef;">unwrap</span><span style="color:#f8f8f2;">();
+}
+
+</span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">main</span><span style="color:#f8f8f2;">() {
+    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> conn </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">connect_to_db</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&lt;</span><span style="color:#f8f8f2;">path</span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;">);
+    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f92672;">mut</span><span style="color:#f8f8f2;"> stmt </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> conn.</span><span style="color:#66d9ef;">prepare</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot;SELECT * FROM ZSFNOTE&quot;</span><span style="color:#f8f8f2;">).</span><span style="color:#66d9ef;">unwrap</span><span style="color:#f8f8f2;">();
+    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> notes </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> stmt.</span><span style="color:#66d9ef;">query_map</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">[</span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">val], |</span><span style="font-style:italic;color:#fd971f;">row</span><span style="color:#f8f8f2;">| {
+        Note::from_sql(row)
+    }).</span><span style="color:#66d9ef;">unwrap</span><span style="color:#f8f8f2;">();
+    </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;"> note </span><span style="color:#f92672;">in</span><span style="color:#f8f8f2;"> notes {
+        println!(</span><span style="color:#e6db74;">&quot;</span><span style="color:#ae81ff;">{:?}</span><span style="color:#e6db74;">&quot;</span><span style="color:#f8f8f2;">, note);
+    }
+}
+</span></pre>
+<p>And thats all there is to it!</p>
+<p>To support things like filtering by different flags. I set up a rust enum
+to represent each filter and modify the query accordingly. For example, when
+I added the filters for archived and trashed notes, this is how the query
+string was modified:</p>
+<pre style="background-color:#272822;">
+<span style="color:#f92672;">for</span><span style="color:#f8f8f2;"> filter </span><span style="color:#f92672;">in</span><span style="color:#f8f8f2;"> filters {
+    </span><span style="color:#f92672;">match</span><span style="color:#f8f8f2;"> filter {
+        NoteStatus::</span><span style="color:#ae81ff;">ARCHIVED </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">{
+            filter_sql.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot;ZARCHIVED = 1&quot;</span><span style="color:#f8f8f2;">)
+        },
+        NoteStatus::</span><span style="color:#ae81ff;">TRASHED </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">{
+            filter_sql.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot;ZTRASHED = 1&quot;</span><span style="color:#f8f8f2;">)
+        },
+        NoteStatus::</span><span style="color:#ae81ff;">NORMAL </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">{
+            filter_sql.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot;(ZARCHIVED = 0 AND ZTRASHED = 0)&quot;</span><span style="color:#f8f8f2;">)
+        },
+    }
+}
+</span></pre>
+<p>Each filter is converted into its equivalent SQL syntax and then added to
+a vector of filters. This vector is then later on joined to the query
+string using a string format.</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">format!(</span><span style="color:#e6db74;">&quot;</span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;"> WHERE </span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;">&quot;</span><span style="color:#f8f8f2;">, query, filter_sql.</span><span style="color:#66d9ef;">join</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot; OR &quot;</span><span style="color:#f8f8f2;">));
+</span></pre><h2 id="learnings-and-up-next">Learnings and Up Next</h2>
+<p>This was a short weekend(iso) project that was a lot of fun to work on.
+Here are some random learnings that I ran into while working on this:</p>
+<ul>
+<li><code>clap</code> was a pleasure to use and the separate yaml configuration made
+adjusting subcommands and flags a breeze.</li>
+<li>Currently <code>rusqlite</code> does not support <code>IN</code> queries, such as <code>SELECT * FROM ZSFNOTE WHERE Z_PK IN (&lt;list of numbers)</code> which made me push
+filtering notes by tag into a later version so I could manually implement
+that query.</li>
+</ul>
+
+    <span id='#thats-all-folks'>&#8718;</span>
+  </div>
+  <div class='grid_2'>&nbsp;</div>
+</div>
+</div>
+  <div class='footer container_12'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
