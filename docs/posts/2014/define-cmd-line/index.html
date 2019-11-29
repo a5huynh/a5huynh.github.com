@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='container_12'>
+    <div class='header'>
+      <div id='big-name' class='grid_7'>
+        <a href='/'>Andrew Huynh</a>
+      </div>
+      <div id='my-attrs'>
+        <div>Thoughts</div>
+        <div>and ramblings.</div>
+      </div>
+      <div id='social-icons' class='grid_1'>
+        <div style='margin-bottom:4px;'>
+          <a
+            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
+          </a>
+        </div>
+        <div style='margin-bottom:4px;'>
+          <a href='http://twitter.com/a5huynh'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
+          </a>
+        </div>
+        <div>
+          <a href='http://www.linkedin.com/profile/view?id=30602610'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+<div class='section'>
+  <div class='grid_2'>&nbsp;</div>
+  <div class='article grid_8'>
+    <h1>Define: Command Line</h1>
+    <p class='meta'>
+      2014 November  6 - San Francisco |
+      <span>363 words</span>
+    </p>
+    
+    <p>If you didn't know, Google has a really useful <a href="http://www.google.com/intl/en/help/features.html">search
+feature</a> that allows you to
+find the definition of any word or phrase when using the <code>define:</code> prefix on
+your search term. This along with the built-in OSX dictionary provides an
+incredibly useful set of tools to find any definition as quickly as possible.</p>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<p>However, if you're a terminal junkie like me, you spend a lot of time on the
+command line. Sometimes you just need a definition at that instant and can't be
+bothered to switch to another window to find it. Or perhaps you have a list of
+words you'd like to quickly <code>grep</code> and find definitions. This is where
+<a href="http://en.wikipedia.org/wiki/Sdcv">sdvc</a> comes in.</p>
+<h2 id="what-is-sdcv-and-how-do-i-get-it">What is sdcv? And how do I get it?</h2>
+<p>sdcv is a console version of <a href="http://en.wikipedia.org/wiki/StarDict">StarDict</a>,
+an open source utility used to access dictionary files in multiple languages
+using a common dictionary file format.</p>
+<p>The nature of the utility also allows you to download multiple dictionaries to
+cull through. These dictionaries can range from English dictionaries to
+dictionaries of hacker jargon, all searchable from the command line. Sound interesting? To install this utility, assuming you already have homebrew installed, all you need to do is:</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">brew install sdcv
+</span></pre>
+<p>Unfortunately, the default installation doesn't come with any dictionaries. Go
+ahead and choose the necessary
+[dictionaries](http://abloz.com/huzheng/stardict- dic/dict.org/) you may need
+or find useful. Dictionaries should be placed under <code>/usr/share/stardict/dic</code>
+to ensure sdcv can detect it.</p>
+<h2 id="adding-an-alias-for-the-define-command">Adding an alias for the define command</h2>
+<p>Now that you have sdcv installed, why use and remember an obscure name to query
+your definitions. I added the following to my <code>.bash_profile</code> to define (hah) a
+function that will call sdcv with some good defaults with whatever word or
+phrase I pass to it.</p>
+<pre style="background-color:#272822;">
+<span style="color:#a6e22e;">define </span><span style="color:#f8f8f2;">() {
+    </span><span style="color:#75715e;"># Check if sdcv is installed
+    </span><span style="color:#f92672;">if </span><span style="color:#66d9ef;">command </span><span style="font-style:italic;color:#fd971f;">-v</span><span style="color:#f8f8f2;"> sdcv </span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> /dev/null</span><span style="color:#f92672;">; then
+        </span><span style="color:#75715e;"># -0 show UTF-8 output
+        # -c show colorized output
+        </span><span style="color:#f8f8f2;">sdcv</span><span style="font-style:italic;color:#fd971f;"> -0c </span><span style="color:#e6db74;">&quot;$@&quot;
+    </span><span style="color:#f92672;">else
+        </span><span style="color:#66d9ef;">echo </span><span style="color:#e6db74;">&quot;You need to install sdcv.&quot;
+    </span><span style="color:#f92672;">fi
+</span><span style="color:#f8f8f2;">}
+</span></pre>
+    <span id='#thats-all-folks'>&#8718;</span>
+  </div>
+  <div class='grid_2'>&nbsp;</div>
+</div>
+</div>
+  <div class='footer container_12'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
