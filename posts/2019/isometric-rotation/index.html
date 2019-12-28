@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='container_12'>
+    <div class='header'>
+      <div id='big-name' class='grid_7'>
+        <a href='/'>Andrew Huynh</a>
+      </div>
+      <div id='my-attrs'>
+        <div>Thoughts</div>
+        <div>and ramblings.</div>
+      </div>
+      <div id='social-icons' class='grid_1'>
+        <div style='margin-bottom:4px;'>
+          <a
+            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
+          </a>
+        </div>
+        <div style='margin-bottom:4px;'>
+          <a href='http://twitter.com/a5huynh'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
+          </a>
+        </div>
+        <div>
+          <a href='http://www.linkedin.com/profile/view?id=30602610'>
+            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+<div class='section'>
+  <div class='grid_2'>&nbsp;</div>
+  <div class='article grid_8'>
+    <h1>Rotating an isometric projection</h1>
+    <p class='meta'>
+      2019 December 27 - Los Angeles |
+      <span>1371 words</span>
+    </p>
+    
+    <p>I've been working on a game side-project for the past year as a fun way to
+really deep dive into <a href="https://www.rust-lang.org/">Rust</a>, <a href="https://amethyst.rs/">Amethyst</a>, and different
+game dev topics such as AI, pathfinding, shaders, etc. The game utilizes an
+isometric 2.5D view much like SimCity 3000 or Civilization, all from
+pre-rendered sprites.</p>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<p>As I was working on the map generation and rendering, I found a couple
+tutorials that went through a basic isometric projection with tiles, but
+nothing that did it in a way that was generalizable to different view
+points. Due to the progress I've made thus far with my own game, I decided
+to do a little writeup (with examples!) to showcase how to go from a grid
+of points to an isometric projection with different orientations.</p>
+<p>Below I have a full example that has been rebuilt in WebGL with different toggles
+to visualize each step of the transformation.</p>
+<iframe
+    scrolling="no"
+    class="full-width"
+    src="/webgl/isometric-demo/index.html"
+></iframe>
+<blockquote>
+<p>The code for the example is available <a href="https://example.com">here</a>.</p>
+</blockquote>
+<h2 id="from-grid-to-projection">From grid to projection</h2>
+<p>Standard isometric projection has it where if we started with the front
+face of an object, it would be rotated 45 degrees around the vertical axis
+and then approximately 35 degrees around the horizontal axis. After these
+transformations, the objects should look roughly like the different shapes
+in the image below:</p>
+<p><img src="/img/2019/isometric-projection.png" alt="isometric shapes" />
+<em>Example of different 3D shapes isometrically projected. Source: <a href="https://en.wikipedia.org/wiki/Isometric_projection">Wikipedia</a></em></p>
+<p>Before we began, some assumptions:</p>
+<ul>
+<li>Tiles will be sprites that are already rendered with the isometric look
+(à la SimCity 3000).</li>
+<li>The tile grid is represented by a 2D array.</li>
+<li>The camera being used is an orthographic camera.</li>
+</ul>
+<p>Assuming the grid to be in Euclidean space where <code>(0,0)</code> is
+at the bottom left, the 2D array of tiles we'll be using in our example
+will be represented roughly like the code snippet below:</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">enum Tiles </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">{
+    GRASS,
+    DIRT
+};
+
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">map </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">[
+    </span><span style="color:#75715e;">// row 0, col 0; row 0, col 1, etc.
+    </span><span style="color:#f8f8f2;">[</span><span style="font-style:italic;color:#66d9ef;">Tiles</span><span style="color:#f8f8f2;">.GRASS, </span><span style="font-style:italic;color:#66d9ef;">Tiles</span><span style="color:#f8f8f2;">.GRASS, </span><span style="color:#f92672;">...</span><span style="color:#f8f8f2;">]
+    ...
+];
+</span></pre>
+<p>We can loop through each row and column and render each tile of the grid at
+their respective <code>(col, row)</code> point to get something basic on screen.</p>
+<pre style="background-color:#272822;">
+<span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">geometry </span><span style="color:#f92672;">= new </span><span style="font-style:italic;color:#66d9ef;">THREE</span><span style="color:#f8f8f2;">.PlaneGeometry( </span><span style="color:#ae81ff;">32</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">32 </span><span style="color:#f8f8f2;">);
+
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">even </span><span style="color:#f92672;">= new </span><span style="font-style:italic;color:#66d9ef;">THREE</span><span style="color:#f8f8f2;">.MeshBasicMaterial({ color: </span><span style="color:#ae81ff;">0xff0000 </span><span style="color:#f8f8f2;">});
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">odd </span><span style="color:#f92672;">= new </span><span style="font-style:italic;color:#66d9ef;">THREE</span><span style="color:#f8f8f2;">.MeshBasicMaterial({ color: </span><span style="color:#ae81ff;">0x00ff00 </span><span style="color:#f8f8f2;">});
+
+</span><span style="color:#f92672;">for </span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">y </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; y </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">grid.length; y</span><span style="color:#f92672;">++</span><span style="color:#f8f8f2;">) {
+    </span><span style="color:#f92672;">for </span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">x </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; x </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">grid[y].length; x</span><span style="color:#f92672;">++</span><span style="color:#f8f8f2;">) {
+        </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">tile </span><span style="color:#f92672;">= new </span><span style="font-style:italic;color:#66d9ef;">THREE</span><span style="color:#f8f8f2;">.Mesh(
+            geometry,
+            (x </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">y) </span><span style="color:#f92672;">% </span><span style="color:#ae81ff;">2 </span><span style="color:#f92672;">? </span><span style="color:#f8f8f2;">even </span><span style="color:#f92672;">: </span><span style="color:#f8f8f2;">odd
+        );
+
+        tile.position.x </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">x;
+        tile.position.y </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">y;
+
+        scene.</span><span style="color:#66d9ef;">add</span><span style="color:#f8f8f2;">(tile);
+    }
+}
+</span></pre>
+<p>When the above code is run (see the repo for the full code snippet), we'll
+get something that looks roughly like so:</p>
+<p><img src="/img/2019/grid-example.png" alt="Basic grid example" />
+<em>The example grid rendered with 32x32 width tiles at each respective
+<code>(col, row)</code> point</em></p>
+<p>As you can see, without any modification to how we place the tiles
+everything will overlap with each other. To go from this to the isometric
+projection we want, we're going to have to apply a series of
+<a href="https://en.wikipedia.org/wiki/Transformation_matrix"><em>transforms</em></a> that will translate, scale, and rotate the
+tiles to their correct positions.</p>
+<h3 id="thinking-what-are-transforms">🤔 What are transforms?</h3>
+<p>In linear algebra, a transform or transformation matrix refers to a linear
+mapping between some set of points to another set of points. Typically,
+these linear transformations can be composed (i.e. applied one after
+another through multiplication) and inverted (e.g. to map a point back to
+some original grid).</p>
+<p>In computer graphics, there are certain matrices that can be used to apply
+a rotation, scaling, or translation. It is with these matrices that we'll
+begin our journey towards the final isometric projection.</p>
+<h3 id="applying-the-transforms">Applying the transforms</h3>
+<p>Since the sprites being used are already pre-rendered the isometric projection.
+We only need to apply the following transforms:</p>
+<ol>
+<li>Translating the grid such that the origin is in the center of the grid.</li>
+<li>Scaling the grid to match the sprite size.</li>
+<li>Rotating the grid around the vertical axis by 45 degrees.</li>
+</ol>
+<blockquote>
+<p>Toggle between a combination of the 3 transformations in the full example at the
+beginning of the post to visualize how each transform affects the final tile
+placement.</p>
+</blockquote>
+<p><img src="/img/2019/scaled-example.png" alt="" /></p>
+<p>Above is an example of scaling the grid to the correct tile size, with the
+tiles attached</p>
+<p><img src="/img/2019/isometric-example.png" alt="" /></p>
+<p>And here is the scaled grid after we rotate grid by 45 degree and the scale
+the grid so that the tiles overlap each other correctly.</p>
+<h2 id="rotating-to-different-view-points">Rotating to different view points</h2>
+<p>Armed with this knowledge, rotating the view for each different
+orientations of the grid is as easy as applying another rotation transform
+before we convert the grid into the isometric projection.</p>
+<p>If we intend to mimic the rotation of SimCity 3000, there are only
+four set rotations, one for each corner of the map. This means from our
+initial view we will either be rotating 90 degrees clockwise, 90 degrees
+counter clockwise, or 180 degrees.</p>
+<p>In matrix form, a rotation matrix would look like so:</p>
+<p>$$
+R = \begin{bmatrix}
+\cos(\theta) &amp; -\sin(\theta) \\
+\sin(\theta) &amp; \cos(\theta) \\
+\end{bmatrix}
+$$</p>
+<p>Applied to some point <code>(x, y)</code>:</p>
+<p>$$
+\begin{bmatrix}
+\cos(\theta) &amp; -\sin(\theta) \\
+\sin(\theta) &amp; \cos(\theta)
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+\end{bmatrix}
+$$</p>
+<p>And multiplied out:</p>
+<p>$$
+x' = x \cos(\theta) - y \sin(\theta) \\
+y' = x \sin(\theta) + y \cos(\theta)
+$$</p>
+<p>Now in code, this would look like so for some angle <code>rot</code>:</p>
+<pre style="background-color:#272822;">
+<span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">cos_rot </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.cos(rot);
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">sin_rot </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.sin(rot);
+
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">rx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(cx </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">cos_rot) </span><span style="color:#f92672;">- </span><span style="color:#f8f8f2;">(cy </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">sin_rot);
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">ry </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(cx </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">sin_rot) </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">(cy </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">cos_rot);
+</span></pre>
+<p>For each rotation event, all we need to do is update the <code>rot</code> angle that is
+used to rotate the initial view and update the placement of each tile. As long
+as we have an idea of how large our grid will be, we can apply these transformations
+no matter where we're viewing the grid and have the terrain correctly rotate at the
+location we're viewing.</p>
+<h2 id="putting-it-all-together">Putting it all together</h2>
+<p>Combining the rotation with the earlier scaling and isometric projection, we get
+the following code:</p>
+<pre style="background-color:#272822;">
+<span style="color:#75715e;">// Center grid on the origin
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">cx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">x </span><span style="color:#f92672;">- </span><span style="color:#f8f8f2;">GRID_WIDTH;
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">cy </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">y </span><span style="color:#f92672;">- </span><span style="color:#f8f8f2;">GRID_HEIGHT;
+
+</span><span style="color:#75715e;">// Rotate around new origin
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">cos_rot </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.cos(rot);
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">sin_rot </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.sin(rot);
+
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">rx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(cx </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">cos_rot) </span><span style="color:#f92672;">- </span><span style="color:#f8f8f2;">(cy </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">sin_rot);
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">ry </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(cx </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">sin_rot) </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">(cy </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">cos_rot);
+
+</span><span style="color:#75715e;">// Scale and rotate one last time to get into iso view.
+// NOTE: Since a rotation of 45 degrees makes it so
+// sin = cos = 0.707, I factor out the value since all
+// it&#39;s doing is scaling the grid down.
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">px </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(rx </span><span style="color:#f92672;">- </span><span style="color:#f8f8f2;">ry) </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">TILE_WIDTH </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">2
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">py </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(rx </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">ry) </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">TILE_HEIGHT </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">2</span><span style="color:#f8f8f2;">;
+</span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">pz </span><span style="color:#f92672;">= -</span><span style="color:#f8f8f2;">(rx </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">ry);
+
+</span><span style="color:#f92672;">return </span><span style="color:#f8f8f2;">[px, py, pz];
+</span></pre>
+<p>And there you have it! We've built an isometric view that also allows us to
+rotate everything however we please.</p>
+
+    <span id='#thats-all-folks'>&#8718;</span>
+  </div>
+  <div class='grid_2'>&nbsp;</div>
+</div>
+</div>
+  <div class='footer container_12'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
