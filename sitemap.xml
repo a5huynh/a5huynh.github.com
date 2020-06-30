@@ -1,298 +1,224 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
-        <url>
-            <loc>https://a5huynh.github.io/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2008/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2008/javascript-a-implementation/</loc>
-            
-                <lastmod>2008-09-07</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2008/mtp-multitouch-table-prototype-v2/</loc>
-            
-                <lastmod>2008-11-26</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2009/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2009/cse-167-final-project-results/</loc>
-            
-                <lastmod>2009-12-12</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2009/cse-167-final-project/</loc>
-            
-                <lastmod>2009-12-07</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2009/mtp-multitouch-prototype-v3/</loc>
-            
-                <lastmod>2009-04-17</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2009/trees-and-penguins-oh-my/</loc>
-            
-                <lastmod>2009-12-09</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2010/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2010/6-month-update/</loc>
-            
-                <lastmod>2010-06-23</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2011/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2011/blog-migration/</loc>
-            
-                <lastmod>2011-12-09</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2011/fav-music-2011/</loc>
-            
-                <lastmod>2011-12-16</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2011/mothers-day-anecdotes/</loc>
-            
-                <lastmod>2011-05-09</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2012/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2012/a-year-in-recap/</loc>
-            
-                <lastmod>2012-01-01</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2012/academic-posters-design-and-content/</loc>
-            
-                <lastmod>2012-05-22</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2013/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2013/new-beginnings/</loc>
-            
-                <lastmod>2013-12-28</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2014/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2014/a-moveable-feast/</loc>
-            
-                <lastmod>2014-09-21</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2014/an-unexpected-expected-journey/</loc>
-            
-                <lastmod>2014-08-05</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2014/define-cmd-line/</loc>
-            
-                <lastmod>2014-11-06</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2014/into-the-wild/</loc>
-            
-                <lastmod>2014-12-31</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2014/this-side-of-paradise/</loc>
-            
-                <lastmod>2014-11-30</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2015/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2015/the-fury-in-your-head/</loc>
-            
-                <lastmod>2015-02-28</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2015/we-choose-to-go-to-the-moon/</loc>
-            
-                <lastmod>2015-08-04</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2016/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2016/a-journey-through-time/</loc>
-            
-                <lastmod>2016-07-11</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2017/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2017/nets-branches-pipes/</loc>
-            
-                <lastmod>2017-01-24</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2017/planet-rendering-pt-2/</loc>
-            
-                <lastmod>2017-09-24</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2017/tbt-planet-rendering/</loc>
-            
-                <lastmod>2017-05-18</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2017/text-analysis-of-bills/</loc>
-            
-                <lastmod>2017-12-31</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2018/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2018/adventures-in-iot/</loc>
-            
-                <lastmod>2018-04-10</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2018/adventures-in-rust-cli/</loc>
-            
-                <lastmod>2018-08-05</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2018/adventures-in-rust/</loc>
-            
-                <lastmod>2018-02-02</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2018/chip8-emulator/</loc>
-            
-                <lastmod>2018-11-11</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2018/tbt-building-ti86-apps/</loc>
-            
-                <lastmod>2018-08-23</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2019/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2019/isometric-rotation/</loc>
-            
-                <lastmod>2019-12-27</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://a5huynh.github.io/posts/2019/poisson-disk-sampling/</loc>
-            
-                <lastmod>2019-05-16</lastmod>
-            
-        </url>
-    
+    <url>
+        <loc>https://a5huynh.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2008/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2008/javascript-a-implementation/</loc>
+        <lastmod>2008-09-07</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2008/mtp-multitouch-table-prototype-v2/</loc>
+        <lastmod>2008-11-26</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2009/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2009/cse-167-final-project-results/</loc>
+        <lastmod>2009-12-12</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2009/cse-167-final-project/</loc>
+        <lastmod>2009-12-07</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2009/mtp-multitouch-prototype-v3/</loc>
+        <lastmod>2009-04-17</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2009/trees-and-penguins-oh-my/</loc>
+        <lastmod>2009-12-09</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2010/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2010/6-month-update/</loc>
+        <lastmod>2010-06-23</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2011/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2011/blog-migration/</loc>
+        <lastmod>2011-12-09</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2011/fav-music-2011/</loc>
+        <lastmod>2011-12-16</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2011/mothers-day-anecdotes/</loc>
+        <lastmod>2011-05-09</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2012/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2012/a-year-in-recap/</loc>
+        <lastmod>2012-01-01</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2012/academic-posters-design-and-content/</loc>
+        <lastmod>2012-05-22</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2013/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2013/new-beginnings/</loc>
+        <lastmod>2013-12-28</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2014/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2014/a-moveable-feast/</loc>
+        <lastmod>2014-09-21</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2014/an-unexpected-expected-journey/</loc>
+        <lastmod>2014-08-05</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2014/define-cmd-line/</loc>
+        <lastmod>2014-11-06</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2014/into-the-wild/</loc>
+        <lastmod>2014-12-31</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2014/this-side-of-paradise/</loc>
+        <lastmod>2014-11-30</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2015/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2015/the-fury-in-your-head/</loc>
+        <lastmod>2015-02-28</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2015/we-choose-to-go-to-the-moon/</loc>
+        <lastmod>2015-08-04</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2016/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2016/a-journey-through-time/</loc>
+        <lastmod>2016-07-11</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2017/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2017/nets-branches-pipes/</loc>
+        <lastmod>2017-01-24</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2017/planet-rendering-pt-2/</loc>
+        <lastmod>2017-09-24</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2017/tbt-planet-rendering/</loc>
+        <lastmod>2017-05-18</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2017/text-analysis-of-bills/</loc>
+        <lastmod>2017-12-31</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2018/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2018/adventures-in-iot/</loc>
+        <lastmod>2018-04-10</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2018/adventures-in-rust-cli/</loc>
+        <lastmod>2018-08-05</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2018/adventures-in-rust/</loc>
+        <lastmod>2018-02-02</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2018/chip8-emulator/</loc>
+        <lastmod>2018-11-11</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2018/tbt-building-ti86-apps/</loc>
+        <lastmod>2018-08-23</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2019/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2019/isometric-rotation/</loc>
+        <lastmod>2019-12-27</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2019/poisson-disk-sampling/</loc>
+        <lastmod>2019-05-16</lastmod>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/posts/2020/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/3d/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/adventure/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/algos/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/data-science/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/emudev/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/gamedev/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/hardware/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/iot/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/javascript/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/machine-learning/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/music/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/procgen/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/python/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/rustlang/</loc>
+    </url>
+    <url>
+        <loc>https://a5huynh.github.io/tags/ti86/</loc>
+    </url>
 </urlset>

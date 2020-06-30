@@ -1,10 +1,68 @@
 <!doctype html>
-<html>
-    <head>
-        <title>File Not Found: 404.</title>
-    </head>
-    <body>
-        <h1>Oops!</h1>
-        <h2>File Not Found: 404.</h2>
-    </body>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='header'>
+    <div id='big-name'>
+      <a href='/'>Andrew Huynh</a>
+    </div>
+    <div id='my-attrs'>
+      <div>Thoughts&nbsp;</div>
+      <div>and ramblings.</div>
+    </div>
+    <div id='social-icons'>
+      <div>
+        <a
+          href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+        </a>
+      </div>
+      <div>
+        <a href='http://twitter.com/a5huynh'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+        </a>
+      </div>
+      <div>
+        <a href='http://www.linkedin.com/profile/view?id=30602610'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  <h1>404</h1>
+  <p>Sorry, the article you were looking for was not found.</p>
+  <p>
+    It has potentially been moved to a new URL, please check out the
+    <a href='/'>homepage</a> to see if you can find it!
+  </p>
+</div>
+<div class='footer'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+<script type='text/javascript'>
+    // Attempt to redirect old style URLs to the new style.
+    if (window && window.location && window.location.pathname) {
+        const path = window.location.pathname;
+        const components = path.split('/');
+        if (components.length == 5 && isFinite(parseInt(components[1]))) {
+            const newStyle = `/posts/${components[1]}/${components[4].replace('.html', '')}`;
+            window.location = newStyle;
+        }
+    }
+</script>
+
+</body>
 </html>

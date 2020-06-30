@@ -2,58 +2,79 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Andrew Huynh, The Blog</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
   <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
   </head>
 <body>
-  <div class='container_12'>
-    <div class='header'>
-      <div id='big-name' class='grid_7'>
-        <a href='/'>Andrew Huynh</a>
+  <div class='header'>
+    <div id='big-name'>
+      <a href='/'>Andrew Huynh</a>
+    </div>
+    <div id='my-attrs'>
+      <div>Thoughts&nbsp;</div>
+      <div>and ramblings.</div>
+    </div>
+    <div id='social-icons'>
+      <div>
+        <a
+          href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+        </a>
       </div>
-      <div id='my-attrs'>
-        <div>Thoughts</div>
-        <div>and ramblings.</div>
+      <div>
+        <a href='http://twitter.com/a5huynh'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+        </a>
       </div>
-      <div id='social-icons' class='grid_1'>
-        <div style='margin-bottom:4px;'>
-          <a
-            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
-          </a>
-        </div>
-        <div style='margin-bottom:4px;'>
-          <a href='http://twitter.com/a5huynh'>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
-          </a>
-        </div>
-        <div>
-          <a href='http://www.linkedin.com/profile/view?id=30602610'>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
-          </a>
-        </div>
+      <div>
+        <a href='http://www.linkedin.com/profile/view?id=30602610'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+        </a>
       </div>
     </div>
+  </div>
+  
+<div class='article'>
+  <h1>Rust &amp; Wasm CHIP-8 Emulator</h1>
+  <p class='meta'>
+    2018 November 11 - San Francisco&#x2F;Lisbon |
+    <span>1826 words</span>
+  </p>
+  
+  
+
+<div class='post-tags'>
     
-<div class='section'>
-  <div class='grid_2'>&nbsp;</div>
-  <div class='article grid_8'>
-    <h1>Rust &amp; Wasm CHIP-8 Emulator</h1>
-    <p class='meta'>
-      2018 November 11 - San Francisco&#x2F;Lisbon |
-      <span>1826 words</span>
-    </p>
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;rustlang&#x2F;'>
+        <span
+            >
+            #rustlang
+        </span>
+    </a>
     
-    <p>What started as an attempt to demonstrate how interrupts and grayscale
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;emudev&#x2F;'>
+        <span
+            >
+            #emudev
+        </span>
+    </a>
+    
+</div>
+
+
+  
+
+  <p>What started as an attempt to demonstrate how interrupts and grayscale
 rendering works on the TI series graphing calculators turned into a
 full-blown attempt at writing an emulator that would be runnable in a
 modern browser using a combination of <a href="https://doc.rust-lang.org/book/second-edition">Rust</a> 🦀 and
 <a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> 🕸. The idea came to me while walking through the
 <a href="https://rustwasm.github.io/book/game-of-life/introduction.html">Rust + WebAssembly tutorial</a>, where I realized that many of the
 same abstractions could apply to an emulated system.</p>
-<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<span id="continue-reading"></span>
 <p>I should note before you get any further that this is not a full guide to
 writing an emulator in Rust. I just wanted to document some interesting
 implementation details during my implementation, but this should (hopefully) act
@@ -65,12 +86,12 @@ looks like.</p>
 any further. The keyboard for the CHIP-8 is represented by the 4x4 grid
 below.</p>
 <pre style="background-color:#272822;">
-<span style="color:#f8f8f2;">Normal Keyboard      CHIP8 Keyboard
+<code><span style="color:#f8f8f2;">Normal Keyboard      CHIP8 Keyboard
 | 1 | 2 | 3 | 4 | -&gt; | 1 | 2 | 3 | C |
 | Q | W | E | R | -&gt; | 4 | 5 | 6 | D |
 | A | S | D | F | -&gt; | 7 | 8 | 9 | E |
 | Z | X | C | V | -&gt; | A | 0 | B | F |
-</span></pre>
+</span></code></pre>
 <p>Just select one of the ROMs from the dropdown menu, hit the play button
 and it'll start the emulator.</p>
 <iframe scrolling="no"
@@ -115,12 +136,12 @@ certain implementation details that were giving me trouble.</li>
 commands will look familiar. I started the project by generating the
 project folder with everything necessary to get started:</p>
 <pre style="background-color:#272822;">
-<span style="color:#75715e;"># Generates the rust project folder
+<code><span style="color:#75715e;"># Generates the rust project folder
 </span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> cargo generate</span><span style="font-style:italic;color:#fd971f;"> --git</span><span style="color:#f8f8f2;"> https://github.com/rustwasm/wasm-pack-template emu-project
 </span><span style="color:#75715e;"># Go into the project directory to initialize the javascript project
 </span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> cd emu-project
 </span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> npm init wasm-app www
-</span></pre>
+</span></code></pre>
 <p>Keeping with the statically typed language theme, I wanted to use
 <a href="https://typescriptlang.org">TypeScript</a> for as much of the browser code as possible,
 which required a couple tweaks to the generated project:</p>
@@ -165,14 +186,14 @@ display/memory/registers, and finally handle any keyboard input.</p>
 <p>If we had a function that would handle each <code>tick</code> of the CPU, it would
 look something very similar to the following:</p>
 <pre style="background-color:#272822;">
-<span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">tick</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">) {
+<code><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">tick</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">) {
     </span><span style="color:#75715e;">// 1. Find the opcode pointed to by the `PC` register.
     </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> opcode </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">self.</span><span style="color:#66d9ef;">fetch</span><span style="color:#f8f8f2;">()
     </span><span style="color:#75715e;">// 2. Fetch and decode the opcode.
     // 3. Execute the opcode &amp; update the `PC`.
     </span><span style="color:#f8f8f2;">self.</span><span style="color:#66d9ef;">execute</span><span style="color:#f8f8f2;">(opcode);
 }
-</span></pre>
+</span></code></pre>
 <p>This simple execution loop will form the basis for the rest of emulation
 code. Most, if not all, of our logic will happen inside the <code>execute</code>
 function, where each opcode will be decoded and applied to the
@@ -184,15 +205,15 @@ instructions are stored in memory, <a href="https://en.wikipedia.org/wiki/Bit_nu
 first. Taking this into account, the code to grab the opcode in the correct
 byte order would like the following:</p>
 <pre style="background-color:#272822;">
-<span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> opcode </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">u16</span><span style="color:#f8f8f2;">::from(mem[pc]) </span><span style="color:#f92672;">&lt;&lt; </span><span style="color:#ae81ff;">8 </span><span style="color:#f92672;">| </span><span style="font-style:italic;color:#66d9ef;">u16</span><span style="color:#f8f8f2;">::from(mem[pc </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">]);
-</span></pre><h4 id="what-happens-during-execute">What happens during <code>execute()</code>?</h4>
+<code><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> opcode </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">u16</span><span style="color:#f8f8f2;">::from(mem[pc]) </span><span style="color:#f92672;">&lt;&lt; </span><span style="color:#ae81ff;">8 </span><span style="color:#f92672;">| </span><span style="font-style:italic;color:#66d9ef;">u16</span><span style="color:#f8f8f2;">::from(mem[pc </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">]);
+</span></code></pre><h4 id="what-happens-during-execute">What happens during <code>execute()</code>?</h4>
 <p>Like mentioned before, <code>execute()</code> is where the majority of the logic for
 the emulator will reside. In the case of my implementation, I break the
 opcodes into different prefixes (<code>0x1000</code>, <code>0x2000</code>, etc) and implemented the
 logic for each corresponding prefix. For example, lets take the simple <code>0x00E0</code>
 opcode that is used to completely clear the screen:</p>
 <pre style="background-color:#272822;">
-<span style="color:#75715e;">// First, we grab the first bytes of the opcode as a prefix
+<code><span style="color:#75715e;">// First, we grab the first bytes of the opcode as a prefix
 </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> prefix </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> opcode </span><span style="color:#f92672;">&amp; </span><span style="color:#ae81ff;">0xF000</span><span style="color:#f8f8f2;">;
 </span><span style="color:#75715e;">// Grab the lower two bytes.
 </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> lower </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">(opcode </span><span style="color:#f92672;">&amp; </span><span style="color:#ae81ff;">0x00FF</span><span style="color:#f8f8f2;">) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">u8</span><span style="color:#f8f8f2;">;
@@ -214,7 +235,7 @@ opcode that is used to completely clear the screen:</p>
     </span><span style="color:#f92672;">...</span><span style="color:#f8f8f2;">,
     </span><span style="color:#f92672;">_ =&gt; </span><span style="color:#f8f8f2;">log!(</span><span style="color:#e6db74;">&quot;Unknown opcode {:#X}&quot;</span><span style="color:#f8f8f2;">, opcode)
 }
-</span></pre>
+</span></code></pre>
 <p>The opcode prefixes can be grabbed using a little bit-slinging magic that
 you see at the top of the code example: <code>opcode &amp; 0xF000</code>. This bitwise <code>AND</code>
 operation will only return the very first byte of the opcode. This made it
@@ -230,12 +251,14 @@ collision detection.</p>
 <p>The 64x32 pixel display has a coordinate system that starts at the top left
 and extends downwards:</p>
 <pre style="background-color:#272822;">
-<span style="color:#f8f8f2;">┌─────────────────┐
-│(0,0)      (63,0)│
-│                 │
-│(0,3)     (63,31)│
+<code><span style="color:#f8f8f2;">
+┌─────────────────┐
+│(0,0)         (63,0)│
+│                    │
+│(0,3)        (63,31)│
 └─────────────────┘
-</span></pre>
+
+</span></code></pre>
 <p>Sprites that cross horizontal/vertical boundaries are wrapped to the other
 side. For example, if we have a sprite that starts at <code>(63,0)</code>, the pixel
 at <code>(63,0)</code> will be set on and then wrapped around to <code>(0,0)</code>, <code>(1,0)</code>,
@@ -252,20 +275,20 @@ and rust side. The typescript side needs a key map thats not shown
 to map the pressed key code to the corresponding emulated key, discarding
 all other key presses.</p>
 <pre style="background-color:#272822;">
-<span style="color:#f8f8f2;">public </span><span style="color:#a6e22e;">handleKeyPress</span><span style="color:#f8f8f2;">(ev: </span><span style="font-style:italic;color:#66d9ef;">KeyboardEvent</span><span style="color:#f8f8f2;">) {
+<code><span style="color:#f8f8f2;">public </span><span style="color:#a6e22e;">handleKeyPress</span><span style="color:#f8f8f2;">(ev: </span><span style="font-style:italic;color:#66d9ef;">KeyboardEvent</span><span style="color:#f8f8f2;">) {
     </span><span style="color:#f92672;">if </span><span style="color:#f8f8f2;">(ev.keyCode </span><span style="color:#f92672;">in </span><span style="color:#f8f8f2;">KEY_MAP) {
         this.engine.</span><span style="color:#a6e22e;">key_press</span><span style="color:#f8f8f2;">(KEY_MAP[ev.keyCode]);
     }
 }
-</span></pre>
+</span></code></pre>
 <p>And for the rust side, we keep track of the currently pressed key as well
 as setting the key to pressed until we receive a release event for that key.</p>
 <pre style="background-color:#272822;">
-<span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">key_press</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">key</span><span style="color:#f8f8f2;">: Key) {
+<code><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">key_press</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">key</span><span style="color:#f8f8f2;">: Key) {
     self.current_key </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Some</span><span style="color:#f8f8f2;">(key);
     self.keys[key </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span style="color:#f8f8f2;">] </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">true</span><span style="color:#f8f8f2;">;
 }
-</span></pre><h2 id="up-next">Up Next</h2>
+</span></code></pre><h2 id="up-next">Up Next</h2>
 <p>And that's pretty much it! I could've gone into far much depth into things
 like the opcodes or perhaps the display rendering, but I leave that up as
 an exercise for the reader. All the code for this emulator will be publicly
@@ -281,17 +304,16 @@ the components created for this project.</p>
 <p>You can follow progress on my emulator(s) development <a href="https://github.com/a5huynh/rusty-emulator">here</a>.</p>
 </blockquote>
 
-    <span id='#thats-all-folks'>&#8718;</span>
-  </div>
-  <div class='grid_2'>&nbsp;</div>
+  <span id='#thats-all-folks'>&#8718;</span>
 </div>
-</div>
-  <div class='footer container_12'>
+<div class='footer'>
     Rabble-rouser.<br>
     VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
 </body>
 </html>

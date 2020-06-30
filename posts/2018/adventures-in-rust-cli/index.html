@@ -2,56 +2,70 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Andrew Huynh, The Blog</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
   <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
   </head>
 <body>
-  <div class='container_12'>
-    <div class='header'>
-      <div id='big-name' class='grid_7'>
-        <a href='/'>Andrew Huynh</a>
+  <div class='header'>
+    <div id='big-name'>
+      <a href='/'>Andrew Huynh</a>
+    </div>
+    <div id='my-attrs'>
+      <div>Thoughts&nbsp;</div>
+      <div>and ramblings.</div>
+    </div>
+    <div id='social-icons'>
+      <div>
+        <a
+          href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+        </a>
       </div>
-      <div id='my-attrs'>
-        <div>Thoughts</div>
-        <div>and ramblings.</div>
+      <div>
+        <a href='http://twitter.com/a5huynh'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+        </a>
       </div>
-      <div id='social-icons' class='grid_1'>
-        <div style='margin-bottom:4px;'>
-          <a
-            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
-          </a>
-        </div>
-        <div style='margin-bottom:4px;'>
-          <a href='http://twitter.com/a5huynh'>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
-          </a>
-        </div>
-        <div>
-          <a href='http://www.linkedin.com/profile/view?id=30602610'>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
-          </a>
-        </div>
+      <div>
+        <a href='http://www.linkedin.com/profile/view?id=30602610'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+        </a>
       </div>
     </div>
+  </div>
+  
+<div class='article'>
+  <h1>Adventures in Rust: CLI</h1>
+  <p class='meta'>
+    2018 August  5 - San Francisco |
+    <span>1201 words</span>
+  </p>
+  
+  
+
+<div class='post-tags'>
     
-<div class='section'>
-  <div class='grid_2'>&nbsp;</div>
-  <div class='article grid_8'>
-    <h1>Adventures in Rust: CLI</h1>
-    <p class='meta'>
-      2018 August  5 - San Francisco |
-      <span>1202 words</span>
-    </p>
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;rustlang&#x2F;'>
+        <span
+            >
+            #rustlang
+        </span>
+    </a>
     
-    <p>My second project in Rust is a little more practical than my first (which
+</div>
+
+
+  
+
+  <p>My second project in Rust is a little more practical than my first (which
 you can read <a href="https://a5huynh.github.io/2018/02/02/adventures-in-rust.html">here</a>). This project involves creating a
 command-line utility that is able to interact with the <a href="https://bear-writer.com">Bear Writer</a>
 application, an OS X app that I use for taking notes, writing blogs, and
 generally keeping my life organized in a single, cloud-synced place.</p>
-<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<span id="continue-reading"></span>
 <p>Bear is a truly wonderful app that lacks a CLI so when I’m in the terminal
 it’s requires tediously switching back and forth between two screens.
 Honestly, it’s not that big of a deal, but why not use it as an excuse to
@@ -76,7 +90,7 @@ boilerplate into a completely separate non-rust file.</p>
 to split the arguments and subcommands with their accompanying
 flags/options:</p>
 <pre style="background-color:#272822;">
-<span style="color:#f92672;">name</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">cub
+<code><span style="color:#f92672;">name</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">cub
 version</span><span style="color:#f8f8f2;">: </span><span style="color:#e6db74;">&quot;0.1.0&quot;
 </span><span style="color:#f92672;">author</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Andrew Huynh &lt;a5thuynh@gmail.com&gt;
 about</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Command-line Utility for Bear.
@@ -101,10 +115,10 @@ args</span><span style="color:#f8f8f2;">:
             </span><span style="color:#f92672;">help</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">Note ID
             required</span><span style="color:#f8f8f2;">: </span><span style="color:#ae81ff;">true
             </span><span style="color:#f92672;">index</span><span style="color:#f8f8f2;">: </span><span style="color:#ae81ff;">1
-</span></pre>
+</span></code></pre>
 <p>This then enables me to initialize the parser in two very simple lines as seen below:</p>
 <pre style="background-color:#272822;">
-<span style="color:#f8f8f2;">#[macro_use]
+<code><span style="color:#f8f8f2;">#[macro_use]
 </span><span style="color:#f92672;">extern crate</span><span style="color:#f8f8f2;"> clap;
 </span><span style="color:#f92672;">use </span><span style="color:#f8f8f2;">clap::App;
 
@@ -113,7 +127,7 @@ args</span><span style="color:#f8f8f2;">:
     </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> matches </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">App::from_yaml(yaml).</span><span style="color:#66d9ef;">get_matches</span><span style="color:#f8f8f2;">();
     </span><span style="color:#f92672;">...</span><span style="background-color:#f92672;color:#f8f8f0;">do</span><span style="color:#f8f8f2;"> stuff</span><span style="color:#f92672;">...
 </span><span style="color:#f8f8f2;">}
-</span></pre>
+</span></code></pre>
 <p>In addition to setting up the subcommands and flags, <code>clap</code> also generates
 useful documentation that shows up when you run <code>--help</code>.</p>
 <p><img src="/img/2018/cub-help.gif" alt="CUB example" /></p>
@@ -126,26 +140,26 @@ due to the use of Apple’s CoreData frameworks.</p>
 With a little poking around I was able to determine that the local storage
 for note data is under:</p>
 <pre style="background-color:#272822;">
-<span style="color:#f8f8f2;">$HOME/Library/Containers/net.shinyfrog.bear/Data/Documents/Application Data
-</span></pre><h3 id="reverse-engineering-the-data-format">Reverse Engineering the Data Format</h3>
+<code><span style="color:#f8f8f2;">$HOME/Library/Containers/net.shinyfrog.bear/Data/Documents/Application Data
+</span></code></pre><h3 id="reverse-engineering-the-data-format">Reverse Engineering the Data Format</h3>
 <p>Luckily, if you know your way around sqlite, it’s trivial to look through
 how the application stores its data. Let's start with determining how notes
 and the associated tags are stored. We can list out all the tables in a
 database file using the <code>.tables</code> command.</p>
 <pre style="background-color:#272822;">
-<span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> sqlite3 database.sqlite
+<code><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> sqlite3 database.sqlite
 sqlite</span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> .tables
 ZSFCHANGE      ZSFLOCATION    ZSFNOTETAG     ZSFURL
 Z_MODELCACHE   ZSFCHANGEITEM  ZSFNOTE        ZSFSTATICNOTE
 Z_5TAGS        Z_PRIMARYKEY   ZSFFOLDER      ZSFNOTEFILE
 ZSFTODO        Z_METADATA
 sqlite</span><span style="color:#f92672;">&gt;
-</span></pre>
+</span></code></pre>
 <p>Here we can see some potentially useful tables to rifle through. <code>ZSFNOTE</code>
 looks the most promising and we can use the <code>.schema</code> command to determine
 the structure of the table.</p>
 <pre style="background-color:#272822;">
-<span style="color:#f8f8f2;">sqlite</span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> .schema ZSFNOTE
+<code><span style="color:#f8f8f2;">sqlite</span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> .schema ZSFNOTE
 CREATE TABLE ZSFNOTE (
     Z_PK INTEGER PRIMARY KEY,
     ...
@@ -157,7 +171,7 @@ CREATE TABLE ZSFNOTE (
     ZTITLE VARCHAR,
     ...
 )</span><span style="color:#f92672;">;
-</span></pre>
+</span></code></pre>
 <p><em><strong>NOTE:</strong> I left out some columns to make the schema more readable</em></p>
 <p>Perfect! This has the entire note text data as well as some useful flags
 for that particular note that we can use to apply filters to our CLI.
@@ -170,7 +184,7 @@ connection between notes and tags.</p>
 to the database and run a simple select query on the notes table just to
 really hammer home how simple it is.</p>
 <pre style="background-color:#272822;">
-<span style="color:#f92672;">use </span><span style="color:#f8f8f2;">rusqlite::{ Connection };
+<code><span style="color:#f92672;">use </span><span style="color:#f8f8f2;">rusqlite::{ Connection };
 </span><span style="color:#f92672;">use </span><span style="color:#f8f8f2;">libcub::note::{ Note };
 
 </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">connect_to_db</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#fd971f;">datafile</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#66d9ef;">str</span><span style="color:#f8f8f2;">) -&gt; Connection {
@@ -187,14 +201,14 @@ really hammer home how simple it is.</p>
         println!(</span><span style="color:#e6db74;">&quot;</span><span style="color:#ae81ff;">{:?}</span><span style="color:#e6db74;">&quot;</span><span style="color:#f8f8f2;">, note);
     }
 }
-</span></pre>
+</span></code></pre>
 <p>And thats all there is to it!</p>
 <p>To support things like filtering by different flags. I set up a rust enum
 to represent each filter and modify the query accordingly. For example, when
 I added the filters for archived and trashed notes, this is how the query
 string was modified:</p>
 <pre style="background-color:#272822;">
-<span style="color:#f92672;">for</span><span style="color:#f8f8f2;"> filter </span><span style="color:#f92672;">in</span><span style="color:#f8f8f2;"> filters {
+<code><span style="color:#f92672;">for</span><span style="color:#f8f8f2;"> filter </span><span style="color:#f92672;">in</span><span style="color:#f8f8f2;"> filters {
     </span><span style="color:#f92672;">match</span><span style="color:#f8f8f2;"> filter {
         NoteStatus::</span><span style="color:#ae81ff;">ARCHIVED </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">{
             filter_sql.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot;ZARCHIVED = 1&quot;</span><span style="color:#f8f8f2;">)
@@ -207,13 +221,13 @@ string was modified:</p>
         },
     }
 }
-</span></pre>
+</span></code></pre>
 <p>Each filter is converted into its equivalent SQL syntax and then added to
 a vector of filters. This vector is then later on joined to the query
 string using a string format.</p>
 <pre style="background-color:#272822;">
-<span style="color:#f8f8f2;">format!(</span><span style="color:#e6db74;">&quot;</span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;"> WHERE </span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;">&quot;</span><span style="color:#f8f8f2;">, query, filter_sql.</span><span style="color:#66d9ef;">join</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot; OR &quot;</span><span style="color:#f8f8f2;">));
-</span></pre><h2 id="learnings-and-up-next">Learnings and Up Next</h2>
+<code><span style="color:#f8f8f2;">format!(</span><span style="color:#e6db74;">&quot;</span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;"> WHERE </span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;">&quot;</span><span style="color:#f8f8f2;">, query, filter_sql.</span><span style="color:#66d9ef;">join</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot; OR &quot;</span><span style="color:#f8f8f2;">));
+</span></code></pre><h2 id="learnings-and-up-next">Learnings and Up Next</h2>
 <p>This was a short weekend(iso) project that was a lot of fun to work on.
 Here are some random learnings that I ran into while working on this:</p>
 <ul>
@@ -224,17 +238,16 @@ filtering notes by tag into a later version so I could manually implement
 that query.</li>
 </ul>
 
-    <span id='#thats-all-folks'>&#8718;</span>
-  </div>
-  <div class='grid_2'>&nbsp;</div>
+  <span id='#thats-all-folks'>&#8718;</span>
 </div>
-</div>
-  <div class='footer container_12'>
+<div class='footer'>
     Rabble-rouser.<br>
     VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
 </body>
 </html>
