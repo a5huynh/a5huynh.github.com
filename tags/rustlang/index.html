@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andrew Huynh, The Blog</title>
+  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
+  </head>
+<body>
+  <div class='header'>
+    <div id='big-name'>
+      <a href='/'>Andrew Huynh</a>
+    </div>
+    <div id='my-attrs'>
+      <div>Thoughts&nbsp;</div>
+      <div>and ramblings.</div>
+    </div>
+    <div id='social-icons'>
+      <div>
+        <a
+          href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+        </a>
+      </div>
+      <div>
+        <a href='http://twitter.com/a5huynh'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+        </a>
+      </div>
+      <div>
+        <a href='http://www.linkedin.com/profile/view?id=30602610'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+<div class="year-section">
+    <h1>tag: #rustlang</h1>
+</div>
+<div class='year-section'>
+    <h3 class="year-group">2019</h3>
+    <ul class='posts'>
+        
+
+        <li class='post-item'>
+            <div class='post-header'>
+                <h3 class='post-title'><a href='https://a5huynh.github.io/posts/2019/isometric-rotation/'>Rotating an isometric projection</a></h3>
+                <div class='post-date'>December 27</div>
+            </div>
+            <div class='post-excerpt'><p>I've been working on a game side-project for the past year as a fun way to
+really deep dive into <a href="https://www.rust-lang.org/">Rust</a>, <a href="https://amethyst.rs/">Amethyst</a>, and different
+game dev topics such as AI, pathfinding, shaders, etc. The game utilizes an
+isometric 2.5D view much like SimCity 3000 or Civilization, all from
+pre-rendered sprites.</p>
+</div>
+            
+            
+
+<div class='post-tags'>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;rustlang&#x2F;'>
+        <span
+            
+            class="selected-tag"
+            >
+            #rustlang
+        </span>
+    </a>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;gamedev&#x2F;'>
+        <span
+            >
+            #gamedev
+        </span>
+    </a>
+    
+</div>
+
+
+            
+        </li>
+        
+
+
+        <li class='post-item'>
+            <div class='post-header'>
+                <h3 class='post-title'><a href='https://a5huynh.github.io/posts/2019/poisson-disk-sampling/'>Generating Blue Noise w&#x2F; Poisson Disk Sampling</a></h3>
+                <div class='post-date'>May 16</div>
+            </div>
+            <div class='post-excerpt'><p>&quot;<a href="https://www.redblobgames.com/articles/noise/introduction.html#colors">Blue noise</a>&quot; is a term used in computer graphics to describe
+<a href="https://en.wikipedia.org/wiki/Image_noise#Quantization_noise_(uniform_noise)">noise</a> that is uniformly distributed. It is often used in
+procedural generation techniques to place objects during terrain generation
+that require a roughly even distribution across a landscape. This post will go
+into an implementation of Poisson Disk sampling, a super straightforward
+blue noise generator that I've been using on recent projects. 😄</p>
+</div>
+            
+            
+
+<div class='post-tags'>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;rustlang&#x2F;'>
+        <span
+            
+            class="selected-tag"
+            >
+            #rustlang
+        </span>
+    </a>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;procgen&#x2F;'>
+        <span
+            >
+            #procgen
+        </span>
+    </a>
+    
+</div>
+
+
+            
+        </li>
+        
+</ul>
+</div>
+<div class='year-section'>
+    <h3 class="year-group">2018</h3>
+    <ul class='posts'>
+        
+
+        <li class='post-item'>
+            <div class='post-header'>
+                <h3 class='post-title'><a href='https://a5huynh.github.io/posts/2018/chip8-emulator/'>Rust &amp; Wasm CHIP-8 Emulator</a></h3>
+                <div class='post-date'>November 11</div>
+            </div>
+            <div class='post-excerpt'><p>What started as an attempt to demonstrate how interrupts and grayscale
+rendering works on the TI series graphing calculators turned into a
+full-blown attempt at writing an emulator that would be runnable in a
+modern browser using a combination of <a href="https://doc.rust-lang.org/book/second-edition">Rust</a> 🦀 and
+<a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> 🕸. The idea came to me while walking through the
+<a href="https://rustwasm.github.io/book/game-of-life/introduction.html">Rust + WebAssembly tutorial</a>, where I realized that many of the
+same abstractions could apply to an emulated system.</p>
+</div>
+            
+            
+
+<div class='post-tags'>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;rustlang&#x2F;'>
+        <span
+            
+            class="selected-tag"
+            >
+            #rustlang
+        </span>
+    </a>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;emudev&#x2F;'>
+        <span
+            >
+            #emudev
+        </span>
+    </a>
+    
+</div>
+
+
+            
+        </li>
+        
+
+
+        <li class='post-item'>
+            <div class='post-header'>
+                <h3 class='post-title'><a href='https://a5huynh.github.io/posts/2018/adventures-in-rust-cli/'>Adventures in Rust: CLI</a></h3>
+                <div class='post-date'>August 05</div>
+            </div>
+            <div class='post-excerpt'><p>My second project in Rust is a little more practical than my first (which
+you can read <a href="https://a5huynh.github.io/2018/02/02/adventures-in-rust.html">here</a>). This project involves creating a
+command-line utility that is able to interact with the <a href="https://bear-writer.com">Bear Writer</a>
+application, an OS X app that I use for taking notes, writing blogs, and
+generally keeping my life organized in a single, cloud-synced place.</p>
+</div>
+            
+            
+
+<div class='post-tags'>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;rustlang&#x2F;'>
+        <span
+            
+            class="selected-tag"
+            >
+            #rustlang
+        </span>
+    </a>
+    
+</div>
+
+
+            
+        </li>
+        
+
+
+        <li class='post-item'>
+            <div class='post-header'>
+                <h3 class='post-title'><a href='https://a5huynh.github.io/posts/2018/adventures-in-rust/'>Adventures in Rust: A Basic 2D Game</a></h3>
+                <div class='post-date'>February 02</div>
+            </div>
+            <div class='post-excerpt'><p>In an effort to do more fun side projects, I've been learning <a href="https://rust-lang.org">Rust</a>,
+a wonderful systems programming language developed by the Mozilla
+Foundation. It's been a while since I've touched a compiled language as my
+day-to-day often deals with Python and Javascript variants. I was inspired
+after seeing a lot of <a href="https://blog.rust-lang.org/2017/12/21/rust-in-2017.html">interesting</a> <a href="https://blog.rust-lang.org/2017/11/14/Fearless-Concurrency-In-Firefox-Quantum.html">articles</a> about
+Rust usage and decided to dive into learning Rust by creating a very basic 2D
+game, inspired by the classic <a href="https://en.wikipedia.org/wiki/Defender_(1981_video_game)">Defender</a> arcade game.</p>
+</div>
+            
+            
+
+<div class='post-tags'>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;rustlang&#x2F;'>
+        <span
+            
+            class="selected-tag"
+            >
+            #rustlang
+        </span>
+    </a>
+    
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;gamedev&#x2F;'>
+        <span
+            >
+            #gamedev
+        </span>
+    </a>
+    
+</div>
+
+
+            
+        </li>
+        </ul>
+</div>
+
+<div class='footer'>
+    Rabble-rouser.<br>
+    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
+  </div>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
+</body>
+</html>

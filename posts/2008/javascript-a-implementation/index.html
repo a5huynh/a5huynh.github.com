@@ -2,51 +2,72 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Andrew Huynh, The Blog</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata%7CYrsa:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
   <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
   </head>
 <body>
-  <div class='container_12'>
-    <div class='header'>
-      <div id='big-name' class='grid_7'>
-        <a href='/'>Andrew Huynh</a>
+  <div class='header'>
+    <div id='big-name'>
+      <a href='/'>Andrew Huynh</a>
+    </div>
+    <div id='my-attrs'>
+      <div>Thoughts&nbsp;</div>
+      <div>and ramblings.</div>
+    </div>
+    <div id='social-icons'>
+      <div>
+        <a
+          href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+        </a>
       </div>
-      <div id='my-attrs'>
-        <div>Thoughts</div>
-        <div>and ramblings.</div>
+      <div>
+        <a href='http://twitter.com/a5huynh'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+        </a>
       </div>
-      <div id='social-icons' class='grid_1'>
-        <div style='margin-bottom:4px;'>
-          <a
-            href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.png' alt='Email me!'>
-          </a>
-        </div>
-        <div style='margin-bottom:4px;'>
-          <a href='http://twitter.com/a5huynh'>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.png' alt='Follow me on Twitter!'>
-          </a>
-        </div>
-        <div>
-          <a href='http://www.linkedin.com/profile/view?id=30602610'>
-            <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.png' alt='Check me out on LinkedIn.'>
-          </a>
-        </div>
+      <div>
+        <a href='http://www.linkedin.com/profile/view?id=30602610'>
+          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+        </a>
       </div>
     </div>
+  </div>
+  
+<div class='article'>
+  <h1>Javascript A* Implementation</h1>
+  <p class='meta'>
+    2008 September  7 - San Diego |
+    <span>1607 words</span>
+  </p>
+  
+  
+
+<div class='post-tags'>
     
-<div class='section'>
-  <div class='grid_2'>&nbsp;</div>
-  <div class='article grid_8'>
-    <h1>Javascript A* Implementation</h1>
-    <p class='meta'>
-      2008 September  7 - San Diego |
-      <span>1617 words</span>
-    </p>
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;javascript&#x2F;'>
+        <span
+            >
+            #javascript
+        </span>
+    </a>
     
-    <p>So a little background on my implementation (feel free to skip this)....</p>
+    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;algos&#x2F;'>
+        <span
+            >
+            #algos
+        </span>
+    </a>
+    
+</div>
+
+
+  
+
+  <p>So a little background on my implementation (feel free to skip this)....</p>
 <p>In my freshman year at UCSD I was recruited by <a href="http://cses.ucsd.edu">CSES</a>
 to work on a small game project. It was supposed to be generic enough so
 that the frontend (my game engine) could connect to a back-end that could
@@ -54,8 +75,7 @@ be written in any language as long as it conformed to a set of standards we
 had. Things like retrieving player position, setting player position,
 getting maps, etc. So long story short, I needed a pathfinding algorithm
 for the game engine, and my experiment with the A* algorithm began.</p>
-<p id="zola-continue-reading"><a name="continue-reading"></a></p>
-<h2 id="a-little-theory">A Little Theory</h2>
+<span id="continue-reading"></span><h2 id="a-little-theory">A Little Theory</h2>
 <p>For those who don't know, A* is a best-first, graph searching algorithm
 based on the infamous <a href="http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's
 Algorithm</a>. The A*
@@ -86,7 +106,7 @@ graph.</p>
 my implementation.</p>
 <p>First off we have the Node object.</p>
 <pre style="background-color:#272822;">
-<span style="font-style:italic;color:#66d9ef;">function </span><span style="color:#a6e22e;">Node</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#fd971f;">parentNode</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">cx</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">cy</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">g</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">h</span><span style="color:#f8f8f2;">) {
+<code><span style="font-style:italic;color:#66d9ef;">function </span><span style="color:#a6e22e;">Node</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#fd971f;">parentNode</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">cx</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">cy</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">g</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">h</span><span style="color:#f8f8f2;">) {
   this.parent </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">parentNode;
   this.x </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">cx;
   this.y </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">cy;
@@ -94,7 +114,7 @@ my implementation.</p>
   this.h </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">h;
   this.f </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">g </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">h;
 };
-</span></pre>
+</span></code></pre>
 <p>A node represents a certain vertex on a graph. The parent of a Node
 represents the vertex in which the algorithm came from to reach this node,
 this provides a link to previous node in case we want to backtrack, as well
@@ -108,7 +128,7 @@ closer to the goal are picked over others.</p>
 <p>Now lets take a look at the core stuff itself. The code that actual finds
 the path for us.</p>
 <pre style="background-color:#272822;">
-<span style="font-style:italic;color:#66d9ef;">Astar</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">prototype </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">{
+<code><span style="font-style:italic;color:#66d9ef;">Astar</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">prototype </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">{
   </span><span style="color:#75715e;">// Various Vars
   </span><span style="color:#f8f8f2;">_open: [],
   _closed: [],
@@ -131,7 +151,7 @@ the path for us.</p>
   _printNode: {},
   _ValidTile: {}
 };
-</span></pre>
+</span></code></pre>
 <p>Lets take a look at the variables and functions used in the implementation.
 <code>_open</code>, <code>_closed</code>, and <code>_path</code> are all used as stacks <code>_open</code> holds a list
 of nodes that are still &quot;open&quot;, which means that a node has not been
@@ -146,15 +166,15 @@ the path the algorithm found <code>_CreateNode</code> <code>_fillChildren</code>
 an <code>_isAvailable</code> are used by the algorithm to find the path.</p>
 <p>The algorithm itself is in findPath and is shown below...</p>
 <pre style="background-color:#272822;">
-<span style="color:#f92672;">for</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">count </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; count </span><span style="color:#f92672;">&lt; </span><span style="color:#ae81ff;">100</span><span style="color:#f8f8f2;">; count</span><span style="color:#f92672;">++</span><span style="color:#f8f8f2;">) {
+<code><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">count </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; count </span><span style="color:#f92672;">&lt; </span><span style="color:#ae81ff;">100</span><span style="color:#f8f8f2;">; count</span><span style="color:#f92672;">++</span><span style="color:#f8f8f2;">) {
   bestNode </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this._getBestNode();
   </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">( bestNode </span><span style="color:#f92672;">== </span><span style="color:#ae81ff;">null </span><span style="color:#f8f8f2;">) </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
-  this._path.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( bestNode );
+  this._path.push( bestNode );
   </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">(bestNode.x </span><span style="color:#f92672;">== </span><span style="color:#f8f8f2;">this._dx </span><span style="color:#f92672;">&amp;&amp; </span><span style="color:#f8f8f2;">bestNode.y </span><span style="color:#f92672;">== </span><span style="color:#f8f8f2;">this._dy)
     </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
   this._fillChildren( bestNode );
 }
-</span></pre>
+</span></code></pre>
 <p>A simple for loop is all it takes. The reason I used a for loop is to check
 against impossible paths. The number of nodes the algorithm accesses should
 never be more than the number of vertices in the graph, which in my test
@@ -163,7 +183,7 @@ check if it has reached it's destination and then if not, add the children
 of node to the open list, where the process is started all over.</p>
 <p>So how is the best node retreived?</p>
 <pre style="background-color:#272822;">
-<span style="font-style:italic;color:#66d9ef;">Astar</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">prototype</span><span style="color:#f8f8f2;">.</span><span style="color:#a6e22e;">_getBestNode </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">function</span><span style="color:#f8f8f2;">() {
+<code><span style="font-style:italic;color:#66d9ef;">Astar</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">prototype</span><span style="color:#f8f8f2;">.</span><span style="color:#a6e22e;">_getBestNode </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">function</span><span style="color:#f8f8f2;">() {
   </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">(this._open.length </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">) {
     </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">bestNum </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">;
     </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">bestF </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this._open[</span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">].f;
@@ -180,13 +200,13 @@ of node to the open list, where the process is started all over.</p>
     </span><span style="color:#75715e;">// Remove node from open list and place into closed
     // list.
     </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">bestNode </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this._open[bestNum];
-    this._open.</span><span style="color:#66d9ef;">splice</span><span style="color:#f8f8f2;">(bestNum, </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">);
-    this._closed.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(bestNode);
+    this._open.splice(bestNum, </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">);
+    this._closed.push(bestNode);
     </span><span style="color:#f92672;">return </span><span style="color:#f8f8f2;">bestNode;
   }
   </span><span style="color:#f92672;">return </span><span style="color:#ae81ff;">null</span><span style="color:#f8f8f2;">;
 };
-</span></pre>
+</span></code></pre>
 <p>Since the <code>_open</code> list is unordered (a quality that we can easily fix to
 improve the runtime even more), I loop through the entire list to find the
 node with the lowes <code>f</code> score. Because of the nature of how nodes are
@@ -197,7 +217,7 @@ from the <code>_open</code> list and return to be processed some more.</p>
 algorithm is how the node scores are determined, because the rest is simply
 a BFS using these scores as a priority.</p>
 <pre style="background-color:#272822;">
-<span style="font-style:italic;color:#66d9ef;">Astar</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">prototype</span><span style="color:#f8f8f2;">.</span><span style="color:#a6e22e;">_fillChildren </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">function</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#fd971f;">node</span><span style="color:#f8f8f2;">) {
+<code><span style="font-style:italic;color:#66d9ef;">Astar</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">prototype</span><span style="color:#f8f8f2;">.</span><span style="color:#a6e22e;">_fillChildren </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">function</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#fd971f;">node</span><span style="color:#f8f8f2;">) {
   </span><span style="color:#75715e;">// Top (North) Tile.
   </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">( this._ValidTile(node.x, node.y</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">) )
     this._CreateNode(node, node.x, node.y</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">);
@@ -218,10 +238,10 @@ a BFS using these scores as a priority.</p>
     </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">tmp </span><span style="color:#f92672;">= new </span><span style="color:#f8f8f2;">Node(node, x, y, node.g</span><span style="color:#f92672;">+</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,
         distance(this._dx </span><span style="color:#f92672;">- </span><span style="color:#f8f8f2;">x, this._dy </span><span style="color:#f92672;">- </span><span style="color:#f8f8f2;">y));
     avail[y</span><span style="color:#f92672;">*</span><span style="color:#f8f8f2;">NUM_ROWS </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">x] </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">;
-    this._open.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(tmp);
+    this._open.push(tmp);
   }
 };
-</span></pre>
+</span></code></pre>
 <p><code>_fillChildren</code> grabs the children around a specific node and adds them
 to the open list. In this case, I only choose the nodes directly above,
 below and to the sides. However, this can easily be expanded where all the
@@ -240,17 +260,16 @@ results or impede the process with better results.</p>
 <li><a href="http://theory.stanford.edu/%7Eamitp/GameProgramming/">An excellent page containing tons of information about variations you can make</a></li>
 </ul>
 
-    <span id='#thats-all-folks'>&#8718;</span>
-  </div>
-  <div class='grid_2'>&nbsp;</div>
+  <span id='#thats-all-folks'>&#8718;</span>
 </div>
-</div>
-  <div class='footer container_12'>
+<div class='footer'>
     Rabble-rouser.<br>
     VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
 </body>
 </html>
