@@ -21,17 +21,17 @@
       <div>
         <a
           href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+          <img src='https://a5huynh.github.io/img/email.svg' alt='Email me!'>
         </a>
       </div>
       <div>
         <a href='http://twitter.com/a5huynh'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+          <img src='https://a5huynh.github.io/img/twitter.svg' alt='Follow me on Twitter!'>
         </a>
       </div>
       <div>
         <a href='http://www.linkedin.com/profile/view?id=30602610'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+          <img src='https://a5huynh.github.io/img/linkedin.svg' alt='Check me out on LinkedIn.'>
         </a>
       </div>
     </div>
@@ -41,21 +41,21 @@
   <h1>Adventures in Rust: A Basic 2D Game</h1>
   <p class='meta'>
     2018 February  2 - San Francisco |
-    <span>2637 words</span>
+    <span>2188 words</span>
   </p>
   
   
 
 <div class='post-tags'>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;rustlang&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/rustlang/'>
         <span
             >
             #rustlang
         </span>
     </a>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;gamedev&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/gamedev/'>
         <span
             >
             #gamedev
@@ -100,60 +100,58 @@ advance features later on.</p>
 some modifications to move much of the game logic to <code>lib.rs</code>.
 Below is the modified <code>main.rs</code> file where all we do is configure the
 window and start the event loop.</p>
-<pre style="background-color:#272822;">
-<code><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">main</span><span style="color:#f8f8f2;">() {
-    </span><span style="color:#75715e;">// Original Defenders had a resolution of 320x256
-    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f92672;">mut</span><span style="color:#f8f8f2;"> app </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">App::new(GraphicsConfig::new(</span><span style="color:#e6db74;">&quot;Defender&quot;</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">960</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">768</span><span style="color:#f8f8f2;">));
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    // Original Defenders had a resolution of 320x256
+    let mut app = App::new(GraphicsConfig::new("Defender", 960, 768));
 
-	  </span><span style="color:#75715e;">// Poll for events from the window.
-    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f92672;">mut</span><span style="color:#f8f8f2;"> events </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">Events::new(EventSettings::new());
-    </span><span style="color:#f92672;">while </span><span style="font-style:italic;color:#66d9ef;">let Some</span><span style="color:#f8f8f2;">(e) </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> events.</span><span style="color:#66d9ef;">next</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut</span><span style="color:#f8f8f2;"> app.window.settings) {
-        </span><span style="color:#75715e;">// Handle rendering
-        </span><span style="color:#f92672;">if </span><span style="font-style:italic;color:#66d9ef;">let Some</span><span style="color:#f8f8f2;">(r) </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> e.</span><span style="color:#66d9ef;">render_args</span><span style="color:#f8f8f2;">() {
-            app.</span><span style="color:#66d9ef;">render</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">r);
+	  // Poll for events from the window.
+    let mut events = Events::new(EventSettings::new());
+    while let Some(e) = events.next(&mut app.window.settings) {
+        // Handle rendering
+        if let Some(r) = e.render_args() {
+            app.render(&r);
         }
-        </span><span style="color:#75715e;">// Handle any updates
-        </span><span style="color:#f92672;">if </span><span style="font-style:italic;color:#66d9ef;">let Some</span><span style="color:#f8f8f2;">(u) </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> e.</span><span style="color:#66d9ef;">update_args</span><span style="color:#f8f8f2;">() {
-            app.</span><span style="color:#66d9ef;">update</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">u);
+        // Handle any updates
+        if let Some(u) = e.update_args() {
+            app.update(&u);
         }
     }
 }
-</span></code></pre>
+</code></pre>
 <p><em><strong>Note:</strong> There is an <code>App</code> struct that is not present in the &quot;Getting
 Started&quot; example where I move useful game state, such as the square
 position (<code>x</code>,<code>y</code>) and <code>rotation</code>.</em></p>
 <p>While in <code>lib.rs</code> we have the basic render and update loops to blank out
 the screen, draw a red square, and then rotate it as seen below.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#75715e;">// Handle rendering any objects on screen.
-</span><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">render</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">args</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">RenderArgs) {
-    </span><span style="color:#75715e;">// Get the location of the &quot;player&quot; we want to render.
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> rotation </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">self.rotation;
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> x </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">self.x;
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> y </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">self.y;
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">// Handle rendering any objects on screen.
+pub fn render(&mut self, args: &RenderArgs) {
+    // Get the location of the "player" we want to render.
+    let rotation = self.rotation;
+    let x = self.x;
+    let y = self.y;
 
-    </span><span style="color:#75715e;">// Create a little square and render it on screen.
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> square </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">rectangle::square(</span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">50.0</span><span style="color:#f8f8f2;">);
-    self.window.gl.</span><span style="color:#66d9ef;">draw</span><span style="color:#f8f8f2;">(args.</span><span style="color:#66d9ef;">viewport</span><span style="color:#f8f8f2;">(), |</span><span style="font-style:italic;color:#fd971f;">c</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">gl</span><span style="color:#f8f8f2;">| {
-        </span><span style="color:#75715e;">// Clear the screen.
-        </span><span style="color:#66d9ef;">clear</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">BLACK</span><span style="color:#f8f8f2;">, gl);
-        </span><span style="color:#75715e;">// Place object on screen
-        </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> transform </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> c.transform.</span><span style="color:#66d9ef;">trans</span><span style="color:#f8f8f2;">(x, y)
-            </span><span style="color:#75715e;">// Handle any rotation
-            </span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">rot_rad</span><span style="color:#f8f8f2;">(rotation)
-            </span><span style="color:#75715e;">// Center object on coordinate.
-            </span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">trans</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">25.0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">25.0</span><span style="color:#f8f8f2;">);
-        </span><span style="color:#75715e;">// Draw a box rotating around the middle of the screen.
-        </span><span style="color:#66d9ef;">rectangle</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">RED</span><span style="color:#f8f8f2;">, square, transform, gl);
+    // Create a little square and render it on screen.
+    let square = rectangle::square(0.0, 0.0, 50.0);
+    self.window.gl.draw(args.viewport(), |c, gl| {
+        // Clear the screen.
+        clear(BLACK, gl);
+        // Place object on screen
+        let transform = c.transform.trans(x, y)
+            // Handle any rotation
+            .rot_rad(rotation)
+            // Center object on coordinate.
+            .trans(-25.0, -25.0);
+        // Draw a box rotating around the middle of the screen.
+        rectangle(RED, square, transform, gl);
     });
 }
 
-</span><span style="color:#75715e;">// Update any animation, etc.
-</span><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">update</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">args</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">UpdateArgs) {
-    </span><span style="color:#75715e;">// Rotate 2 radians per second.
-    </span><span style="color:#f8f8f2;">self.rotation </span><span style="color:#f92672;">+= </span><span style="color:#ae81ff;">2.0 </span><span style="color:#f92672;">*</span><span style="color:#f8f8f2;"> args.dt;
+// Update any animation, etc.
+pub fn update(&mut self, args: &UpdateArgs) {
+    // Rotate 2 radians per second.
+    self.rotation += 2.0 * args.dt;
 }
-</span></code></pre>
+</code></pre>
 <p>Lets <code>cargo run</code> to build and run the project and see what we get! If
 you're following along, you should a nice black screen with a rotating red
 square in the middle.</p>
@@ -167,22 +165,21 @@ events. In the game, we're interested in keyboard presses that would lead
 to our space ship moving around or firing a projectile at the enemy while
 everything else we can safely ignore. I modified the event loop from the
 Piston example to listen for and process keyboard events as we see below:</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">input</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">button</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">Button) {
-    </span><span style="color:#f92672;">if </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">Button::Keyboard(key) </span><span style="color:#f92672;">= *</span><span style="color:#f8f8f2;">button {
-        </span><span style="color:#f92672;">match</span><span style="color:#f8f8f2;"> key {
-            </span><span style="color:#75715e;">// For simplicity&#39;s sake we directly
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn input(&mut self, button: &Button) {
+    if let Button::Keyboard(key) = *button {
+        match key {
+            // For simplicity's sake we directly
             // modify the player struct here.
-            </span><span style="color:#f8f8f2;">Key::Up </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">self.player.y </span><span style="color:#f92672;">-= </span><span style="color:#ae81ff;">UNIT_MOVE</span><span style="color:#f8f8f2;">,
-            Key::Down </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">self.player.y </span><span style="color:#f92672;">+= </span><span style="color:#ae81ff;">UNIT_MOVE</span><span style="color:#f8f8f2;">,
-            Key::Left </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">self.player.x </span><span style="color:#f92672;">-= </span><span style="color:#ae81ff;">UNIT_MOVE</span><span style="color:#f8f8f2;">,
-            Key::Right </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">self.player.x </span><span style="color:#f92672;">+= </span><span style="color:#ae81ff;">UNIT_MOVE</span><span style="color:#f8f8f2;">,
-            Key::Space </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">(), </span><span style="color:#75715e;">// Fire bullets!
-            </span><span style="color:#f92672;">_ =&gt; </span><span style="color:#f8f8f2;">(), </span><span style="color:#75715e;">// Ignore all other
-        </span><span style="color:#f8f8f2;">}
+            Key::Up => self.player.y -= UNIT_MOVE,
+            Key::Down => self.player.y += UNIT_MOVE,
+            Key::Left => self.player.x -= UNIT_MOVE,
+            Key::Right => self.player.x += UNIT_MOVE,
+            Key::Space => (), // Fire bullets!
+            _ => (), // Ignore all other
+        }
     }
 }
-</span></code></pre>
+</code></pre>
 <p><em><strong>Note:</strong> In the final code, this input loop is a little more complicated since
 I listen for events on button press and release, but the concept stays the same.</em></p>
 <h2 id="rendering-enemies-other-objects">Rendering Enemies &amp; Other Objects</h2>
@@ -192,15 +189,14 @@ object. This also happened to be a great place to start playing around with
 Rust <a href="https://doc.rust-lang.org/book/second-edition/ch10-02-traits.html">traits</a>! Below we have a basic <code>GameObject</code> trait stating
 that every object which implements that trait must have a <code>render</code> function
 and optionally an <code>update</code> function.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#75715e;">// Every object that needs to be rendered on screen.
-</span><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">trait </span><span style="color:#f8f8f2;">GameObject {
-    </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">render</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">ctxt</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">Context, </span><span style="font-style:italic;color:#fd971f;">gl</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;mut</span><span style="color:#f8f8f2;"> GlGraphics);
-    </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">update</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">_</span><span style="color:#f8f8f2;">: </span><span style="font-style:italic;color:#66d9ef;">f64</span><span style="color:#f8f8f2;">) {
-        </span><span style="color:#75715e;">// By default do nothing in the update function
-    </span><span style="color:#f8f8f2;">}
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">// Every object that needs to be rendered on screen.
+pub trait GameObject {
+    fn render(&self, ctxt: &Context, gl: &mut GlGraphics);
+    fn update(&mut self, _: f64) {
+        // By default do nothing in the update function
+    }
 }
-</span></code></pre>
+</code></pre>
 <p>+++</p>
 <p><strong>What are traits?</strong></p>
 <p>Traits in Rust allow us to abstract shared behavior that different types
@@ -221,22 +217,21 @@ have this trait.</p>
 for the player into <code>models/player.rs</code>. This simplifies the main render and
 update loop in <code>lib.rs</code> and sets the stage for future drawable objects such
 as enemies, bullets, and other things.</p>
-<pre style="background-color:#272822;">
-<code><span style="font-style:italic;color:#66d9ef;">impl </span><span style="color:#f8f8f2;">GameObject </span><span style="color:#f92672;">for </span><span style="color:#f8f8f2;">Player {
-    </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">render</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">ctxt</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">Context, </span><span style="font-style:italic;color:#fd971f;">gl</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;mut</span><span style="color:#f8f8f2;"> GlGraphics) {
-        </span><span style="color:#75715e;">// Render the player as a little square
-        </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> square </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">rectangle::square(</span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">, self.size);
-        </span><span style="color:#75715e;">// Set the x/y coordinate for &quot;spaceship&quot;
-        </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> transform </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> ctxt.transform.</span><span style="color:#66d9ef;">trans</span><span style="color:#f8f8f2;">(self.x, self.y)
-        </span><span style="color:#75715e;">// Draw the player on screen.
-        </span><span style="color:#66d9ef;">rectangle</span><span style="color:#f8f8f2;">(color::</span><span style="color:#ae81ff;">RED</span><span style="color:#f8f8f2;">, square, transform, gl);
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl GameObject for Player {
+    fn render(&self, ctxt: &Context, gl: &mut GlGraphics) {
+        // Render the player as a little square
+        let square = rectangle::square(0.0, 0.0, self.size);
+        // Set the x/y coordinate for "spaceship"
+        let transform = ctxt.transform.trans(self.x, self.y)
+        // Draw the player on screen.
+        rectangle(color::RED, square, transform, gl);
     }
 
-    </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">update</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">dt</span><span style="color:#f8f8f2;">: </span><span style="font-style:italic;color:#66d9ef;">f64</span><span style="color:#f8f8f2;">) {
-        </span><span style="color:#75715e;">// Handle updates here. Adjusting animation/movement/etc.
-    </span><span style="color:#f8f8f2;">}
+    fn update(&mut self, dt: f64) {
+        // Handle updates here. Adjusting animation/movement/etc.
+    }
 }
-</span></code></pre>
+</code></pre>
 <p>If you're interested in seeing how enemies and bullets are rendered and
 animated, check out the <code>models/enemy.rs</code> and <code>models/bullet.rs</code>. At the
 time of writing, enemies are completely harmless and only move in random
@@ -252,42 +247,40 @@ end, the only thing each object on screen needs to know is its current
 position and the radius of its bounding circle.</p>
 <p>Below is the snippet from the <code>GameObject</code> trait that handles collision
 detection:</p>
-<pre style="background-color:#272822;">
-<code><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">collides</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">, </span><span style="font-style:italic;color:#fd971f;">other</span><span style="color:#f8f8f2;">: </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">GameObject) -&gt; </span><span style="font-style:italic;color:#66d9ef;">bool </span><span style="color:#f8f8f2;">{
-    </span><span style="color:#75715e;">// Two circles intersect if the distance between their centers is
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn collides(&self, other: &GameObject) -> bool {
+    // Two circles intersect if the distance between their centers is
     // between the sum and the difference of their radii.
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> x2 </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">self.</span><span style="color:#66d9ef;">position</span><span style="color:#f8f8f2;">().x </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;"> other.</span><span style="color:#66d9ef;">position</span><span style="color:#f8f8f2;">().x;
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> y2 </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">self.</span><span style="color:#66d9ef;">position</span><span style="color:#f8f8f2;">().y </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;"> other.</span><span style="color:#66d9ef;">position</span><span style="color:#f8f8f2;">().y;
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> sum </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> x2.</span><span style="color:#66d9ef;">powf</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">2.0</span><span style="color:#f8f8f2;">) </span><span style="color:#f92672;">+</span><span style="color:#f8f8f2;"> y2.</span><span style="color:#66d9ef;">powf</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">2.0</span><span style="color:#f8f8f2;">);
+    let x2 = self.position().x - other.position().x;
+    let y2 = self.position().y - other.position().y;
+    let sum = x2.powf(2.0) + y2.powf(2.0);
 
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> r_start </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">self.</span><span style="color:#66d9ef;">radius</span><span style="color:#f8f8f2;">() </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;"> other.</span><span style="color:#66d9ef;">radius</span><span style="color:#f8f8f2;">();
-    </span><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> r_end </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">self.</span><span style="color:#66d9ef;">radius</span><span style="color:#f8f8f2;">() </span><span style="color:#f92672;">+</span><span style="color:#f8f8f2;"> other.</span><span style="color:#66d9ef;">radius</span><span style="color:#f8f8f2;">();
+    let r_start = self.radius() - other.radius();
+    let r_end = self.radius() + other.radius();
 
-    </span><span style="color:#f92672;">return</span><span style="color:#f8f8f2;"> r_start.</span><span style="color:#66d9ef;">powf</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">2.0</span><span style="color:#f8f8f2;">) </span><span style="color:#f92672;">&lt;=</span><span style="color:#f8f8f2;"> sum </span><span style="color:#f92672;">&amp;&amp;</span><span style="color:#f8f8f2;"> sum </span><span style="color:#f92672;">&lt;=</span><span style="color:#f8f8f2;"> r_end.</span><span style="color:#66d9ef;">powf</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">2.0</span><span style="color:#f8f8f2;">);
+    return r_start.powf(2.0) <= sum && sum <= r_end.powf(2.0);
 }
 
-</span><span style="color:#75715e;">// Use to determine position of the object
-</span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">position</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">) -&gt; </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">Position;
-</span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">radius</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#fd971f;">self</span><span style="color:#f8f8f2;">) -&gt; </span><span style="font-style:italic;color:#66d9ef;">f64</span><span style="color:#f8f8f2;">;
-</span></code></pre>
+// Use to determine position of the object
+fn position(&self) -> &Position;
+fn radius(&self) -> f64;
+</code></pre>
 <p>To run the actual collision check, we loop through each bullet and enemy
 during the update loop and check to see if they've collided. If so, we
 remove both from the screen and update our score.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f92672;">for</span><span style="color:#f8f8f2;"> bullet </span><span style="color:#f92672;">in </span><span style="color:#f8f8f2;">self.bullets.</span><span style="color:#66d9ef;">iter_mut</span><span style="color:#f8f8f2;">() {
-    </span><span style="color:#75715e;">// Did bullet collide with any enemies
-    </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;"> enemy </span><span style="color:#f92672;">in </span><span style="color:#f8f8f2;">self.enemies.</span><span style="color:#66d9ef;">iter_mut</span><span style="color:#f8f8f2;">() {
-        </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;"> bullet.</span><span style="color:#66d9ef;">collides</span><span style="color:#f8f8f2;">(enemy) {
-            </span><span style="color:#75715e;">// Setting the bullet ttl will remove it from screen.
-</span><span style="color:#f8f8f2;">            bullet.ttl </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">;
-            </span><span style="color:#75715e;">// Setting the enemy health to 0 will remove it from screen.
-</span><span style="color:#f8f8f2;">            enemy.health </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">;
-            </span><span style="color:#75715e;">// Keep track of kills
-            </span><span style="color:#f8f8f2;">self.score </span><span style="color:#f92672;">+= </span><span style="color:#ae81ff;">10</span><span style="color:#f8f8f2;">;
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">for bullet in self.bullets.iter_mut() {
+    // Did bullet collide with any enemies
+    for enemy in self.enemies.iter_mut() {
+        if bullet.collides(enemy) {
+            // Setting the bullet ttl will remove it from screen.
+            bullet.ttl = 0.0;
+            // Setting the enemy health to 0 will remove it from screen.
+            enemy.health = 0;
+            // Keep track of kills
+            self.score += 10;
         }
     }
 }
-</span></code></pre>
+</code></pre>
 <p>And there it is in action!</p>
 <p><img src="/img/2018/collisions.gif" alt="Red triangle shoots green square" /></p>
 <p>All that's missing are explosions and bits of green square scattered
@@ -304,24 +297,22 @@ source code for the <code>piston2d-opengl_graphics</code> library to figure out 
 exact incantation. In the end, it was a simple two lines of code to load
 the font we want and use it to render the score.</p>
 <p>First and foremost, we need to load the font we want to use. I chose a fantastic <a href="https://int10h.org/oldschool-pc-fonts/readme/">old school IBM font</a> to really accentuate the nostalgic look.</p>
-<pre style="background-color:#272822;">
-<code><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> glyph_cache </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">GlyphCache::new(
-    </span><span style="color:#e6db74;">&quot;./assets/fonts/PxPlus_IBM_VGA8.ttf&quot;</span><span style="color:#f8f8f2;">,
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let glyph_cache = GlyphCache::new(
+    "./assets/fonts/PxPlus_IBM_VGA8.ttf",
     (),
     TextureSettings::new()
-).</span><span style="color:#66d9ef;">expect</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot;Unable to load font&quot;</span><span style="color:#f8f8f2;">);
-</span></code></pre>
+).expect("Unable to load font");
+</code></pre>
 <p>And finally in our render loop, draw the current score on screen.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">text::Text::new_color(::color::</span><span style="color:#ae81ff;">WHITE</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">16</span><span style="color:#f8f8f2;">)
-    .</span><span style="color:#66d9ef;">draw</span><span style="color:#f8f8f2;">(
-        format!(</span><span style="color:#e6db74;">&quot;Score: </span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;">&quot;</span><span style="color:#f8f8f2;">, score).</span><span style="color:#66d9ef;">as_str</span><span style="color:#f8f8f2;">(),
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">text::Text::new_color(::color::WHITE, 16)
+    .draw(
+        format!("Score: {}", score).as_str(),
         glyph_cache,
-        </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">DrawState::default(),
-        c.transform.</span><span style="color:#66d9ef;">trans</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">16.0</span><span style="color:#f8f8f2;">),
+        &DrawState::default(),
+        c.transform.trans(0.0, 16.0),
         gl
-    ).</span><span style="color:#66d9ef;">unwrap</span><span style="color:#f8f8f2;">();
-</span></code></pre>
+    ).unwrap();
+</code></pre>
 <p><em><strong>Note</strong>: In the final code, I created some utility functions to help render the
 text. You can find these in <code>gfx/utils.rs</code></em></p>
 <p>To detect end game states, I add a <code>GameStatus</code> enum with different states
@@ -329,20 +320,20 @@ and check for the appropriate status at the start of the render and update
 loops. For example, in the snippet below we check that we've reached either
 a <code>GameStatus::Died</code> or <code>GameStatus::Win</code> and render the appropriate
 message to show the user.</p>
-<pre style="background-color:#272822;">
-<code><span style="font-style:italic;color:#66d9ef;">let</span><span style="color:#f8f8f2;"> viewport </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">[size.width </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64</span><span style="color:#f8f8f2;">, size.height </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64</span><span style="color:#f8f8f2;">];
-</span><span style="color:#f92672;">match</span><span style="color:#f8f8f2;"> state.game_status {
-    GameStatus::Died </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">{
-        </span><span style="color:#66d9ef;">draw_center</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot;YOU DIED!&quot;</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">32</span><span style="color:#f8f8f2;">, viewport, gc, </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">c, gl);
-        </span><span style="color:#f92672;">return</span><span style="color:#f8f8f2;">;
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let viewport = [size.width as f64, size.height as f64];
+match state.game_status {
+    GameStatus::Died => {
+        draw_center("YOU DIED!", 32, viewport, gc, &c, gl);
+        return;
     },
-    GameStatus::Win </span><span style="color:#f92672;">=&gt; </span><span style="color:#f8f8f2;">{
-        </span><span style="color:#66d9ef;">draw_center</span><span style="color:#f8f8f2;">(</span><span style="color:#e6db74;">&quot;YOU WIN!&quot;</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">32</span><span style="color:#f8f8f2;">, viewport, gc, </span><span style="color:#f92672;">&amp;</span><span style="color:#f8f8f2;">c, gl);
-        </span><span style="color:#f92672;">return</span><span style="color:#f8f8f2;">;
+    GameStatus::Win => {
+        draw_center("YOU WIN!", 32, viewport, gc, &c, gl);
+        return;
     },
-    </span><span style="color:#f92672;">_ =&gt; </span><span style="color:#f8f8f2;">(),
+    _ => (),
 }
-</span></code></pre><h2 id="final-result">Final Result</h2>
+</code></pre>
+<h2 id="final-result">Final Result</h2>
 <p>Finally, here is the final result!</p>
 <p><img src="/img/2018/final-result.gif" alt="" /></p>
 <p>Running into enemies will insta-kill the player and shooting down the harmless
@@ -384,7 +375,7 @@ I could in a scripting language such as Python.</p>
 </div>
 <div class='footer'>
     Rabble-rouser.<br>
-    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Founder @ New Thing<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"

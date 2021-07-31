@@ -21,17 +21,17 @@
       <div>
         <a
           href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+          <img src='https://a5huynh.github.io/img/email.svg' alt='Email me!'>
         </a>
       </div>
       <div>
         <a href='http://twitter.com/a5huynh'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+          <img src='https://a5huynh.github.io/img/twitter.svg' alt='Follow me on Twitter!'>
         </a>
       </div>
       <div>
         <a href='http://www.linkedin.com/profile/view?id=30602610'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+          <img src='https://a5huynh.github.io/img/linkedin.svg' alt='Check me out on LinkedIn.'>
         </a>
       </div>
     </div>
@@ -41,7 +41,7 @@
   <h1>Define: Command Line</h1>
   <p class='meta'>
     2014 November  6 - San Francisco |
-    <span>361 words</span>
+    <span>343 words</span>
   </p>
   
 
@@ -63,8 +63,7 @@ using a common dictionary file format.</p>
 <p>The nature of the utility also allows you to download multiple dictionaries to
 cull through. These dictionaries can range from English dictionaries to
 dictionaries of hacker jargon, all searchable from the command line. Sound interesting? To install this utility, assuming you already have homebrew installed, all you need to do is:</p>
-<pre style="background-color:#272822;">
-<code>brew install sdcv
+<pre><code>brew install sdcv
 </code></pre>
 <p>Unfortunately, the default installation doesn't come with any dictionaries. Go
 ahead and choose the necessary
@@ -76,23 +75,23 @@ to ensure sdcv can detect it.</p>
 your definitions. I added the following to my <code>.bash_profile</code> to define (hah) a
 function that will call sdcv with some good defaults with whatever word or
 phrase I pass to it.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#a6e22e;">define </span><span style="color:#f8f8f2;">() {
-    </span><span style="color:#75715e;"># Check if sdcv is installed
-    </span><span style="color:#f92672;">if </span><span style="color:#66d9ef;">command </span><span style="font-style:italic;color:#fd971f;">-v</span><span style="color:#f8f8f2;"> sdcv </span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;"> /dev/null</span><span style="color:#f92672;">; then
-        </span><span style="color:#75715e;"># -0 show UTF-8 output
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">define () {
+    # Check if sdcv is installed
+    if command -v sdcv > /dev/null; then
+        # -0 show UTF-8 output
         # -c show colorized output
-        </span><span style="color:#f8f8f2;">sdcv</span><span style="font-style:italic;color:#fd971f;"> -0c </span><span style="color:#e6db74;">&quot;$@&quot;
-    </span><span style="color:#f92672;">else
-        </span><span style="color:#66d9ef;">echo </span><span style="color:#e6db74;">&quot;You need to install sdcv.&quot;
-    </span><span style="color:#f92672;">fi
-</span><span style="color:#f8f8f2;">}
-</span></code></pre>
+        sdcv -0c "$@"
+    else
+        echo "You need to install sdcv."
+    fi
+}
+</code></pre>
+
   <span id='#thats-all-folks'>&#8718;</span>
 </div>
 <div class='footer'>
     Rabble-rouser.<br>
-    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Founder @ New Thing<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"

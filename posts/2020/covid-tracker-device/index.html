@@ -21,17 +21,17 @@
       <div>
         <a
           href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+          <img src='https://a5huynh.github.io/img/email.svg' alt='Email me!'>
         </a>
       </div>
       <div>
         <a href='http://twitter.com/a5huynh'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+          <img src='https://a5huynh.github.io/img/twitter.svg' alt='Follow me on Twitter!'>
         </a>
       </div>
       <div>
         <a href='http://www.linkedin.com/profile/view?id=30602610'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+          <img src='https://a5huynh.github.io/img/linkedin.svg' alt='Check me out on LinkedIn.'>
         </a>
       </div>
     </div>
@@ -41,28 +41,28 @@
   <h1>COVID-19 Stats Tracker</h1>
   <p class='meta'>
     2020 July 15 - San Francisco |
-    <span>878 words</span>
+    <span>855 words</span>
   </p>
   
   
 
 <div class='post-tags'>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;esp32&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/esp32/'>
         <span
             >
             #esp32
         </span>
     </a>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;hardware&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/hardware/'>
         <span
             >
             #hardware
         </span>
     </a>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;iot&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/iot/'>
         <span
             >
             #iot
@@ -115,23 +115,22 @@ your choice.</p>
 <li><a href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a> to display the results</li>
 </ul>
 <p>The basic loop function would look like something below:</p>
-<pre style="background-color:#272822;">
-<code><span style="font-style:italic;color:#66d9ef;">bool</span><span style="color:#f8f8f2;"> updateScreen </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">false</span><span style="color:#f8f8f2;">;
+<pre data-lang="c" class="language-c "><code class="language-c" data-lang="c">bool updateScreen = false;
 
-</span><span style="font-style:italic;color:#66d9ef;">void </span><span style="color:#a6e22e;">loop</span><span style="color:#f8f8f2;">() {
-    </span><span style="color:#f92672;">if </span><span style="color:#f8f8f2;">(wifi.run() </span><span style="color:#f92672;">==</span><span style="color:#f8f8f2;"> WL_CONNECTED) {
-        </span><span style="font-style:italic;color:#66d9ef;">unsigned long</span><span style="color:#f8f8f2;"> currentTime </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">millis();
-        </span><span style="color:#f92672;">if </span><span style="color:#f8f8f2;">(currentTime </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;"> LAST_UPDATED_TIME </span><span style="color:#f92672;">&gt;=</span><span style="color:#f8f8f2;"> UPDATE_TIME_MS) {
-            LAST_UPDATED_TIME </span><span style="color:#f92672;">=</span><span style="color:#f8f8f2;"> currentTime;
+void loop() {
+    if (wifi.run() == WL_CONNECTED) {
+        unsigned long currentTime = millis();
+        if (currentTime - LAST_UPDATED_TIME >= UPDATE_TIME_MS) {
+            LAST_UPDATED_TIME = currentTime;
             update_tracker()
         }
     }
 
-    </span><span style="color:#f92672;">if </span><span style="color:#f8f8f2;">(updateScreen) {
+    if (updateScreen) {
         render_stats();
     }
 }
-</span></code></pre>
+</code></pre>
 <p>We want to make sure we have an internet connection (<code>wifi.run()</code>) and if everything
 looks good, we can go ahead and make a request to the API. If anything has changed
 in the stats, we'll set a flag to update the screen. Once that request is done,
@@ -164,9 +163,13 @@ screens, but the code and schematic still handles this.</p>
 <div class="gallery">
     <div class="gallery_nav">
         <ul>
+            
             <li><a href='javascript:void' onclick="show_image('&#x2F;img&#x2F;2020&#x2F;covid-tracker&#x2F;overview.jpg')">·</a></li>
+            
             <li><a href='javascript:void' onclick="show_image('&#x2F;img&#x2F;2020&#x2F;covid-tracker&#x2F;soldering-work.jpg')">·</a></li>
+            
             <li><a href='javascript:void' onclick="show_image('&#x2F;img&#x2F;2020&#x2F;covid-tracker&#x2F;lcd.jpg')">·</a></li>
+            
         </ul>
     </div>
     <div class="gallery_container">
@@ -198,7 +201,7 @@ than necessary.</li>
 </div>
 <div class='footer'>
     Rabble-rouser.<br>
-    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Founder @ New Thing<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"

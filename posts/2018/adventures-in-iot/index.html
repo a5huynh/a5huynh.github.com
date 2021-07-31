@@ -21,17 +21,17 @@
       <div>
         <a
           href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+          <img src='https://a5huynh.github.io/img/email.svg' alt='Email me!'>
         </a>
       </div>
       <div>
         <a href='http://twitter.com/a5huynh'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+          <img src='https://a5huynh.github.io/img/twitter.svg' alt='Follow me on Twitter!'>
         </a>
       </div>
       <div>
         <a href='http://www.linkedin.com/profile/view?id=30602610'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+          <img src='https://a5huynh.github.io/img/linkedin.svg' alt='Check me out on LinkedIn.'>
         </a>
       </div>
     </div>
@@ -41,21 +41,21 @@
   <h1>Adventures in IoT: Dev Environment</h1>
   <p class='meta'>
     2018 April 10 - San Francisco |
-    <span>1166 words</span>
+    <span>1139 words</span>
   </p>
   
   
 
 <div class='post-tags'>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;iot&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/iot/'>
         <span
             >
             #iot
         </span>
     </a>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;hardware&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/hardware/'>
         <span
             >
             #hardware
@@ -113,18 +113,17 @@ to explicitly add each folder. This can be accomplished by editing the
 <p>Note: The <code>c_cpp_properties.json</code> file can be accessed via the command
 palette: <code>⌘⬆P -&gt; C/Cpp: Edit Configurations</code>.</p>
 </blockquote>
-<pre style="background-color:#272822;">
-<code><span style="color:#75715e;">// note to save some space,
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">// note to save some space,
 // $PACKAGES = $HOME/Library/Arduino15/packages/arduino
-</span><span style="color:#e6db74;">&quot;includePath&quot;</span><span style="color:#f8f8f2;">: [
-    </span><span style="color:#e6db74;">&quot;$PACKAGES/hardware/avr/1.6.21/cores/arduino&quot;</span><span style="color:#f8f8f2;">,
-    </span><span style="color:#e6db74;">&quot;$PACKAGES/hardware/avr/1.6.21/libraries&quot;</span><span style="color:#f8f8f2;">,
-    </span><span style="color:#e6db74;">&quot;$PACKAGES/hardware/avr/1.6.21/variants/standard&quot;</span><span style="color:#f8f8f2;">,
-    </span><span style="color:#e6db74;">&quot;$PACKAGES/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include&quot;</span><span style="color:#f8f8f2;">,
-    </span><span style="color:#e6db74;">&quot;$PACKAGES/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include&quot;</span><span style="color:#f8f8f2;">,
-    </span><span style="color:#e6db74;">&quot;${workspaceFolder}&quot;
-</span><span style="color:#f8f8f2;">]
-</span></code></pre>
+"includePath": [
+    "$PACKAGES/hardware/avr/1.6.21/cores/arduino",
+    "$PACKAGES/hardware/avr/1.6.21/libraries",
+    "$PACKAGES/hardware/avr/1.6.21/variants/standard",
+    "$PACKAGES/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include",
+    "$PACKAGES/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include",
+    "${workspaceFolder}"
+]
+</code></pre>
 <p>The versions in the paths will change depending on how often you update
 your Arduino IDE libraries, but should cover all the standard Arduino
 includes. If you need additional libraries, you should be able to find the
@@ -133,15 +132,14 @@ ones you’ve written yourself, should ideally be in a <code>lib</code> folder u
 the same folder as your main sketch file. For example if you have a
 <code>sensor</code> library it’d look like below. The importance of the <code>lib</code> folder
 structure will come into play in the toolchain section.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">project/
+<pre><code>project/
 ├── lib/
 │   └── sensor/
 │       ├── sensor.cpp
 │       └── sensor.h
 ├── Makefile
 └── main.ino
-</span></code></pre>
+</code></pre>
 <p>Lastly and most importantly, we need to add <code>#include &lt;Arduino.h&gt;</code> at the
 top of our main sketch file so that the VS Code IntelliSense to start
 working its magic.</p>
@@ -158,24 +156,22 @@ were a couple non-obvious changes I needed to make to my project structure
 and the Makefile to support user-defined libraries.</p>
 <p>First, user-defined libraries should have a folder structure that follows a
 familiar format:</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">lib/
-└── &lt;library&gt;/
-│   ├── &lt;library&gt;.cpp
-│   └── &lt;library&gt;.h
-</span></code></pre>
+<pre><code>lib/
+└── <library>/
+│   ├── <library>.cpp
+│   └── <library>.h
+</code></pre>
 <p>In the Makefile, we’ll need to define two variables which define the
 libraries that should be included in the compilation process and the path
 to the user-defined libraries.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">BOARD_TAG = uno
-ARDUINO_LIBS = </span><span style="color:#f92672;">&lt;</span><span style="color:#f8f8f2;">library name</span><span style="color:#f92672;">&gt; &lt;</span><span style="color:#f8f8f2;">library name two</span><span style="color:#f92672;">&gt;</span><span style="color:#f8f8f2;">
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">BOARD_TAG = uno
+ARDUINO_LIBS = <library name> <library name two>
 USER_LIB_PATH = $(PWD)/lib
 
-</span><span style="color:#75715e;"># The following path may be different for you. This path
+# The following path may be different for you. This path
 # is for OSX users who installed Arduino Makefile via Homebrew
-</span><span style="color:#f8f8f2;">include /usr/local/opt/arduino-mk/Arduino.mk
-</span></code></pre>
+include /usr/local/opt/arduino-mk/Arduino.mk
+</code></pre>
 <p>Now we should be able to run <code>make</code>  to compile the project and <code>make upload</code> to upload the sketch to the connected Arduino board. The Arduino
 Makefile will attempt to auto-detect variables based on your current OS and
 settings that you have setup already in the Arduino IDE. If you need to
@@ -202,9 +198,8 @@ the Arduino with the correct incantations through the <code>screen</code> comman
 the end result is a more powerful way to interact with the Arduino serial
 connection.</p>
 <p>Minicom is available on OSX via homebrew:</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">homebrew install minicom
-</span></code></pre>
+<pre><code>homebrew install minicom
+</code></pre>
 <p>To configure minicom, start it up with <code>minicom -s</code> to prevent it from
 immediately attempting to connect to any serial ports.  From here you can
 set the serial device to point to the usb serial port
@@ -222,7 +217,7 @@ for a more automated home.</p>
 </div>
 <div class='footer'>
     Rabble-rouser.<br>
-    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Founder @ New Thing<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"

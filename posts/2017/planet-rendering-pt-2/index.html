@@ -21,17 +21,17 @@
       <div>
         <a
           href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+          <img src='https://a5huynh.github.io/img/email.svg' alt='Email me!'>
         </a>
       </div>
       <div>
         <a href='http://twitter.com/a5huynh'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+          <img src='https://a5huynh.github.io/img/twitter.svg' alt='Follow me on Twitter!'>
         </a>
       </div>
       <div>
         <a href='http://www.linkedin.com/profile/view?id=30602610'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+          <img src='https://a5huynh.github.io/img/linkedin.svg' alt='Check me out on LinkedIn.'>
         </a>
       </div>
     </div>
@@ -41,21 +41,21 @@
   <h1>Planet Rendering Pt. 2</h1>
   <p class='meta'>
     2017 September 24 - Tokyo&#x2F;San Francisco |
-    <span>1526 words</span>
+    <span>1161 words</span>
   </p>
   
   
 
 <div class='post-tags'>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;3d&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/3d/'>
         <span
             >
             #3d
         </span>
     </a>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;gamedev&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/gamedev/'>
         <span
             >
             #gamedev
@@ -97,43 +97,41 @@ our current code due to how Three.js handles vertex colors. Choosing
 offsets is a bit of trial and error depending on how large we choose the
 displacement factor in terrain generation. In this particular case, since
 our displacement factor is pretty tiny (0.1), our offsets reflect that.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#a6e22e;">_color</span><span style="color:#f8f8f2;">( height: number ): THREE.Color {
-    </span><span style="color:#75715e;">// Ocean
-    </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">( height </span><span style="color:#f92672;">&lt;= </span><span style="color:#ae81ff;">1.01 </span><span style="color:#f8f8f2;">) {
-        </span><span style="color:#f92672;">return new </span><span style="color:#f8f8f2;">THREE.Color(</span><span style="color:#ae81ff;">0x55bbff</span><span style="color:#f8f8f2;">);
-    </span><span style="color:#75715e;">// Sand
-    </span><span style="color:#f8f8f2;">} </span><span style="color:#f92672;">else if</span><span style="color:#f8f8f2;">( height </span><span style="color:#f92672;">&lt;= </span><span style="color:#ae81ff;">1.05 </span><span style="color:#f8f8f2;">) {
-        </span><span style="color:#f92672;">return new </span><span style="color:#f8f8f2;">THREE.Color(</span><span style="color:#ae81ff;">0xffff00</span><span style="color:#f8f8f2;">);
-    </span><span style="color:#75715e;">// Grassland
-    </span><span style="color:#f8f8f2;">} </span><span style="color:#f92672;">else if</span><span style="color:#f8f8f2;">( height </span><span style="color:#f92672;">&lt;= </span><span style="color:#ae81ff;">1.15 </span><span style="color:#f8f8f2;">) {
-        </span><span style="color:#f92672;">return new </span><span style="color:#f8f8f2;">THREE.Color(</span><span style="color:#ae81ff;">0x00ff00</span><span style="color:#f8f8f2;">);
-    </span><span style="color:#75715e;">// Mountains
-    </span><span style="color:#f8f8f2;">} </span><span style="color:#f92672;">else </span><span style="color:#f8f8f2;">{
-        </span><span style="color:#f92672;">return new </span><span style="color:#f8f8f2;">THREE.Color(</span><span style="color:#ae81ff;">0xfffffff</span><span style="color:#f8f8f2;">);
+<pre data-lang="typescript" class="language-typescript "><code class="language-typescript" data-lang="typescript">_color( height: number ): THREE.Color {
+    // Ocean
+    if( height <= 1.01 ) {
+        return new THREE.Color(0x55bbff);
+    // Sand
+    } else if( height <= 1.05 ) {
+        return new THREE.Color(0xffff00);
+    // Grassland
+    } else if( height <= 1.15 ) {
+        return new THREE.Color(0x00ff00);
+    // Mountains
+    } else {
+        return new THREE.Color(0xfffffff);
     }
 }
-</span></code></pre>
+</code></pre>
 <p><em>Coloring is as simple as finding a cutoff for the terrain type we're trying
 to represent. In this case, we're splitting the terrain into ocean, sand,
 grassland, and mountains.</em></p>
 <p>Secondly, we modify how we create <code>Face3</code> objects, using the <code>_color</code>
 function above to assign a color upon creation.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( x: number, y: number, z: number ): THREE.Face3 {
-    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">face </span><span style="color:#f92672;">= new </span><span style="color:#f8f8f2;">THREE.Face3( x, y, z );
-    face.vertexColors[</span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">] </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.</span><span style="color:#a6e22e;">_color</span><span style="color:#f8f8f2;">(
-        this.geometry.vertices[face.a].</span><span style="color:#a6e22e;">length</span><span style="color:#f8f8f2;">()
+<pre data-lang="typescript" class="language-typescript "><code class="language-typescript" data-lang="typescript">_face( x: number, y: number, z: number ): THREE.Face3 {
+    let face = new THREE.Face3( x, y, z );
+    face.vertexColors[0] = this._color(
+        this.geometry.vertices[face.a].length()
     );
-    face.vertexColors[</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">] </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.</span><span style="color:#a6e22e;">_color</span><span style="color:#f8f8f2;">(
-        this.geometry.vertices[face.a].</span><span style="color:#a6e22e;">length</span><span style="color:#f8f8f2;">()
+    face.vertexColors[1] = this._color(
+        this.geometry.vertices[face.a].length()
     );
-    face.vertexColors[</span><span style="color:#ae81ff;">2</span><span style="color:#f8f8f2;">] </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.</span><span style="color:#a6e22e;">_color</span><span style="color:#f8f8f2;">(
-        this.geometry.vertices[face.a].</span><span style="color:#a6e22e;">length</span><span style="color:#f8f8f2;">()
+    face.vertexColors[2] = this._color(
+        this.geometry.vertices[face.a].length()
     );
-    </span><span style="color:#f92672;">return </span><span style="color:#f8f8f2;">face;
+    return face;
 }
-</span></code></pre>
+</code></pre>
 <p>Now that we have the vertex colorization accomplished, let's take a stab at
 fixing the distortion in the UV sphere geometry through the use of another
 sphere geometry -- the icosahedron.</p>
@@ -154,70 +152,68 @@ non-distorted sphere as seen below.</p>
 <p>The algorithm to generate the sphere is pretty straightforward. The
 icosahedron starts off with 20 faces created using a set of 12 initial
 vertices.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#a6e22e;">_setupInitialVertices</span><span style="color:#f8f8f2;">() {
-    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">t </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">( </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">+ </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">sqrt</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">5.0</span><span style="color:#f8f8f2;">)) </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">2.0</span><span style="color:#f8f8f2;">;
+<pre data-lang="typescript" class="language-typescript "><code class="language-typescript" data-lang="typescript">_setupInitialVertices() {
+    let t = ( 1 + Math.sqrt(5.0)) / 2.0;
 
-    this.geometry.vertices.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  t,  </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  t,  </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t,  </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t,  </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">),
+    this.geometry.vertices.push(
+        this._normalizedVector( -1,  t,  0 ),
+        this._normalizedVector(  1,  t,  0 ),
+        this._normalizedVector( -1, -t,  0 ),
+        this._normalizedVector(  1, -t,  0 ),
     );
 
-    this.geometry.vertices.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  t ),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  t ),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t ),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t ),
+    this.geometry.vertices.push(
+        this._normalizedVector(  0, -1,  t ),
+        this._normalizedVector(  0,  1,  t ),
+        this._normalizedVector(  0, -1, -t ),
+        this._normalizedVector(  0,  1, -t ),
     );
 
-    this.geometry.vertices.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  t,  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">(  t,  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t,  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">),
-        this.</span><span style="color:#a6e22e;">_normalizedVector</span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#f8f8f2;">t,  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">)
+    this.geometry.vertices.push(
+        this._normalizedVector(  t,  0, -1 ),
+        this._normalizedVector(  t,  0,  1 ),
+        this._normalizedVector( -t,  0, -1 ),
+        this._normalizedVector( -t,  0,  1 )
     );
 }
-</span></code></pre>
+</code></pre>
 <p><em>All we need to generate the initial vertices is a single calculation of the
 golden ratio ((\tau)) and then applying that around the sphere.</em></p>
 <p>Afterwards, we'll setup the initial faces and based on the level of detail
 we want, divide the initial faces into smaller and smaller triangles.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#a6e22e;">setupInitialFaces</span><span style="color:#f8f8f2;">( ) {
-    </span><span style="color:#75715e;">// 5 faces around point 0
-    </span><span style="color:#f8f8f2;">this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">11</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">5 </span><span style="color:#f8f8f2;">) );
-    this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">5</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1 </span><span style="color:#f8f8f2;">) );
-    this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">7 </span><span style="color:#f8f8f2;">) );
-    this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">,  </span><span style="color:#ae81ff;">7</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">10 </span><span style="color:#f8f8f2;">) );
-    this.faces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">(  </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">10</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">11 </span><span style="color:#f8f8f2;">) );
+<pre data-lang="typescript" class="language-typescript "><code class="language-typescript" data-lang="typescript">setupInitialFaces( ) {
+    // 5 faces around point 0
+    this.faces.push( this._face(  0, 11,  5 ) );
+    this.faces.push( this._face(  0,  5,  1 ) );
+    this.faces.push( this._face(  0,  1,  7 ) );
+    this.faces.push( this._face(  0,  7, 10 ) );
+    this.faces.push( this._face(  0, 10, 11 ) );
 
-    </span><span style="color:#75715e;">// ... see code for the rest of the face setup code.
-</span><span style="color:#f8f8f2;">}
+    // ... see code for the rest of the face setup code.
+}
 
-</span><span style="color:#75715e;">// Refine the icosahedron geometry based on the
+// Refine the icosahedron geometry based on the
 // level of detail we want.
-</span><span style="color:#a6e22e;">refineGeometry</span><span style="color:#f8f8f2;">() {
-    </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">( </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">i </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; i </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">level_of_detail; i</span><span style="color:#f92672;">++ </span><span style="color:#f8f8f2;">) {
-        </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">refinedFaces </span><span style="color:#f92672;">= new </span><span style="color:#f8f8f2;">Array&lt;THREE.Face3&gt;();
-        </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">( </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">triangle </span><span style="color:#f92672;">of </span><span style="color:#f8f8f2;">this.faces ) {
-            </span><span style="color:#75715e;">// Replace the triangle with 4 new triangles.
-            </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">a </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getMidPoint</span><span style="color:#f8f8f2;">( triangle.a, triangle.b );
-            </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">b </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getMidPoint</span><span style="color:#f8f8f2;">( triangle.b, triangle.c );
-            </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f8f8f2;">c </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getMidPoint</span><span style="color:#f8f8f2;">( triangle.c, triangle.a );
+refineGeometry() {
+    for( var i = 0; i < level_of_detail; i++ ) {
+        let refinedFaces = new Array<THREE.Face3>();
+        for( let triangle of this.faces ) {
+            // Replace the triangle with 4 new triangles.
+            let a = getMidPoint( triangle.a, triangle.b );
+            let b = getMidPoint( triangle.b, triangle.c );
+            let c = getMidPoint( triangle.c, triangle.a );
 
-            refinedFaces.</span><span style="color:#66d9ef;">push</span><span style="color:#f8f8f2;">(
-                this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( triangle.a, a, c ),
-                this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( triangle.b, b, a ),
-                this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( triangle.c, c, b ),
-                this.</span><span style="color:#a6e22e;">_face</span><span style="color:#f8f8f2;">( a, b, c ),
+            refinedFaces.push(
+                this._face( triangle.a, a, c ),
+                this._face( triangle.b, b, a ),
+                this._face( triangle.c, c, b ),
+                this._face( a, b, c ),
             )
         }
-        this.faces </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">refinedFaces;
+        this.faces = refinedFaces;
     }
 }
-</span></code></pre>
+</code></pre>
 <p>And voila! One complication with the icosahedron geometry is the mapping of
 the generated terrain heights to the vertices. Since the icosahedron
 geometry is not a grid like the UV sphere, we'll have to estimate where a
@@ -233,33 +229,32 @@ terrain. This technique is actually very similar to how you would generate
 texture coordinates to apply a texture to the icosahedron geometry.</p>
 <p>Lets take a look at the updated <code>getHeight</code> function in the icosahedron planet
 generator below:</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#a6e22e;">getHeight</span><span style="color:#f8f8f2;">( x: number, y: number, z:number ): number {
-    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">hx </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">atan2</span><span style="color:#f8f8f2;">( x, z ) </span><span style="color:#f92672;">/ </span><span style="color:#f8f8f2;">( </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">2.0 </span><span style="color:#f92672;">* </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">PI </span><span style="color:#f8f8f2;">);
-    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">hy </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">asin</span><span style="color:#f8f8f2;">( y ) </span><span style="color:#f92672;">/ </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">PI </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">0.5</span><span style="color:#f8f8f2;">;
+<pre data-lang="typescript" class="language-typescript "><code class="language-typescript" data-lang="typescript">getHeight( x: number, y: number, z:number ): number {
+    var hx = Math.atan2( x, z ) / ( -2.0 * Math.PI );
+    var hy = Math.asin( y ) / Math.PI + 0.5;
 
-    </span><span style="color:#f92672;">if </span><span style="color:#f8f8f2;">( hx </span><span style="color:#f92672;">&lt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f8f8f2;">) {
-        hx </span><span style="color:#f92672;">+= </span><span style="color:#ae81ff;">0.5</span><span style="color:#f8f8f2;">;
+    if ( hx < 0 ) {
+        hx += 0.5;
     }
 
-    </span><span style="color:#75715e;">// Since texture coordinates are between 0 and 1
+    // Since texture coordinates are between 0 and 1
     // we multiply by the terrain size to give us
     // a grid location within the terrain map.
-    </span><span style="color:#f8f8f2;">hx </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">floor</span><span style="color:#f8f8f2;">( hx </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">(this.terrain_size </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">) );
-    hy </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">floor</span><span style="color:#f8f8f2;">( hy </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">(this.terrain_size </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">) );
+    hx = Math.floor( hx * (this.terrain_size - 1) );
+    hy = Math.floor( hy * (this.terrain_size - 1) );
 
-    </span><span style="color:#75715e;">// Handle wrapping correctly.
-    </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">( </span><span style="color:#66d9ef;">isNaN</span><span style="color:#f8f8f2;">( hx ) ) {
-        hx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.terrain_size </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">;
+    // Handle wrapping correctly.
+    if( isNaN( hx ) ) {
+        hx = this.terrain_size - 1;
     }
 
-    </span><span style="color:#f92672;">if</span><span style="color:#f8f8f2;">( </span><span style="color:#66d9ef;">isNaN</span><span style="color:#f8f8f2;">( hy ) ) {
-        hy </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">this.terrain_size </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">;
+    if( isNaN( hy ) ) {
+        hy = this.terrain_size - 1;
     }
 
-    </span><span style="color:#f92672;">return </span><span style="color:#f8f8f2;">this.terrain.</span><span style="color:#a6e22e;">getHeight</span><span style="color:#f8f8f2;">( hx, hy );
+    return this.terrain.getHeight( hx, hy );
 }
-</span></code></pre>
+</code></pre>
 <p><em>Here we use the inverse trigonometry functions <code>atan2</code> and <code>asin</code> to
 convert the vertex coordinates into the <code>x, y</code> coordinates we can use to
 reference a height map.</em></p>
@@ -286,7 +281,7 @@ hard cutoffs rather than smooth transitions between terrain types.</p>
 </div>
 <div class='footer'>
     Rabble-rouser.<br>
-    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Founder @ New Thing<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"

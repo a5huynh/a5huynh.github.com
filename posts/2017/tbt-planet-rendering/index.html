@@ -21,17 +21,17 @@
       <div>
         <a
           href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;email.svg' alt='Email me!'>
+          <img src='https://a5huynh.github.io/img/email.svg' alt='Email me!'>
         </a>
       </div>
       <div>
         <a href='http://twitter.com/a5huynh'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;twitter.svg' alt='Follow me on Twitter!'>
+          <img src='https://a5huynh.github.io/img/twitter.svg' alt='Follow me on Twitter!'>
         </a>
       </div>
       <div>
         <a href='http://www.linkedin.com/profile/view?id=30602610'>
-          <img src='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;img&#x2F;linkedin.svg' alt='Check me out on LinkedIn.'>
+          <img src='https://a5huynh.github.io/img/linkedin.svg' alt='Check me out on LinkedIn.'>
         </a>
       </div>
     </div>
@@ -41,21 +41,21 @@
   <h1>TBT: Planet Rendering</h1>
   <p class='meta'>
     2017 May 18 - San Francisco |
-    <span>1082 words</span>
+    <span>900 words</span>
   </p>
   
   
 
 <div class='post-tags'>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;gamedev&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/gamedev/'>
         <span
             >
             #gamedev
         </span>
     </a>
     
-    <a href='https:&#x2F;&#x2F;a5huynh.github.io&#x2F;tags&#x2F;3d&#x2F;'>
+    <a href='https://a5huynh.github.io/tags/3d/'>
         <span
             >
             #3d
@@ -85,34 +85,33 @@ and WebGL with <a href="https://www.typescriptlang.org">Typescript</a> and
 below) to generate a UV sphere is relatively compact and easy to follow
 making for a quick implementation and allowing us to focus on the terrain
 generation and animation used in the project.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">    </span><span style="color:#75715e;">// Columns
-    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">gamma </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">;
-    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">gammaStep </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">2 </span><span style="color:#f92672;">* </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">PI </span><span style="color:#f92672;">/ </span><span style="color:#f8f8f2;">numFaces;
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">    // Columns
+    var gamma = 0.0;
+    var gammaStep = 2 * Math.PI / numFaces;
 
-    </span><span style="color:#75715e;">// Rows
-    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">theta </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0.0</span><span style="color:#f8f8f2;">;
-    </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">thetaStep </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">PI </span><span style="color:#f92672;">/ </span><span style="color:#f8f8f2;">numFaces;
+    // Rows
+    var theta = 0.0;
+    var thetaStep = Math.PI / numFaces;
 
-    </span><span style="color:#75715e;">// Loop through each row &amp; col in spherical coordinates.
+    // Loop through each row & col in spherical coordinates.
     //
     // Note: numPoints = numFaces + 1. You need n + 1 points to
     // represent n faces.
-    </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">row </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; row </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">numPoints; row</span><span style="color:#f92672;">++</span><span style="color:#f8f8f2;">) {
-        gamma </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">row </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">gammaStep;
-        </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">(</span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">col </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; col </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">numPoints; col</span><span style="color:#f92672;">++</span><span style="color:#f8f8f2;">) {
-            theta </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">col </span><span style="color:#f92672;">* </span><span style="color:#f8f8f2;">thetaStep;
+    for(var row = 0; row < numPoints; row++) {
+        gamma = row * gammaStep;
+        for(var col = 0; col < numPoints; col++) {
+            theta = col * thetaStep;
 
-            </span><span style="color:#75715e;">// Convert to cartesian coordinates
-            </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">x </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">sin</span><span style="color:#f8f8f2;">(theta) </span><span style="color:#f92672;">* </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">cos</span><span style="color:#f8f8f2;">(gamma);
-            </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">y </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">cos</span><span style="color:#f8f8f2;">(theta);
-            </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">z </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">sin</span><span style="color:#f8f8f2;">(theta) </span><span style="color:#f92672;">* </span><span style="color:#66d9ef;">Math</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">sin</span><span style="color:#f8f8f2;">(gamma);
+            // Convert to cartesian coordinates
+            var x = Math.sin(theta) * Math.cos(gamma);
+            var y = Math.cos(theta);
+            var z = Math.sin(theta) * Math.sin(gamma);
 
-            </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">v </span><span style="color:#f92672;">= new </span><span style="color:#f8f8f2;">Vector3(x, y, z).normalize();
+            var v = new Vector3(x, y, z).normalize();
             this.vertices.push(v);
         }
     }
-</span></code></pre>
+</code></pre>
 <p><em>Using latitudinal and longitudinal lines as a grid, we can loop through each
 row/column and generate points for the sphere.</em></p>
 <p>Combining the above code with some Three.js materials and lighting, we get the
@@ -134,26 +133,25 @@ around that area by randomly moving different directions adding additional
 height displacement as it goes. If we'd like, at the end of the terrain
 generation we can then apply a smoothing function on the resulting land mass to
 make it look a little less jagged.</p>
-<pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">    </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">( </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">i </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; i </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">numIslands; i</span><span style="color:#f92672;">++ </span><span style="color:#f8f8f2;">) {
-        </span><span style="color:#75715e;">// Find a random spot on the planet to grow an island
-        </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">sx </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">randomInt</span><span style="color:#f8f8f2;">( </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, width );
-        </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">sy </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">randomInt</span><span style="color:#f8f8f2;">( </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, height );
+<pre data-lang="typescript" class="language-typescript "><code class="language-typescript" data-lang="typescript">    for( var i = 0; i < numIslands; i++ ) {
+        // Find a random spot on the planet to grow an island
+        var sx = randomInt( 0, width );
+        var sy = randomInt( 0, height );
 
-        </span><span style="color:#f92672;">for</span><span style="color:#f8f8f2;">( </span><span style="font-style:italic;color:#66d9ef;">var </span><span style="color:#f8f8f2;">itNum </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">; itNum </span><span style="color:#f92672;">&lt; </span><span style="color:#f8f8f2;">iterations; itNum</span><span style="color:#f92672;">++ </span><span style="color:#f8f8f2;">) {
-            </span><span style="color:#75715e;">// Add the displacement to the current height
-            </span><span style="color:#a6e22e;">set</span><span style="color:#f8f8f2;">( sx, sy, </span><span style="color:#a6e22e;">get</span><span style="color:#f8f8f2;">( sx, sy ) </span><span style="color:#f92672;">+ </span><span style="color:#f8f8f2;">displacement );
+        for( var itNum = 0; itNum < iterations; itNum++ ) {
+            // Add the displacement to the current height
+            set( sx, sy, get( sx, sy ) + displacement );
 
-            </span><span style="color:#75715e;">// Pick a direction to go next
-            </span><span style="color:#f92672;">switch</span><span style="color:#f8f8f2;">( this.</span><span style="color:#a6e22e;">_randomInt</span><span style="color:#f8f8f2;">( </span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">, </span><span style="color:#ae81ff;">3 </span><span style="color:#f8f8f2;">) ) {
-                </span><span style="color:#f92672;">case </span><span style="color:#f8f8f2;">NORTH: sx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">sx </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">; </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
-                </span><span style="color:#f92672;">case </span><span style="color:#f8f8f2;">EAST:  sy </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">sy </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">; </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
-                </span><span style="color:#f92672;">case </span><span style="color:#f8f8f2;">SOUTH: sx </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">sx </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">; </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
-                </span><span style="color:#f92672;">case </span><span style="color:#f8f8f2;">WEST:  sy </span><span style="color:#f92672;">= </span><span style="color:#f8f8f2;">sy </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">; </span><span style="color:#f92672;">break</span><span style="color:#f8f8f2;">;
+            // Pick a direction to go next
+            switch( this._randomInt( 0, 3 ) ) {
+                case NORTH: sx = sx + 1; break;
+                case EAST:  sy = sy + 1; break;
+                case SOUTH: sx = sx - 1; break;
+                case WEST:  sy = sy - 1; break;
             }
         }
     }
-</span></code></pre>
+</code></pre>
 <p><em>Note that it's possible to continue moving along a single direction,
 generating a ridge. We can box in land masses by making sure future directions are
 with <code>n</code> of the initial growth point.</em></p>
@@ -204,7 +202,7 @@ that lead to a more natural looking planetoid.</p>
 </div>
 <div class='footer'>
     Rabble-rouser.<br>
-    VP of Data @ <a href='https://huckleberry.co'>Huckleberry</a>.<br>
+    Founder @ New Thing<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
   <script type="text/javascript"
