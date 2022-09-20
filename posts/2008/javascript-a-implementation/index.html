@@ -2,7 +2,34 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="a5huynh" />
+
+  
+<meta name="title" content="Javascript A* Implementation" />
+<meta name="description" content="&lt;p&gt;So a little background on my implementation (feel free to skip this)....&lt;&#x2F;p&gt;
+&lt;p&gt;In my freshman year at UCSD I was recruited by &lt;a href=&quot;http:&#x2F;&#x2F;cses.ucsd.edu&quot;&gt;CSES&lt;&#x2F;a&gt;
+to work on a small game project. It was supposed to be generic enough so
+that the frontend (my game engine) could connect to a back-end that could
+be written in any language as long as it conformed to a set of standards we
+had. Things like retrieving player position, setting player position,
+getting maps, etc. So long story short, I needed a pathfinding algorithm
+for the game engine, and my experiment with the A* algorithm began.&lt;&#x2F;p&gt;
+" />
+
+<meta property="og:title" content="Javascript A* Implementation" />
+<meta property="og:description" content="&lt;p&gt;So a little background on my implementation (feel free to skip this)....&lt;&#x2F;p&gt;
+&lt;p&gt;In my freshman year at UCSD I was recruited by &lt;a href=&quot;http:&#x2F;&#x2F;cses.ucsd.edu&quot;&gt;CSES&lt;&#x2F;a&gt;
+to work on a small game project. It was supposed to be generic enough so
+that the frontend (my game engine) could connect to a back-end that could
+be written in any language as long as it conformed to a set of standards we
+had. Things like retrieving player position, setting player position,
+getting maps, etc. So long story short, I needed a pathfinding algorithm
+for the game engine, and my experiment with the A* algorithm began.&lt;&#x2F;p&gt;
+" />
+<meta property="og:type" content="website" />
+
+
   <title>Javascript A* Implementation</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
@@ -41,7 +68,7 @@
   <h1>Javascript A* Implementation</h1>
   <p class='meta'>
     2008 September  7 - San Diego |
-    <span>1401 words</span>
+    <span>1626 words</span>
   </p>
   
   
@@ -67,7 +94,8 @@
 
   
 
-  <p>So a little background on my implementation (feel free to skip this)....</p>
+  <div class='post'>
+    <p>So a little background on my implementation (feel free to skip this)....</p>
 <p>In my freshman year at UCSD I was recruited by <a href="http://cses.ucsd.edu">CSES</a>
 to work on a small game project. It was supposed to be generic enough so
 that the frontend (my game engine) could connect to a back-end that could
@@ -105,15 +133,15 @@ graph.</p>
 <p>Now that we've gotten the theory behind A* out of the way, lets dive into
 my implementation.</p>
 <p>First off we have the Node object.</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">function Node(parentNode, cx, cy, g, h) {
-  this.parent = parentNode;
-  this.x = cx;
-  this.y = cy;
-  this.g = g;
-  this.h = h;
-  this.f = g + h;
-};
-</code></pre>
+<pre data-linenos data-lang="javascript" style="background-color:#272822;color:#f8f8f2;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">function </span><span style="color:#a6e22e;">Node</span><span>(</span><span style="font-style:italic;color:#fd971f;">parentNode</span><span>, </span><span style="font-style:italic;color:#fd971f;">cx</span><span>, </span><span style="font-style:italic;color:#fd971f;">cy</span><span>, </span><span style="font-style:italic;color:#fd971f;">g</span><span>, </span><span style="font-style:italic;color:#fd971f;">h</span><span>) {
+</span></td></tr><tr><td>2</td><td><span>  this.parent </span><span style="color:#f92672;">= </span><span>parentNode;
+</span></td></tr><tr><td>3</td><td><span>  this.x </span><span style="color:#f92672;">= </span><span>cx;
+</span></td></tr><tr><td>4</td><td><span>  this.y </span><span style="color:#f92672;">= </span><span>cy;
+</span></td></tr><tr><td>5</td><td><span>  this.g </span><span style="color:#f92672;">= </span><span>g;
+</span></td></tr><tr><td>6</td><td><span>  this.h </span><span style="color:#f92672;">= </span><span>h;
+</span></td></tr><tr><td>7</td><td><span>  this.f </span><span style="color:#f92672;">= </span><span>g </span><span style="color:#f92672;">+ </span><span>h;
+</span></td></tr><tr><td>8</td><td><span>};
+</span></td></tr></tbody></table></code></pre>
 <p>A node represents a certain vertex on a graph. The parent of a Node
 represents the vertex in which the algorithm came from to reach this node,
 this provides a link to previous node in case we want to backtrack, as well
@@ -126,30 +154,30 @@ generate a priority for nodes, which has the end result of nodes that are
 closer to the goal are picked over others.</p>
 <p>Now lets take a look at the core stuff itself. The code that actual finds
 the path for us.</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">Astar.prototype = {
-  // Various Vars
-  _open: [],
-  _closed: [],
-  _path: [],
-  _avail: null,
-  _sx: 0,
-  _sy: 0,
-  _dx: 0,
-  _dy: 0,
-
-  // Public Functions
-  findPath: {},
-
-  // Private Functions
-  _CreateNode: {},
-  _fillChildren: {},
-  _getBestNode: {},
-  _isAvailable: {},
-  _printArray: {},
-  _printNode: {},
-  _ValidTile: {}
-};
-</code></pre>
+<pre data-linenos data-lang="javascript" style="background-color:#272822;color:#f8f8f2;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">Astar</span><span>.prototype </span><span style="color:#f92672;">= </span><span>{
+</span></td></tr><tr><td>2</td><td><span>  </span><span style="color:#75715e;">// Various Vars
+</span></td></tr><tr><td>3</td><td><span>  _open: [],
+</span></td></tr><tr><td>4</td><td><span>  _closed: [],
+</span></td></tr><tr><td>5</td><td><span>  _path: [],
+</span></td></tr><tr><td>6</td><td><span>  _avail: </span><span style="color:#ae81ff;">null</span><span>,
+</span></td></tr><tr><td>7</td><td><span>  _sx: </span><span style="color:#ae81ff;">0</span><span>,
+</span></td></tr><tr><td>8</td><td><span>  _sy: </span><span style="color:#ae81ff;">0</span><span>,
+</span></td></tr><tr><td>9</td><td><span>  _dx: </span><span style="color:#ae81ff;">0</span><span>,
+</span></td></tr><tr><td>10</td><td><span>  _dy: </span><span style="color:#ae81ff;">0</span><span>,
+</span></td></tr><tr><td>11</td><td><span>
+</span></td></tr><tr><td>12</td><td><span>  </span><span style="color:#75715e;">// Public Functions
+</span></td></tr><tr><td>13</td><td><span>  findPath: {},
+</span></td></tr><tr><td>14</td><td><span>
+</span></td></tr><tr><td>15</td><td><span>  </span><span style="color:#75715e;">// Private Functions
+</span></td></tr><tr><td>16</td><td><span>  _CreateNode: {},
+</span></td></tr><tr><td>17</td><td><span>  _fillChildren: {},
+</span></td></tr><tr><td>18</td><td><span>  _getBestNode: {},
+</span></td></tr><tr><td>19</td><td><span>  _isAvailable: {},
+</span></td></tr><tr><td>20</td><td><span>  _printArray: {},
+</span></td></tr><tr><td>21</td><td><span>  _printNode: {},
+</span></td></tr><tr><td>22</td><td><span>  _ValidTile: {}
+</span></td></tr><tr><td>23</td><td><span>};
+</span></td></tr></tbody></table></code></pre>
 <p>Lets take a look at the variables and functions used in the implementation.
 <code>_open</code>, <code>_closed</code>, and <code>_path</code> are all used as stacks <code>_open</code> holds a list
 of nodes that are still &quot;open&quot;, which means that a node has not been
@@ -163,15 +191,15 @@ _dx, and _dy are the source and destination coordinates.</p>
 the path the algorithm found <code>_CreateNode</code> <code>_fillChildren</code> <code>_getBestNode</code>
 an <code>_isAvailable</code> are used by the algorithm to find the path.</p>
 <p>The algorithm itself is in findPath and is shown below...</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">for(var count = 0; count < 100; count++) {
-  bestNode = this._getBestNode();
-  if( bestNode == null ) break;
-  this._path.push( bestNode );
-  if(bestNode.x == this._dx && bestNode.y == this._dy)
-    break;
-  this._fillChildren( bestNode );
-}
-</code></pre>
+<pre data-linenos data-lang="javascript" style="background-color:#272822;color:#f8f8f2;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><table><tbody><tr><td>1</td><td><span style="color:#f92672;">for</span><span>(</span><span style="font-style:italic;color:#66d9ef;">var </span><span>count </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span>; count </span><span style="color:#f92672;">&lt; </span><span style="color:#ae81ff;">100</span><span>; count</span><span style="color:#f92672;">++</span><span>) {
+</span></td></tr><tr><td>2</td><td><span>  bestNode </span><span style="color:#f92672;">= </span><span>this.</span><span style="color:#a6e22e;">_getBestNode</span><span>();
+</span></td></tr><tr><td>3</td><td><span>  </span><span style="color:#f92672;">if</span><span>( bestNode </span><span style="color:#f92672;">== </span><span style="color:#ae81ff;">null </span><span>) </span><span style="color:#f92672;">break</span><span>;
+</span></td></tr><tr><td>4</td><td><span>  this._path.</span><span style="color:#66d9ef;">push</span><span>( bestNode );
+</span></td></tr><tr><td>5</td><td><span>  </span><span style="color:#f92672;">if</span><span>(bestNode.x </span><span style="color:#f92672;">== </span><span>this._dx </span><span style="color:#f92672;">&amp;&amp; </span><span>bestNode.y </span><span style="color:#f92672;">== </span><span>this._dy)
+</span></td></tr><tr><td>6</td><td><span>    </span><span style="color:#f92672;">break</span><span>;
+</span></td></tr><tr><td>7</td><td><span>  this.</span><span style="color:#a6e22e;">_fillChildren</span><span>( bestNode );
+</span></td></tr><tr><td>8</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <p>A simple for loop is all it takes. The reason I used a for loop is to check
 against impossible paths. The number of nodes the algorithm accesses should
 never be more than the number of vertices in the graph, which in my test
@@ -179,30 +207,30 @@ case was 100 (10x10 grid). All this loop does is retrieve the next node,
 check if it has reached it's destination and then if not, add the children
 of node to the open list, where the process is started all over.</p>
 <p>So how is the best node retreived?</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">Astar.prototype._getBestNode = function() {
-  if(this._open.length > 0) {
-    var bestNum = 0;
-    var bestF = this._open[0].f;
-    // Cycle through open list until the best node is found.
-    for( var idx = 1; idx < this._open.length; idx++) {
-      var tmpF = this._open[idx].f;
-      // Favors the last added node if there are
-      // nodes with the same F.
-      if(tmpF <= bestF) {
-        bestNum = idx;
-        bestF = tmpF;
-      }
-    }
-    // Remove node from open list and place into closed
-    // list.
-    var bestNode = this._open[bestNum];
-    this._open.splice(bestNum, 1);
-    this._closed.push(bestNode);
-    return bestNode;
-  }
-  return null;
-};
-</code></pre>
+<pre data-linenos data-lang="javascript" style="background-color:#272822;color:#f8f8f2;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">Astar</span><span>.prototype.</span><span style="color:#a6e22e;">_getBestNode </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">function</span><span>() {
+</span></td></tr><tr><td>2</td><td><span>  </span><span style="color:#f92672;">if</span><span>(this._open.length </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0</span><span>) {
+</span></td></tr><tr><td>3</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">var </span><span>bestNum </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span>;
+</span></td></tr><tr><td>4</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">var </span><span>bestF </span><span style="color:#f92672;">= </span><span>this._open[</span><span style="color:#ae81ff;">0</span><span>].f;
+</span></td></tr><tr><td>5</td><td><span>    </span><span style="color:#75715e;">// Cycle through open list until the best node is found.
+</span></td></tr><tr><td>6</td><td><span>    </span><span style="color:#f92672;">for</span><span>( </span><span style="font-style:italic;color:#66d9ef;">var </span><span>idx </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">1</span><span>; idx </span><span style="color:#f92672;">&lt; </span><span>this._open.length; idx</span><span style="color:#f92672;">++</span><span>) {
+</span></td></tr><tr><td>7</td><td><span>      </span><span style="font-style:italic;color:#66d9ef;">var </span><span>tmpF </span><span style="color:#f92672;">= </span><span>this._open[idx].f;
+</span></td></tr><tr><td>8</td><td><span>      </span><span style="color:#75715e;">// Favors the last added node if there are
+</span></td></tr><tr><td>9</td><td><span>      </span><span style="color:#75715e;">// nodes with the same F.
+</span></td></tr><tr><td>10</td><td><span>      </span><span style="color:#f92672;">if</span><span>(tmpF </span><span style="color:#f92672;">&lt;= </span><span>bestF) {
+</span></td></tr><tr><td>11</td><td><span>        bestNum </span><span style="color:#f92672;">= </span><span>idx;
+</span></td></tr><tr><td>12</td><td><span>        bestF </span><span style="color:#f92672;">= </span><span>tmpF;
+</span></td></tr><tr><td>13</td><td><span>      }
+</span></td></tr><tr><td>14</td><td><span>    }
+</span></td></tr><tr><td>15</td><td><span>    </span><span style="color:#75715e;">// Remove node from open list and place into closed
+</span></td></tr><tr><td>16</td><td><span>    </span><span style="color:#75715e;">// list.
+</span></td></tr><tr><td>17</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">var </span><span>bestNode </span><span style="color:#f92672;">= </span><span>this._open[bestNum];
+</span></td></tr><tr><td>18</td><td><span>    this._open.</span><span style="color:#66d9ef;">splice</span><span>(bestNum, </span><span style="color:#ae81ff;">1</span><span>);
+</span></td></tr><tr><td>19</td><td><span>    this._closed.</span><span style="color:#66d9ef;">push</span><span>(bestNode);
+</span></td></tr><tr><td>20</td><td><span>    </span><span style="color:#f92672;">return </span><span>bestNode;
+</span></td></tr><tr><td>21</td><td><span>  }
+</span></td></tr><tr><td>22</td><td><span>  </span><span style="color:#f92672;">return </span><span style="color:#ae81ff;">null</span><span>;
+</span></td></tr><tr><td>23</td><td><span>};
+</span></td></tr></tbody></table></code></pre>
 <p>Since the <code>_open</code> list is unordered (a quality that we can easily fix to
 improve the runtime even more), I loop through the entire list to find the
 node with the lowes <code>f</code> score. Because of the nature of how nodes are
@@ -212,31 +240,31 @@ from the <code>_open</code> list and return to be processed some more.</p>
 <p>So far, you've only seen how nodes are picked, but the key to this
 algorithm is how the node scores are determined, because the rest is simply
 a BFS using these scores as a priority.</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">Astar.prototype._fillChildren = function(node) {
-  // Top (North) Tile.
-  if( this._ValidTile(node.x, node.y-1) )
-    this._CreateNode(node, node.x, node.y-1);
-  // Right (East) Tile.
-  if(this._ValidTile(node.x+1, node.y))
-    this._CreateNode(node, node.x+1, node.y);
-  // Bottom (South) Tile.
-  if(this._ValidTile(node.x, node.y+1))
-    this._CreateNode(node, node.x, node.y+1);
-  // Left (West) Tile.
-  if(this._ValidTile(node.x-1, node.y))
-    this._CreateNode(node, node.x-1, node.y);
-};
-
-Astar.prototype._CreateNode = function(node, x, y) {
-  // Check to see if node is not on closed list
-  if(this._isAvailable(x, y)) {
-    var tmp = new Node(node, x, y, node.g+1,
-        distance(this._dx - x, this._dy - y));
-    avail[y*NUM_ROWS + x] = 1;
-    this._open.push(tmp);
-  }
-};
-</code></pre>
+<pre data-linenos data-lang="javascript" style="background-color:#272822;color:#f8f8f2;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">Astar</span><span>.prototype.</span><span style="color:#a6e22e;">_fillChildren </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">function</span><span>(</span><span style="font-style:italic;color:#fd971f;">node</span><span>) {
+</span></td></tr><tr><td>2</td><td><span>  </span><span style="color:#75715e;">// Top (North) Tile.
+</span></td></tr><tr><td>3</td><td><span>  </span><span style="color:#f92672;">if</span><span>( this.</span><span style="color:#a6e22e;">_ValidTile</span><span>(node.x, node.y</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span>) )
+</span></td></tr><tr><td>4</td><td><span>    this.</span><span style="color:#a6e22e;">_CreateNode</span><span>(node, node.x, node.y</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span>);
+</span></td></tr><tr><td>5</td><td><span>  </span><span style="color:#75715e;">// Right (East) Tile.
+</span></td></tr><tr><td>6</td><td><span>  </span><span style="color:#f92672;">if</span><span>(this.</span><span style="color:#a6e22e;">_ValidTile</span><span>(node.x</span><span style="color:#f92672;">+</span><span style="color:#ae81ff;">1</span><span>, node.y))
+</span></td></tr><tr><td>7</td><td><span>    this.</span><span style="color:#a6e22e;">_CreateNode</span><span>(node, node.x</span><span style="color:#f92672;">+</span><span style="color:#ae81ff;">1</span><span>, node.y);
+</span></td></tr><tr><td>8</td><td><span>  </span><span style="color:#75715e;">// Bottom (South) Tile.
+</span></td></tr><tr><td>9</td><td><span>  </span><span style="color:#f92672;">if</span><span>(this.</span><span style="color:#a6e22e;">_ValidTile</span><span>(node.x, node.y</span><span style="color:#f92672;">+</span><span style="color:#ae81ff;">1</span><span>))
+</span></td></tr><tr><td>10</td><td><span>    this.</span><span style="color:#a6e22e;">_CreateNode</span><span>(node, node.x, node.y</span><span style="color:#f92672;">+</span><span style="color:#ae81ff;">1</span><span>);
+</span></td></tr><tr><td>11</td><td><span>  </span><span style="color:#75715e;">// Left (West) Tile.
+</span></td></tr><tr><td>12</td><td><span>  </span><span style="color:#f92672;">if</span><span>(this.</span><span style="color:#a6e22e;">_ValidTile</span><span>(node.x</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span>, node.y))
+</span></td></tr><tr><td>13</td><td><span>    this.</span><span style="color:#a6e22e;">_CreateNode</span><span>(node, node.x</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">1</span><span>, node.y);
+</span></td></tr><tr><td>14</td><td><span>};
+</span></td></tr><tr><td>15</td><td><span>
+</span></td></tr><tr><td>16</td><td><span style="font-style:italic;color:#66d9ef;">Astar</span><span>.prototype.</span><span style="color:#a6e22e;">_CreateNode </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">function</span><span>(</span><span style="font-style:italic;color:#fd971f;">node</span><span>, </span><span style="font-style:italic;color:#fd971f;">x</span><span>, </span><span style="font-style:italic;color:#fd971f;">y</span><span>) {
+</span></td></tr><tr><td>17</td><td><span>  </span><span style="color:#75715e;">// Check to see if node is not on closed list
+</span></td></tr><tr><td>18</td><td><span>  </span><span style="color:#f92672;">if</span><span>(this.</span><span style="color:#a6e22e;">_isAvailable</span><span>(x, y)) {
+</span></td></tr><tr><td>19</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">var </span><span>tmp </span><span style="color:#f92672;">= new </span><span>Node(node, x, y, node.g</span><span style="color:#f92672;">+</span><span style="color:#ae81ff;">1</span><span>,
+</span></td></tr><tr><td>20</td><td><span>        </span><span style="color:#a6e22e;">distance</span><span>(this._dx </span><span style="color:#f92672;">- </span><span>x, this._dy </span><span style="color:#f92672;">- </span><span>y));
+</span></td></tr><tr><td>21</td><td><span>    avail[y</span><span style="color:#f92672;">*</span><span>NUM_ROWS </span><span style="color:#f92672;">+ </span><span>x] </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">1</span><span>;
+</span></td></tr><tr><td>22</td><td><span>    this._open.</span><span style="color:#66d9ef;">push</span><span>(tmp);
+</span></td></tr><tr><td>23</td><td><span>  }
+</span></td></tr><tr><td>24</td><td><span>};
+</span></td></tr></tbody></table></code></pre>
 <p><code>_fillChildren</code> grabs the children around a specific node and adds them
 to the open list. In this case, I only choose the nodes directly above,
 below and to the sides. However, this can easily be expanded where all the
@@ -252,9 +280,10 @@ results or impede the process with better results.</p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="http://en.wikipedia.org/wiki/A*_search_algorithm">A* Algorithm Wikipedia Entry</a></li>
-<li><a href="http://theory.stanford.edu/%7Eamitp/GameProgramming/">An excellent page containing tons of information about variations you can make</a></li>
+<li><a href="http://theory.stanford.edu/~amitp/GameProgramming/">An excellent page containing tons of information about variations you can make</a></li>
 </ul>
 
+  </div>
   <span id='#thats-all-folks'>&#8718;</span>
 </div>
 <div class='footer'>

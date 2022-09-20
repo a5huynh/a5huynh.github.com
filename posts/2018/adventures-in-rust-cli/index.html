@@ -2,7 +2,28 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="a5huynh" />
+
+  
+<meta name="title" content="Adventures in Rust: CLI" />
+<meta name="description" content="&lt;p&gt;My second project in Rust is a little more practical than my first (which
+you can read &lt;a href=&quot;https:&#x2F;&#x2F;a5huynh.github.io&#x2F;2018&#x2F;02&#x2F;02&#x2F;adventures-in-rust.html&quot;&gt;here&lt;&#x2F;a&gt;). This project involves creating a
+command-line utility that is able to interact with the &lt;a href=&quot;https:&#x2F;&#x2F;bear-writer.com&quot;&gt;Bear Writer&lt;&#x2F;a&gt;
+application, an OS X app that I use for taking notes, writing blogs, and
+generally keeping my life organized in a single, cloud-synced place.&lt;&#x2F;p&gt;
+" />
+
+<meta property="og:title" content="Adventures in Rust: CLI" />
+<meta property="og:description" content="&lt;p&gt;My second project in Rust is a little more practical than my first (which
+you can read &lt;a href=&quot;https:&#x2F;&#x2F;a5huynh.github.io&#x2F;2018&#x2F;02&#x2F;02&#x2F;adventures-in-rust.html&quot;&gt;here&lt;&#x2F;a&gt;). This project involves creating a
+command-line utility that is able to interact with the &lt;a href=&quot;https:&#x2F;&#x2F;bear-writer.com&quot;&gt;Bear Writer&lt;&#x2F;a&gt;
+application, an OS X app that I use for taking notes, writing blogs, and
+generally keeping my life organized in a single, cloud-synced place.&lt;&#x2F;p&gt;
+" />
+<meta property="og:type" content="website" />
+
+
   <title>Adventures in Rust: CLI</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
@@ -41,7 +62,7 @@
   <h1>Adventures in Rust: CLI</h1>
   <p class='meta'>
     2018 August  5 - San Francisco |
-    <span>1031 words</span>
+    <span>1212 words</span>
   </p>
   
   
@@ -60,7 +81,8 @@
 
   
 
-  <p>My second project in Rust is a little more practical than my first (which
+  <div class='post'>
+    <p>My second project in Rust is a little more practical than my first (which
 you can read <a href="https://a5huynh.github.io/2018/02/02/adventures-in-rust.html">here</a>). This project involves creating a
 command-line utility that is able to interact with the <a href="https://bear-writer.com">Bear Writer</a>
 application, an OS X app that I use for taking notes, writing blogs, and
@@ -89,43 +111,43 @@ boilerplate into a completely separate non-rust file.</p>
 <p>For a real life example of how this works, below is the configuration I use
 to split the arguments and subcommands with their accompanying
 flags/options:</p>
-<pre data-lang="yaml" class="language-yaml "><code class="language-yaml" data-lang="yaml">name: cub
-version: "0.1.0"
-author: Andrew Huynh <a5thuynh@gmail.com>
-about: Command-line Utility for Bear.
-args:
-  - db:
-      help: Bear data file to pull data from.
-      short: d
-      global: true
-      takes_value: true
-subcommands:
-  - ls:
-      about: List notes.
-      args:
-        - all:
-            short: a
-            help: Show *all* notes.
-            conflicts_with: limit
-  - show:
-      about: Show a single note.
-      args:
-        - NOTE:
-            help: Note ID
-            required: true
-            index: 1
-</code></pre>
+<pre data-lang="yaml" style="background-color:#272822;color:#f8f8f2;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#f92672;">name</span><span>: </span><span style="color:#e6db74;">cub
+</span><span style="color:#f92672;">version</span><span>: </span><span style="color:#e6db74;">&quot;0.1.0&quot;
+</span><span style="color:#f92672;">author</span><span>: </span><span style="color:#e6db74;">Andrew Huynh &lt;a5thuynh@gmail.com&gt;
+</span><span style="color:#f92672;">about</span><span>: </span><span style="color:#e6db74;">Command-line Utility for Bear.
+</span><span style="color:#f92672;">args</span><span>:
+</span><span>  - </span><span style="color:#f92672;">db</span><span>:
+</span><span>      </span><span style="color:#f92672;">help</span><span>: </span><span style="color:#e6db74;">Bear data file to pull data from.
+</span><span>      </span><span style="color:#f92672;">short</span><span>: </span><span style="color:#e6db74;">d
+</span><span>      </span><span style="color:#f92672;">global</span><span>: </span><span style="color:#ae81ff;">true
+</span><span>      </span><span style="color:#f92672;">takes_value</span><span>: </span><span style="color:#ae81ff;">true
+</span><span style="color:#f92672;">subcommands</span><span>:
+</span><span>  - </span><span style="color:#f92672;">ls</span><span>:
+</span><span>      </span><span style="color:#f92672;">about</span><span>: </span><span style="color:#e6db74;">List notes.
+</span><span>      </span><span style="color:#f92672;">args</span><span>:
+</span><span>        - </span><span style="color:#f92672;">all</span><span>:
+</span><span>            </span><span style="color:#f92672;">short</span><span>: </span><span style="color:#e6db74;">a
+</span><span>            </span><span style="color:#f92672;">help</span><span>: </span><span style="color:#e6db74;">Show *all* notes.
+</span><span>            </span><span style="color:#f92672;">conflicts_with</span><span>: </span><span style="color:#e6db74;">limit
+</span><span>  - </span><span style="color:#f92672;">show</span><span>:
+</span><span>      </span><span style="color:#f92672;">about</span><span>: </span><span style="color:#e6db74;">Show a single note.
+</span><span>      </span><span style="color:#f92672;">args</span><span>:
+</span><span>        - </span><span style="color:#f92672;">NOTE</span><span>:
+</span><span>            </span><span style="color:#f92672;">help</span><span>: </span><span style="color:#e6db74;">Note ID
+</span><span>            </span><span style="color:#f92672;">required</span><span>: </span><span style="color:#ae81ff;">true
+</span><span>            </span><span style="color:#f92672;">index</span><span>: </span><span style="color:#ae81ff;">1
+</span></code></pre>
 <p>This then enables me to initialize the parser in two very simple lines as seen below:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[macro_use]
-extern crate clap;
-use clap::App;
-
-fn main() {
-    let yaml = load_yaml!("cli.yml");
-    let matches = App::from_yaml(yaml).get_matches();
-    ...do stuff...
-}
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span>#[macro_use]
+</span></td></tr><tr><td>2</td><td><span style="color:#f92672;">extern crate</span><span> clap;
+</span></td></tr><tr><td>3</td><td><span style="color:#f92672;">use </span><span>clap::App;
+</span></td></tr><tr><td>4</td><td><span>
+</span></td></tr><tr><td>5</td><td><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">main</span><span>() {
+</span></td></tr><tr><td>6</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> yaml </span><span style="color:#f92672;">= </span><span>load_yaml!(</span><span style="color:#e6db74;">&quot;cli.yml&quot;</span><span>);
+</span></td></tr><tr><td>7</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> matches </span><span style="color:#f92672;">= </span><span>App::from_yaml(yaml).</span><span style="color:#66d9ef;">get_matches</span><span>();
+</span></td></tr><tr><td>8</td><td><span>    </span><span style="color:#f92672;">...</span><span style="background-color:#f92672;color:#f8f8f0;">do</span><span> stuff</span><span style="color:#f92672;">...
+</span></td></tr><tr><td>9</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <p>In addition to setting up the subcommands and flags, <code>clap</code> also generates
 useful documentation that shows up when you run <code>--help</code>.</p>
 <p><img src="/img/2018/cub-help.gif" alt="CUB example" /></p>
@@ -137,37 +159,37 @@ due to the use of Apple’s CoreData frameworks.</p>
 <p>To keep things safe, this first version will only do read only actions.
 With a little poking around I was able to determine that the local storage
 for note data is under:</p>
-<pre><code>$HOME/Library/Containers/net.shinyfrog.bear/Data/Documents/Application Data
-</code></pre>
+<pre style="background-color:#272822;color:#f8f8f2;"><code><span>$HOME/Library/Containers/net.shinyfrog.bear/Data/Documents/Application Data
+</span></code></pre>
 <h3 id="reverse-engineering-the-data-format">Reverse Engineering the Data Format</h3>
 <p>Luckily, if you know your way around sqlite, it’s trivial to look through
 how the application stores its data. Let's start with determining how notes
 and the associated tags are stored. We can list out all the tables in a
 database file using the <code>.tables</code> command.</p>
-<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">> sqlite3 database.sqlite
-sqlite> .tables
-ZSFCHANGE      ZSFLOCATION    ZSFNOTETAG     ZSFURL
-Z_MODELCACHE   ZSFCHANGEITEM  ZSFNOTE        ZSFSTATICNOTE
-Z_5TAGS        Z_PRIMARYKEY   ZSFFOLDER      ZSFNOTEFILE
-ZSFTODO        Z_METADATA
-sqlite>
-</code></pre>
+<pre data-lang="bash" style="background-color:#272822;color:#f8f8f2;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f92672;">&gt;</span><span> sqlite3 database.sqlite
+</span><span>sqlite</span><span style="color:#f92672;">&gt;</span><span> .tables
+</span><span>ZSFCHANGE      ZSFLOCATION    ZSFNOTETAG     ZSFURL
+</span><span>Z_MODELCACHE   ZSFCHANGEITEM  ZSFNOTE        ZSFSTATICNOTE
+</span><span>Z_5TAGS        Z_PRIMARYKEY   ZSFFOLDER      ZSFNOTEFILE
+</span><span>ZSFTODO        Z_METADATA
+</span><span>sqlite</span><span style="color:#f92672;">&gt;
+</span></code></pre>
 <p>Here we can see some potentially useful tables to rifle through. <code>ZSFNOTE</code>
 looks the most promising and we can use the <code>.schema</code> command to determine
 the structure of the table.</p>
-<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">sqlite> .schema ZSFNOTE
-CREATE TABLE ZSFNOTE (
-    Z_PK INTEGER PRIMARY KEY,
-    ...
-    ZARCHIVEDDATE TIMESTAMP,
-    ZCREATIONDATE TIMESTAMP,
-    ...
-    ZSUBTITLE VARCHAR,
-    ZTEXT VARCHAR,
-    ZTITLE VARCHAR,
-    ...
-);
-</code></pre>
+<pre data-lang="bash" style="background-color:#272822;color:#f8f8f2;" class="language-bash "><code class="language-bash" data-lang="bash"><span>sqlite</span><span style="color:#f92672;">&gt;</span><span> .schema ZSFNOTE
+</span><span>CREATE TABLE ZSFNOTE (
+</span><span>    Z_PK INTEGER PRIMARY KEY,
+</span><span>    ...
+</span><span>    ZARCHIVEDDATE TIMESTAMP,
+</span><span>    ZCREATIONDATE TIMESTAMP,
+</span><span>    ...
+</span><span>    ZSUBTITLE VARCHAR,
+</span><span>    ZTEXT VARCHAR,
+</span><span>    ZTITLE VARCHAR,
+</span><span>    ...
+</span><span>)</span><span style="color:#f92672;">;
+</span></code></pre>
 <p><em><strong>NOTE:</strong> I left out some columns to make the schema more readable</em></p>
 <p>Perfect! This has the entire note text data as well as some useful flags
 for that particular note that we can use to apply filters to our CLI.
@@ -179,48 +201,48 @@ connection between notes and tags.</p>
 <code>rusqlite</code> is very straightforward. Here’s a small example where I connect
 to the database and run a simple select query on the notes table just to
 really hammer home how simple it is.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use rusqlite::{ Connection };
-use libcub::note::{ Note };
-
-fn connect_to_db(datafile: &str) -> Connection {
-    return Connection::open(datafile).unwrap();
-}
-
-fn main() {
-    let conn = connect_to_db(<path>);
-    let mut stmt = conn.prepare("SELECT * FROM ZSFNOTE").unwrap();
-    let notes = stmt.query_map(&[&val], |row| {
-        Note::from_sql(row)
-    }).unwrap();
-    for note in notes {
-        println!("{:?}", note);
-    }
-}
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span style="color:#f92672;">use </span><span>rusqlite::{ Connection };
+</span></td></tr><tr><td>2</td><td><span style="color:#f92672;">use </span><span>libcub::note::{ Note };
+</span></td></tr><tr><td>3</td><td><span>
+</span></td></tr><tr><td>4</td><td><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">connect_to_db</span><span>(</span><span style="font-style:italic;color:#fd971f;">datafile</span><span>: </span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#66d9ef;">str</span><span>) -&gt; Connection {
+</span></td></tr><tr><td>5</td><td><span>    </span><span style="color:#f92672;">return </span><span>Connection::open(datafile).</span><span style="color:#66d9ef;">unwrap</span><span>();
+</span></td></tr><tr><td>6</td><td><span>}
+</span></td></tr><tr><td>7</td><td><span>
+</span></td></tr><tr><td>8</td><td><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">main</span><span>() {
+</span></td></tr><tr><td>9</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> conn </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">connect_to_db</span><span>(</span><span style="color:#f92672;">&lt;</span><span>path</span><span style="color:#f92672;">&gt;</span><span>);
+</span></td></tr><tr><td>10</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f92672;">mut</span><span> stmt </span><span style="color:#f92672;">=</span><span> conn.</span><span style="color:#66d9ef;">prepare</span><span>(</span><span style="color:#e6db74;">&quot;SELECT * FROM ZSFNOTE&quot;</span><span>).</span><span style="color:#66d9ef;">unwrap</span><span>();
+</span></td></tr><tr><td>11</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> notes </span><span style="color:#f92672;">=</span><span> stmt.</span><span style="color:#66d9ef;">query_map</span><span>(</span><span style="color:#f92672;">&amp;</span><span>[</span><span style="color:#f92672;">&amp;</span><span>val], |</span><span style="font-style:italic;color:#fd971f;">row</span><span>| {
+</span></td></tr><tr><td>12</td><td><span>        Note::from_sql(row)
+</span></td></tr><tr><td>13</td><td><span>    }).</span><span style="color:#66d9ef;">unwrap</span><span>();
+</span></td></tr><tr><td>14</td><td><span>    </span><span style="color:#f92672;">for</span><span> note </span><span style="color:#f92672;">in</span><span> notes {
+</span></td></tr><tr><td>15</td><td><span>        println!(</span><span style="color:#e6db74;">&quot;</span><span style="color:#ae81ff;">{:?}</span><span style="color:#e6db74;">&quot;</span><span>, note);
+</span></td></tr><tr><td>16</td><td><span>    }
+</span></td></tr><tr><td>17</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <p>And thats all there is to it!</p>
 <p>To support things like filtering by different flags. I set up a rust enum
 to represent each filter and modify the query accordingly. For example, when
 I added the filters for archived and trashed notes, this is how the query
 string was modified:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">for filter in filters {
-    match filter {
-        NoteStatus::ARCHIVED => {
-            filter_sql.push("ZARCHIVED = 1")
-        },
-        NoteStatus::TRASHED => {
-            filter_sql.push("ZTRASHED = 1")
-        },
-        NoteStatus::NORMAL => {
-            filter_sql.push("(ZARCHIVED = 0 AND ZTRASHED = 0)")
-        },
-    }
-}
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span style="color:#f92672;">for</span><span> filter </span><span style="color:#f92672;">in</span><span> filters {
+</span></td></tr><tr><td>2</td><td><span>    </span><span style="color:#f92672;">match</span><span> filter {
+</span></td></tr><tr><td>3</td><td><span>        NoteStatus::</span><span style="color:#ae81ff;">ARCHIVED </span><span style="color:#f92672;">=&gt; </span><span>{
+</span></td></tr><tr><td>4</td><td><span>            filter_sql.</span><span style="color:#66d9ef;">push</span><span>(</span><span style="color:#e6db74;">&quot;ZARCHIVED = 1&quot;</span><span>)
+</span></td></tr><tr><td>5</td><td><span>        },
+</span></td></tr><tr><td>6</td><td><span>        NoteStatus::</span><span style="color:#ae81ff;">TRASHED </span><span style="color:#f92672;">=&gt; </span><span>{
+</span></td></tr><tr><td>7</td><td><span>            filter_sql.</span><span style="color:#66d9ef;">push</span><span>(</span><span style="color:#e6db74;">&quot;ZTRASHED = 1&quot;</span><span>)
+</span></td></tr><tr><td>8</td><td><span>        },
+</span></td></tr><tr><td>9</td><td><span>        NoteStatus::</span><span style="color:#ae81ff;">NORMAL </span><span style="color:#f92672;">=&gt; </span><span>{
+</span></td></tr><tr><td>10</td><td><span>            filter_sql.</span><span style="color:#66d9ef;">push</span><span>(</span><span style="color:#e6db74;">&quot;(ZARCHIVED = 0 AND ZTRASHED = 0)&quot;</span><span>)
+</span></td></tr><tr><td>11</td><td><span>        },
+</span></td></tr><tr><td>12</td><td><span>    }
+</span></td></tr><tr><td>13</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <p>Each filter is converted into its equivalent SQL syntax and then added to
 a vector of filters. This vector is then later on joined to the query
 string using a string format.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">format!("{} WHERE {}", query, filter_sql.join(" OR "));
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span>format!(</span><span style="color:#e6db74;">&quot;</span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;"> WHERE </span><span style="color:#ae81ff;">{}</span><span style="color:#e6db74;">&quot;</span><span>, query, filter_sql.</span><span style="color:#66d9ef;">join</span><span>(</span><span style="color:#e6db74;">&quot; OR &quot;</span><span>));
+</span></td></tr></tbody></table></code></pre>
 <h2 id="learnings-and-up-next">Learnings and Up Next</h2>
 <p>This was a short weekend(iso) project that was a lot of fun to work on.
 Here are some random learnings that I ran into while working on this:</p>
@@ -232,6 +254,7 @@ filtering notes by tag into a later version so I could manually implement
 that query.</li>
 </ul>
 
+  </div>
   <span id='#thats-all-folks'>&#8718;</span>
 </div>
 <div class='footer'>

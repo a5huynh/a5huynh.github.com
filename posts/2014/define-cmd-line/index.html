@@ -2,7 +2,28 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="a5huynh" />
+
+  
+<meta name="title" content="Define: Command Line" />
+<meta name="description" content="&lt;p&gt;If you didn&#x27;t know, Google has a really useful &lt;a href=&quot;http:&#x2F;&#x2F;www.google.com&#x2F;intl&#x2F;en&#x2F;help&#x2F;features.html&quot;&gt;search
+feature&lt;&#x2F;a&gt; that allows you to
+find the definition of any word or phrase when using the &lt;code&gt;define:&lt;&#x2F;code&gt; prefix on
+your search term. This along with the built-in OSX dictionary provides an
+incredibly useful set of tools to find any definition as quickly as possible.&lt;&#x2F;p&gt;
+" />
+
+<meta property="og:title" content="Define: Command Line" />
+<meta property="og:description" content="&lt;p&gt;If you didn&#x27;t know, Google has a really useful &lt;a href=&quot;http:&#x2F;&#x2F;www.google.com&#x2F;intl&#x2F;en&#x2F;help&#x2F;features.html&quot;&gt;search
+feature&lt;&#x2F;a&gt; that allows you to
+find the definition of any word or phrase when using the &lt;code&gt;define:&lt;&#x2F;code&gt; prefix on
+your search term. This along with the built-in OSX dictionary provides an
+incredibly useful set of tools to find any definition as quickly as possible.&lt;&#x2F;p&gt;
+" />
+<meta property="og:type" content="website" />
+
+
   <title>Define: Command Line</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
@@ -41,11 +62,12 @@
   <h1>Define: Command Line</h1>
   <p class='meta'>
     2014 November  6 - San Francisco |
-    <span>343 words</span>
+    <span>368 words</span>
   </p>
   
 
-  <p>If you didn't know, Google has a really useful <a href="http://www.google.com/intl/en/help/features.html">search
+  <div class='post'>
+    <p>If you didn't know, Google has a really useful <a href="http://www.google.com/intl/en/help/features.html">search
 feature</a> that allows you to
 find the definition of any word or phrase when using the <code>define:</code> prefix on
 your search term. This along with the built-in OSX dictionary provides an
@@ -63,8 +85,8 @@ using a common dictionary file format.</p>
 <p>The nature of the utility also allows you to download multiple dictionaries to
 cull through. These dictionaries can range from English dictionaries to
 dictionaries of hacker jargon, all searchable from the command line. Sound interesting? To install this utility, assuming you already have homebrew installed, all you need to do is:</p>
-<pre><code>brew install sdcv
-</code></pre>
+<pre style="background-color:#272822;color:#f8f8f2;"><code><span>brew install sdcv
+</span></code></pre>
 <p>Unfortunately, the default installation doesn't come with any dictionaries. Go
 ahead and choose the necessary
 [dictionaries](http://abloz.com/huzheng/stardict- dic/dict.org/) you may need
@@ -75,18 +97,19 @@ to ensure sdcv can detect it.</p>
 your definitions. I added the following to my <code>.bash_profile</code> to define (hah) a
 function that will call sdcv with some good defaults with whatever word or
 phrase I pass to it.</p>
-<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">define () {
-    # Check if sdcv is installed
-    if command -v sdcv > /dev/null; then
-        # -0 show UTF-8 output
-        # -c show colorized output
-        sdcv -0c "$@"
-    else
-        echo "You need to install sdcv."
-    fi
-}
-</code></pre>
+<pre data-lang="bash" style="background-color:#272822;color:#f8f8f2;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#a6e22e;">define </span><span>() {
+</span><span>    </span><span style="color:#75715e;"># Check if sdcv is installed
+</span><span>    </span><span style="color:#f92672;">if </span><span style="color:#66d9ef;">command </span><span style="font-style:italic;color:#fd971f;">-v</span><span> sdcv </span><span style="color:#f92672;">&gt;</span><span> /dev/null</span><span style="color:#f92672;">; then
+</span><span>        </span><span style="color:#75715e;"># -0 show UTF-8 output
+</span><span>        </span><span style="color:#75715e;"># -c show colorized output
+</span><span>        sdcv</span><span style="font-style:italic;color:#fd971f;"> -0c </span><span style="color:#e6db74;">&quot;$@&quot;
+</span><span>    </span><span style="color:#f92672;">else
+</span><span>        </span><span style="color:#66d9ef;">echo </span><span style="color:#e6db74;">&quot;You need to install sdcv.&quot;
+</span><span>    </span><span style="color:#f92672;">fi
+</span><span>}
+</span></code></pre>
 
+  </div>
   <span id='#thats-all-folks'>&#8718;</span>
 </div>
 <div class='footer'>

@@ -2,7 +2,24 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="a5huynh" />
+
+  
+<meta name="title" content="Nets, Branches, and Pipes." />
+<meta name="description" content="&lt;p&gt;With all the talk about deep learning and neural networks, I thought it&#x27;d be
+fun to revisit one of my favorite applications of artificial neural networks
+(ANNs) -- &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Branch_predictor&quot; title=&quot;Branch Prediction&quot;&gt;dynamic branch prediction&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+" />
+
+<meta property="og:title" content="Nets, Branches, and Pipes." />
+<meta property="og:description" content="&lt;p&gt;With all the talk about deep learning and neural networks, I thought it&#x27;d be
+fun to revisit one of my favorite applications of artificial neural networks
+(ANNs) -- &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Branch_predictor&quot; title=&quot;Branch Prediction&quot;&gt;dynamic branch prediction&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+" />
+<meta property="og:type" content="website" />
+
+
   <title>Nets, Branches, and Pipes.</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
@@ -60,7 +77,8 @@
 
   
 
-  <p>With all the talk about deep learning and neural networks, I thought it'd be
+  <div class='post'>
+    <p>With all the talk about deep learning and neural networks, I thought it'd be
 fun to revisit one of my favorite applications of artificial neural networks
 (ANNs) -- <a href="https://en.wikipedia.org/wiki/Branch_predictor" title="Branch Prediction">dynamic branch prediction</a>.</p>
 <span id="continue-reading"></span><h2 id="instruction-pipelines">Instruction Pipelines</h2>
@@ -138,7 +156,7 @@ concepts to branch prediction. Learning from branch prediction is
 straightforward since we know whether we made the right prediction right after
 the branch occurs.</p>
 <p>The first instance of using neural networks for branch prediction appeared
-around the year 2000, in a paper titled <a href="https://www.cs.utexas.edu/%7Elin/papers/hpca01.pdf" title="Dynamic Branch Prediction with Perceptrons">&quot;Dynamic Branch Prediction with
+around the year 2000, in a paper titled <a href="https://www.cs.utexas.edu/~lin/papers/hpca01.pdf" title="Dynamic Branch Prediction with Perceptrons">&quot;Dynamic Branch Prediction with
 Perceptrons&quot;</a>. It proposed a method that used perceptrons to learn
 the correlations behind the history of the branch and the outcome of a branch.
 The intuition is that the history of whether a branch was taken or not taken in
@@ -176,7 +194,7 @@ being taken as <code>1</code> and not taken as <code>-1</code>. The actual outco
 <p>And that's all there is to it! As time goes on, the perceptron sees more and
 more branches creating a correlation (or negative correlation) in the inputs
 and weights with the ultimate outcome of the branch.</p>
-<p>If you're interested in learning more about the branch predictor and the <a href="https://www.cs.utexas.edu/%7Elin/papers/hpca01.pdf" title="Dynamic Branch Prediction with Perceptrons">paper
+<p>If you're interested in learning more about the branch predictor and the <a href="https://www.cs.utexas.edu/~lin/papers/hpca01.pdf" title="Dynamic Branch Prediction with Perceptrons">paper
 </a> goes much more in-depth on how this is can be done in hardware and
 also provides a nice comparison to other techniques.</p>
 <h2 id="the-branch-less-taken">The branch less taken</h2>
@@ -194,6 +212,7 @@ additional cores, increased L1/L2 caches, and/or single instruction, multiple
 data (SIMD) instructions.</p>
 <p>Thanks for taking the time! I hope you enjoyed reading and learning about the application of perceptrons in the world of branch prediction.</p>
 
+  </div>
   <span id='#thats-all-folks'>&#8718;</span>
 </div>
 <div class='footer'>

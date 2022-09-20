@@ -2,7 +2,30 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="a5huynh" />
+
+  
+<meta name="title" content="COVID-19 Stats Tracker" />
+<meta name="description" content="&lt;p&gt;One of things I wanted to accomplish when I began learning more about
+electronics was to build a small device from the ground up. This would
+include sourcing all parts, writing the necessary code, and designing and
+3D printing an enclosure for the device. Given the state the world at this
+time, as my first foray into electronics design, I decided to make a little
+device to keep track of &lt;a href=&quot;https:&#x2F;&#x2F;covidtracking.com&#x2F;api&#x2F;us&quot;&gt;US COVID-19 stats&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+" />
+
+<meta property="og:title" content="COVID-19 Stats Tracker" />
+<meta property="og:description" content="&lt;p&gt;One of things I wanted to accomplish when I began learning more about
+electronics was to build a small device from the ground up. This would
+include sourcing all parts, writing the necessary code, and designing and
+3D printing an enclosure for the device. Given the state the world at this
+time, as my first foray into electronics design, I decided to make a little
+device to keep track of &lt;a href=&quot;https:&#x2F;&#x2F;covidtracking.com&#x2F;api&#x2F;us&quot;&gt;US COVID-19 stats&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+" />
+<meta property="og:type" content="website" />
+
+
   <title>COVID-19 Stats Tracker</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
@@ -41,7 +64,7 @@
   <h1>COVID-19 Stats Tracker</h1>
   <p class='meta'>
     2020 July 15 - San Francisco |
-    <span>855 words</span>
+    <span>882 words</span>
   </p>
   
   
@@ -74,7 +97,8 @@
 
   
 
-  <p>One of things I wanted to accomplish when I began learning more about
+  <div class='post'>
+    <p>One of things I wanted to accomplish when I began learning more about
 electronics was to build a small device from the ground up. This would
 include sourcing all parts, writing the necessary code, and designing and
 3D printing an enclosure for the device. Given the state the world at this
@@ -115,22 +139,22 @@ your choice.</p>
 <li><a href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a> to display the results</li>
 </ul>
 <p>The basic loop function would look like something below:</p>
-<pre data-lang="c" class="language-c "><code class="language-c" data-lang="c">bool updateScreen = false;
-
-void loop() {
-    if (wifi.run() == WL_CONNECTED) {
-        unsigned long currentTime = millis();
-        if (currentTime - LAST_UPDATED_TIME >= UPDATE_TIME_MS) {
-            LAST_UPDATED_TIME = currentTime;
-            update_tracker()
-        }
-    }
-
-    if (updateScreen) {
-        render_stats();
-    }
-}
-</code></pre>
+<pre data-linenos data-lang="c" style="background-color:#272822;color:#f8f8f2;" class="language-c "><code class="language-c" data-lang="c"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">bool</span><span> updateScreen </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">false</span><span>;
+</span></td></tr><tr><td>2</td><td><span>
+</span></td></tr><tr><td>3</td><td><span style="font-style:italic;color:#66d9ef;">void </span><span style="color:#a6e22e;">loop</span><span>() {
+</span></td></tr><tr><td>4</td><td><span>    </span><span style="color:#f92672;">if </span><span>(wifi.run() </span><span style="color:#f92672;">==</span><span> WL_CONNECTED) {
+</span></td></tr><tr><td>5</td><td><span>        </span><span style="font-style:italic;color:#66d9ef;">unsigned long</span><span> currentTime </span><span style="color:#f92672;">= </span><span>millis();
+</span></td></tr><tr><td>6</td><td><span>        </span><span style="color:#f92672;">if </span><span>(currentTime </span><span style="color:#f92672;">-</span><span> LAST_UPDATED_TIME </span><span style="color:#f92672;">&gt;=</span><span> UPDATE_TIME_MS) {
+</span></td></tr><tr><td>7</td><td><span>            LAST_UPDATED_TIME </span><span style="color:#f92672;">=</span><span> currentTime;
+</span></td></tr><tr><td>8</td><td><span>            update_tracker()
+</span></td></tr><tr><td>9</td><td><span>        }
+</span></td></tr><tr><td>10</td><td><span>    }
+</span></td></tr><tr><td>11</td><td><span>
+</span></td></tr><tr><td>12</td><td><span>    </span><span style="color:#f92672;">if </span><span>(updateScreen) {
+</span></td></tr><tr><td>13</td><td><span>        render_stats();
+</span></td></tr><tr><td>14</td><td><span>    }
+</span></td></tr><tr><td>15</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <p>We want to make sure we have an internet connection (<code>wifi.run()</code>) and if everything
 looks good, we can go ahead and make a request to the API. If anything has changed
 in the stats, we'll set a flag to update the screen. Once that request is done,
@@ -175,8 +199,7 @@ screens, but the code and schematic still handles this.</p>
     <div class="gallery_container">
         <img id="selected_img" src=&#x2F;img&#x2F;2020&#x2F;covid-tracker&#x2F;overview.jpg style="width:100%">
     </div>
-</div>
-<h2 id="designing-printing-an-enclosure">Designing &amp; Printing an Enclosure</h2>
+</div><h2 id="designing-printing-an-enclosure">Designing &amp; Printing an Enclosure</h2>
 <p>For the enclosure design, I settled on using <a href="https://www.shapr3d.com/">Shapr3D</a> for
 the iPad. It is a fantastic application that has everything I need as a
 hobbyist to get things done. Since the enclosure is nothing more than a
@@ -197,6 +220,7 @@ than necessary.</li>
 <li>Adding additional screens that can be toggled via buttons.</li>
 </ul>
 
+  </div>
   <span id='#thats-all-folks'>&#8718;</span>
 </div>
 <div class='footer'>

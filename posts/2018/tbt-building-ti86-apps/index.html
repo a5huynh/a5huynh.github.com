@@ -2,7 +2,28 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="a5huynh" />
+
+  
+<meta name="title" content="tbt: Building TI-86 apps on OSX" />
+<meta name="description" content="&lt;p&gt;Through some backups, I recently re-discovered a folder with some high
+school&#x2F;college projects that I thought had been lost to the sands of time.
+One of them was an early attempt at a small RPG written in Z80 assembly for
+the TI-86 graphing calculator. I know what you’re thinking -- what did I do
+wrong to be tortured in such a way?&lt;&#x2F;p&gt;
+" />
+
+<meta property="og:title" content="tbt: Building TI-86 apps on OSX" />
+<meta property="og:description" content="&lt;p&gt;Through some backups, I recently re-discovered a folder with some high
+school&#x2F;college projects that I thought had been lost to the sands of time.
+One of them was an early attempt at a small RPG written in Z80 assembly for
+the TI-86 graphing calculator. I know what you’re thinking -- what did I do
+wrong to be tortured in such a way?&lt;&#x2F;p&gt;
+" />
+<meta property="og:type" content="website" />
+
+
   <title>tbt: Building TI-86 apps on OSX</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
@@ -41,7 +62,7 @@
   <h1>tbt: Building TI-86 apps on OSX</h1>
   <p class='meta'>
     2018 August 23 - San Francisco |
-    <span>1669 words</span>
+    <span>1701 words</span>
   </p>
   
   
@@ -67,7 +88,8 @@
 
   
 
-  <p>Through some backups, I recently re-discovered a folder with some high
+  <div class='post'>
+    <p>Through some backups, I recently re-discovered a folder with some high
 school/college projects that I thought had been lost to the sands of time.
 One of them was an early attempt at a small RPG written in Z80 assembly for
 the TI-86 graphing calculator. I know what you’re thinking -- what did I do
@@ -97,21 +119,21 @@ find an assembler that worked on OSX (and other Unix based systems) called
 <a href="https://k1.spdns.de/Develop/Projects/zasm/Distributions">binary download</a> or if you’re more homebrew inclined, I added a
 <a href="https://github.com/a5huynh/homebrew-brew/blob/master/Formula/zasm.rb">formula</a> to my personal homebrew repository that makes
 installing it a cinch.</p>
-<pre><code>brew tap a5huynh/brew
-brew install zasm
-</code></pre>
+<pre style="background-color:#272822;color:#f8f8f2;"><code><span>brew tap a5huynh/brew
+</span><span>brew install zasm
+</span></code></pre>
 <p>With <code>zasm</code> in hand, lets run the compiler on the source code and see what happens:</p>
-<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">> zasm src/MiniRPG.asm -o dist
-
-in file MiniRPG.asm:
-1: #include "ti86.inc"
-   ^ file "src/ti86.inc" could not be read:
-     No such file or directory: file = "src/ti86.inc" (fd108)
-
-assembled file: MiniRPG.asm
-    54 lines, 1 pass, 0.0044 sec.
-    1 error
-</code></pre>
+<pre data-lang="bash" style="background-color:#272822;color:#f8f8f2;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f92672;">&gt;</span><span> zasm src/MiniRPG.asm</span><span style="font-style:italic;color:#fd971f;"> -o</span><span> dist
+</span><span>
+</span><span>in file MiniRPG.asm:
+</span><span>1: </span><span style="color:#75715e;">#include &quot;ti86.inc&quot;
+</span><span>   ^ file </span><span style="color:#e6db74;">&quot;src/ti86.inc&quot;</span><span> could not be read:
+</span><span>     No such file or directory: file = </span><span style="color:#e6db74;">&quot;src/ti86.inc&quot;</span><span> (fd108)
+</span><span>
+</span><span>assembled file: MiniRPG.asm
+</span><span>    54 lines, 1 pass, 0.0044 sec.
+</span><span>    1 error
+</span></code></pre>
 <p>Well, nobody said it was going to be easy.</p>
 <h3 id="the-case-of-the-missing-includes">The Case of the Missing Includes</h3>
 <p>It turns out I had been using an include file, <code>ti86.inc</code>, which I had not
@@ -121,16 +143,16 @@ call like <code>call 4AB1h</code>, we can write <code>call _runIndicOff</code>. 
 constants for things like different key presses and commonly used memory
 locations.</p>
 <p>To find this missing file, I went to the incredibly useful
-<a href="https://a5huynh.github.io/posts/2018/tbt-building-ti86-apps/ti-asm">ticalc.org</a> file archives to see if there are include files I
+<a href="ti-asm">ticalc.org</a> file archives to see if there are include files I
 could use and stumbled upon the <a href="https://www.ticalc.org/pub/86/asm/source/include/ti86.zip">Ultimate TI-86 Include File</a>. A
 cursory look through the file showed me that it had all the missing symbols
 that the assembler would be expecting from an include file.</p>
 <p>Let’s run it again and see what happens:</p>
-<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">> zasm src/MiniRPG.asm -o dist/main.86p
-assembled file: MiniRPG.asm
-    3332 lines, 2 passes, 0.0542 sec.
-    no errors
-</code></pre>
+<pre data-lang="bash" style="background-color:#272822;color:#f8f8f2;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f92672;">&gt;</span><span> zasm src/MiniRPG.asm</span><span style="font-style:italic;color:#fd971f;"> -o</span><span> dist/main.86p
+</span><span>assembled file: MiniRPG.asm
+</span><span>    3332 lines, 2 passes, 0.0542 sec.
+</span><span>    no errors
+</span></code></pre>
 <p>Perfect! Looks like <code>zasm</code> was able to assemble the source code without any
 issues and created a small binary. Now that we have a binary to work with,
 the next step is figuring out how to run the program.</p>
@@ -159,30 +181,30 @@ transferred and run by the TI-86 emulator.</p>
 </blockquote>
 <p>For example, analyzing the final output of assembled and packed game would look
 like so:</p>
-<pre><code>> python scripts/unpack86.py dist/MiniRPG.86p
--- Header --
-Signature:      0x2a2a544938362a2a | **TI86**
-Signature:      0x1a0a00
-Comment:        Packed by pack86.py
-Data Size:      4322 bytes
-
--- Data --
-Data Header:    (12, 4306, 18, 7, b'MiniRPG\x00', 4306)
-Program Len:    4302
-Program Type:   0x8e28
-Checksum (in file):     0x8bf7
-Checksum (calculated):  0x8bf7
-</code></pre>
+<pre style="background-color:#272822;color:#f8f8f2;"><code><span>&gt; python scripts/unpack86.py dist/MiniRPG.86p
+</span><span>-- Header --
+</span><span>Signature:      0x2a2a544938362a2a | **TI86**
+</span><span>Signature:      0x1a0a00
+</span><span>Comment:        Packed by pack86.py
+</span><span>Data Size:      4322 bytes
+</span><span>
+</span><span>-- Data --
+</span><span>Data Header:    (12, 4306, 18, 7, b&#39;MiniRPG\x00&#39;, 4306)
+</span><span>Program Len:    4302
+</span><span>Program Type:   0x8e28
+</span><span>Checksum (in file):     0x8bf7
+</span><span>Checksum (calculated):  0x8bf7
+</span></code></pre>
 <p>This enabled me to dig into valid 86p files that I knew worked on the
 emulator and compare that with output I created with my packing script.</p>
 <p>The <code>86p</code> file format is broken into 3 parts. There’s much more detailed
 documentation available from <a href="http://www.ticalc.org">ticalc.org</a>, but I thought it’d be fun to break
 down a real-life example. Let’s first take a look at the header section:</p>
-<pre><code>2A 2A 54 49 38 36 2A 2A     **TI86**
-               1A 0A 00     Magic Number
-             <42 bytes>     Comment
-              <2 bytes>     Length of the data section
-</code></pre>
+<pre style="background-color:#272822;color:#f8f8f2;"><code><span>2A 2A 54 49 38 36 2A 2A     **TI86**
+</span><span>               1A 0A 00     Magic Number
+</span><span>             &lt;42 bytes&gt;     Comment
+</span><span>              &lt;2 bytes&gt;     Length of the data section
+</span></code></pre>
 <p>The header always starts off with the same 11 bytes, <code>**TI86**</code> followed by
 the <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">magic number</a> <code>0x1a0a00</code>. This is followed by a comment section of
 42 bytes, ASCII encoded. If the comment is less than 42 characters long,
@@ -201,21 +223,21 @@ section can also be used to store variables, equations, graphs, etc.</p>
 <tr><td>2</td><td>Length of the program data (again).</td></tr>
 </tbody></table>
 <p>Breaking down a real-life example generated by my packing code:</p>
-<pre><code>                  0C 00     Magic Number
-                  58 05     Lenght of the program data.
-                     12     Data Type (Program)
-                     07     Length of the variable name
-4D 69 6E 69 52 50 47 00     MiniRPG (variable name)
-                  58 05     Length of the program data
-</code></pre>
+<pre style="background-color:#272822;color:#f8f8f2;"><code><span>                  0C 00     Magic Number
+</span><span>                  58 05     Lenght of the program data.
+</span><span>                     12     Data Type (Program)
+</span><span>                     07     Length of the variable name
+</span><span>4D 69 6E 69 52 50 47 00     MiniRPG (variable name)
+</span><span>                  58 05     Length of the program data
+</span></code></pre>
 <p>Finally the program itself, which itself has a small header that encodes
 how large the ASM code is and the type of program. Since this file format
 is also used to backup programs you may have written on the calculator, the
 program type are different variations of ASM and TI-BASIC identifiers.</p>
-<pre><code>                  58 05     Program length.
-                  8E 28     Program type.
-                  .. ..     <program in ASM>
-</code></pre>
+<pre style="background-color:#272822;color:#f8f8f2;"><code><span>                  58 05     Program length.
+</span><span>                  8E 28     Program type.
+</span><span>                  .. ..     &lt;program in ASM&gt;
+</span></code></pre>
 <h2 id="putting-it-all-together">Putting it All Together</h2>
 <p>After all that 🌟<em>fun</em> 🌟 research into the file format and a little trial and
 error I was able to finally create a working toolchain that leads from
@@ -274,6 +296,7 @@ or GameBoy Color as well.</p>
 can build out a toolchain in C/Haskell/TypeScript/Rust that would be able to
 compile down to Z80 assembly.</p>
 
+  </div>
   <span id='#thats-all-folks'>&#8718;</span>
 </div>
 <div class='footer'>

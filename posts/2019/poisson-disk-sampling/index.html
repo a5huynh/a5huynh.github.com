@@ -2,7 +2,30 @@
 <html lang='en'>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="a5huynh" />
+
+  
+<meta name="title" content="Generating Blue Noise w&#x2F; Poisson Disk Sampling" />
+<meta name="description" content="&lt;p&gt;&amp;quot;&lt;a href=&quot;https:&#x2F;&#x2F;www.redblobgames.com&#x2F;articles&#x2F;noise&#x2F;introduction.html#colors&quot;&gt;Blue noise&lt;&#x2F;a&gt;&amp;quot; is a term used in computer graphics to describe
+&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Image_noise#Quantization_noise_(uniform_noise)&quot;&gt;noise&lt;&#x2F;a&gt; that is uniformly distributed. It is often used in
+procedural generation techniques to place objects during terrain generation
+that require a roughly even distribution across a landscape. This post will go
+into an implementation of Poisson Disk sampling, a super straightforward
+blue noise generator that I&#x27;ve been using on recent projects. 😄&lt;&#x2F;p&gt;
+" />
+
+<meta property="og:title" content="Generating Blue Noise w&#x2F; Poisson Disk Sampling" />
+<meta property="og:description" content="&lt;p&gt;&amp;quot;&lt;a href=&quot;https:&#x2F;&#x2F;www.redblobgames.com&#x2F;articles&#x2F;noise&#x2F;introduction.html#colors&quot;&gt;Blue noise&lt;&#x2F;a&gt;&amp;quot; is a term used in computer graphics to describe
+&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Image_noise#Quantization_noise_(uniform_noise)&quot;&gt;noise&lt;&#x2F;a&gt; that is uniformly distributed. It is often used in
+procedural generation techniques to place objects during terrain generation
+that require a roughly even distribution across a landscape. This post will go
+into an implementation of Poisson Disk sampling, a super straightforward
+blue noise generator that I&#x27;ve been using on recent projects. 😄&lt;&#x2F;p&gt;
+" />
+<meta property="og:type" content="website" />
+
+
   <title>Generating Blue Noise w&#x2F; Poisson Disk Sampling</title>
   <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
@@ -41,7 +64,7 @@
   <h1>Generating Blue Noise w&#x2F; Poisson Disk Sampling</h1>
   <p class='meta'>
     2019 May 16 - San Francisco |
-    <span>2280 words</span>
+    <span>2841 words</span>
   </p>
   
   
@@ -67,7 +90,8 @@
 
   
 
-  <p>&quot;<a href="https://www.redblobgames.com/articles/noise/introduction.html#colors">Blue noise</a>&quot; is a term used in computer graphics to describe
+  <div class='post'>
+    <p>&quot;<a href="https://www.redblobgames.com/articles/noise/introduction.html#colors">Blue noise</a>&quot; is a term used in computer graphics to describe
 <a href="https://en.wikipedia.org/wiki/Image_noise#Quantization_noise_(uniform_noise)">noise</a> that is uniformly distributed. It is often used in
 procedural generation techniques to place objects during terrain generation
 that require a roughly even distribution across a landscape. This post will go
@@ -92,7 +116,7 @@ of the algorithm used in the random number generator, there are just no guarante
 how evenly distributed the points will be.</p>
 <h2 id="poisson-disk-sampling">Poisson Disk Sampling</h2>
 <p>The blue noise example above was generated using the algorithm presented in
-&quot;<a href="https://www.cs.ubc.ca/%7Erbridson/docs/bridson-siggraph07-poissondisk.pdf">Fast Poisson Disk Sampling in Arbitrary Dimensions</a>&quot;. The
+&quot;<a href="https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph07-poissondisk.pdf">Fast Poisson Disk Sampling in Arbitrary Dimensions</a>&quot;. The
 algorithm is linear w/ respect to the number of points generated (i.e.
 fast 🚀!), easy to understand, and easy to implement so let’s dive in!</p>
 <h3 id="algorithm-input">Algorithm input</h3>
@@ -105,20 +129,20 @@ points will be generated in 2D space, setting \(n = 2\).</li>
 <li>A constant \(k\), the number of samples to choose before rejection.</li>
 </ol>
 <p>Converting this into <code>rust</code>, we'll get the the following:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct PoissonDisk {
-    pub minimum_distance: usize,
-    pub num_samples: usize,
-}
-
-impl PoissonDisk {
-    pub fn new(r: usize, k: usize) -> Self {
-        PoissonDisk {
-            minimum_distance: r,
-            num_samples: k,
-        }
-    }
-}
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">struct </span><span>PoissonDisk {
+</span></td></tr><tr><td>2</td><td><span>    </span><span style="color:#f92672;">pub </span><span>minimum_distance: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>,
+</span></td></tr><tr><td>3</td><td><span>    </span><span style="color:#f92672;">pub </span><span>num_samples: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>,
+</span></td></tr><tr><td>4</td><td><span>}
+</span></td></tr><tr><td>5</td><td><span>
+</span></td></tr><tr><td>6</td><td><span style="font-style:italic;color:#66d9ef;">impl </span><span>PoissonDisk {
+</span></td></tr><tr><td>7</td><td><span>    </span><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">new</span><span>(</span><span style="font-style:italic;color:#fd971f;">r</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">k</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>) -&gt; </span><span style="font-style:italic;color:#66d9ef;">Self </span><span>{
+</span></td></tr><tr><td>8</td><td><span>        PoissonDisk {
+</span></td></tr><tr><td>9</td><td><span>            minimum_distance: r,
+</span></td></tr><tr><td>10</td><td><span>            num_samples: k,
+</span></td></tr><tr><td>11</td><td><span>        }
+</span></td></tr><tr><td>12</td><td><span>    }
+</span></td></tr><tr><td>13</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <h3 id="keeping-track-of-sampled-points">Keeping track of sampled points</h3>
 <p>As part of the initialization process, we'll need to create a grid that is
 used to store sampled points and to speed up spatial searches. The size of
@@ -143,33 +167,33 @@ comes out to be \(\frac{r}{\sqrt{n}}\)!</p>
 <code>Vec&lt;Option&lt;(usize, usize)&gt;&gt;</code>. Each cell can either be <code>None</code> or the
 sampled point <code>(usize, usize)</code>. Building on the example code we had before,
 the <code>struct</code> and <code>new</code> function should now look like below:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct PoissonDisk {
-    ..., // fields from before
-    width: usize,
-    height: usize,
-    cell_size: f64,
-    grid_width: f64,
-    grid_height: f64,
-    grid: Vec<Option<(usize, usize)>>,
-    samples: Vec<(usize, usize)>,
-}
-
-impl PoissonDisk {
-    pub fn new(w: usize, h: usize, r: usize, k: usize) -> Self {
-        let cell_size = r as f64 / (2.0 as f64).sqrt();
-        let grid_width = (w as f64 / cell_size).ceil() + 1.0;
-        let grid_height = (j as f64 / cell_size).ceil() + 1.0;
-
-        PoissonDisk {
-            ...,
-            width: w,
-            height: h,
-            cell_size, grid_width, grid_height,
-            grid: vec![None; (grid_width * grid_height) as usize],
-        }
-    }
-}
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">struct </span><span>PoissonDisk {
+</span></td></tr><tr><td>2</td><td><span>    ..., </span><span style="color:#75715e;">// fields from before
+</span></td></tr><tr><td>3</td><td><span>    width: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>,
+</span></td></tr><tr><td>4</td><td><span>    height: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>,
+</span></td></tr><tr><td>5</td><td><span>    cell_size: </span><span style="font-style:italic;color:#66d9ef;">f64</span><span>,
+</span></td></tr><tr><td>6</td><td><span>    grid_width: </span><span style="font-style:italic;color:#66d9ef;">f64</span><span>,
+</span></td></tr><tr><td>7</td><td><span>    grid_height: </span><span style="font-style:italic;color:#66d9ef;">f64</span><span>,
+</span></td></tr><tr><td>8</td><td><span>    grid: </span><span style="font-style:italic;color:#66d9ef;">Vec</span><span>&lt;</span><span style="font-style:italic;color:#66d9ef;">Option</span><span>&lt;(</span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>)&gt;&gt;,
+</span></td></tr><tr><td>9</td><td><span>    samples: </span><span style="font-style:italic;color:#66d9ef;">Vec</span><span>&lt;(</span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>)&gt;,
+</span></td></tr><tr><td>10</td><td><span>}
+</span></td></tr><tr><td>11</td><td><span>
+</span></td></tr><tr><td>12</td><td><span style="font-style:italic;color:#66d9ef;">impl </span><span>PoissonDisk {
+</span></td></tr><tr><td>13</td><td><span>    </span><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">new</span><span>(</span><span style="font-style:italic;color:#fd971f;">w</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">h</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">r</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">k</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>) -&gt; </span><span style="font-style:italic;color:#66d9ef;">Self </span><span>{
+</span></td></tr><tr><td>14</td><td><span>        </span><span style="font-style:italic;color:#66d9ef;">let</span><span> cell_size </span><span style="color:#f92672;">=</span><span> r </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span>(</span><span style="color:#ae81ff;">2.0 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64</span><span>).</span><span style="color:#66d9ef;">sqrt</span><span>();
+</span></td></tr><tr><td>15</td><td><span>        </span><span style="font-style:italic;color:#66d9ef;">let</span><span> grid_width </span><span style="color:#f92672;">= </span><span>(w </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/</span><span> cell_size).</span><span style="color:#66d9ef;">ceil</span><span>() </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1.0</span><span>;
+</span></td></tr><tr><td>16</td><td><span>        </span><span style="font-style:italic;color:#66d9ef;">let</span><span> grid_height </span><span style="color:#f92672;">= </span><span>(j </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/</span><span> cell_size).</span><span style="color:#66d9ef;">ceil</span><span>() </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1.0</span><span>;
+</span></td></tr><tr><td>17</td><td><span>
+</span></td></tr><tr><td>18</td><td><span>        PoissonDisk {
+</span></td></tr><tr><td>19</td><td><span>            </span><span style="color:#f92672;">...</span><span>,
+</span></td></tr><tr><td>20</td><td><span>            width: w,
+</span></td></tr><tr><td>21</td><td><span>            height: h,
+</span></td></tr><tr><td>22</td><td><span>            cell_size, grid_width, grid_height,
+</span></td></tr><tr><td>23</td><td><span>            grid: vec![</span><span style="font-style:italic;color:#66d9ef;">None</span><span>; (grid_width </span><span style="color:#f92672;">*</span><span> grid_height) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>],
+</span></td></tr><tr><td>24</td><td><span>        }
+</span></td></tr><tr><td>25</td><td><span>    }
+</span></td></tr><tr><td>26</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <p>Next, we’ll create a utility function to insert new points into the grid
 since it involves a bit of math each time. We need to determine which cell
 in the grid to place a point, so we’ll scale the point to determine the
@@ -177,63 +201,63 @@ grid coordinates by dividing the point coordinates by the <code>cell_size</code>
 calculate the index into the grid array. Now every time we generate a new
 point, we can simply call <code>self.insert_point(new_point)</code> to add the point
 to the grid.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn insert_point(&mut self, point: (usize, usize)) {
-    // Calculate the (x, y) coordinate when place inside the grid.
-    let cell_x = (point.0 as f64 / self.cell_size).floor();
-    let cell_y = (point.1 as f64 / self.cell_size).floor();
-    // Calculate the index within our flat array and place the point
-    // there.
-    let cell_idx = (cell_y * self.cell_width + cell_x) as usize;
-    self.grid[cell_idx] = Some(point);
-}
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">insert_point</span><span>(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span>, </span><span style="font-style:italic;color:#fd971f;">point</span><span>: (</span><span style="font-style:italic;color:#fd971f;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">usize</span><span>)) {
+</span></td></tr><tr><td>2</td><td><span>    </span><span style="color:#75715e;">// Calculate the (x, y) coordinate when place inside the grid.
+</span></td></tr><tr><td>3</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> cell_x </span><span style="color:#f92672;">= </span><span>(point.</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span>self.cell_size).</span><span style="color:#66d9ef;">floor</span><span>();
+</span></td></tr><tr><td>4</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> cell_y </span><span style="color:#f92672;">= </span><span>(point.</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span>self.cell_size).</span><span style="color:#66d9ef;">floor</span><span>();
+</span></td></tr><tr><td>5</td><td><span>    </span><span style="color:#75715e;">// Calculate the index within our flat array and place the point
+</span></td></tr><tr><td>6</td><td><span>    </span><span style="color:#75715e;">// there.
+</span></td></tr><tr><td>7</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> cell_idx </span><span style="color:#f92672;">= </span><span>(cell_y </span><span style="color:#f92672;">* </span><span>self.cell_width </span><span style="color:#f92672;">+</span><span> cell_x) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span></td></tr><tr><td>8</td><td><span>    self.grid[cell_idx] </span><span style="color:#f92672;">= </span><span style="font-style:italic;color:#66d9ef;">Some</span><span>(point);
+</span></td></tr><tr><td>9</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <h3 id="selecting-an-initial-point">Selecting an initial point</h3>
 <p>For the next step of the algorithm, we need to select an initial sample.
 This will be randomly chosen uniformly from the domain, inserted into the
 grid, and used as the initial point on the &quot;active list&quot;.</p>
 <p>First, let’s add the <a href="https://crates.io/crates/rand">rand</a> crate to our
 dependencies in our <code>Cargo.toml</code> file.</p>
-<pre data-lang="toml" class="language-toml "><code class="language-toml" data-lang="toml">[dependencies]
-rand = "0.6.5"
-</code></pre>
+<pre data-lang="toml" style="background-color:#272822;color:#f8f8f2;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[dependencies]
+</span><span style="color:#f92672;">rand </span><span>= </span><span style="color:#e6db74;">&quot;0.6.5&quot;
+</span></code></pre>
 <p>Afterwards, modify the <code>new</code> function so that we generate a new point after
 initializing the <code>PoissonDisk</code> struct, adding it to both grid and active
 list.</p>
 <p>Putting it all together with the example code that we have so far, the
 <code>new</code> function should look a little something like below.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use rand;
-
-struct PoissonDisk {
-    ...,
-    // "Active list" used to keep track of sampled points we are able
-    // to generate new points around.
-    active: Vec<(usize, usize)>
-}
-
-impl PoissonDisk {
-    pub fn new(w: usize, h: usize, r: usize, k: usize) -> Self {
-        // Instead of immediately returning the newly construct struct
-        // let store it in a variable and generate the initial point.
-        let disk = PoissonDisk {
-            ...,
-            active: Vec::new(),
-        };
-
-        // Here we generate the new point.
-        let rng = rand::thread_rng();
-        let point = (
-            (rng.gen::<f64>() * w as f64) as usize,
-            (rng.gen::<f64>() * h as f64) as usize
-        );
-
-        // Add point to grid & active list.
-        disk.insert_point(point);
-        disk.active.push(point);
-
-        disk
-    }
-}
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span style="color:#f92672;">use</span><span> rand;
+</span></td></tr><tr><td>2</td><td><span>
+</span></td></tr><tr><td>3</td><td><span style="font-style:italic;color:#66d9ef;">struct </span><span>PoissonDisk {
+</span></td></tr><tr><td>4</td><td><span>    ...,
+</span></td></tr><tr><td>5</td><td><span>    </span><span style="color:#75715e;">// &quot;Active list&quot; used to keep track of sampled points we are able
+</span></td></tr><tr><td>6</td><td><span>    </span><span style="color:#75715e;">// to generate new points around.
+</span></td></tr><tr><td>7</td><td><span>    active: </span><span style="font-style:italic;color:#66d9ef;">Vec</span><span>&lt;(</span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>)&gt;
+</span></td></tr><tr><td>8</td><td><span>}
+</span></td></tr><tr><td>9</td><td><span>
+</span></td></tr><tr><td>10</td><td><span style="font-style:italic;color:#66d9ef;">impl </span><span>PoissonDisk {
+</span></td></tr><tr><td>11</td><td><span>    </span><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">new</span><span>(</span><span style="font-style:italic;color:#fd971f;">w</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">h</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">r</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">k</span><span>: </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>) -&gt; </span><span style="font-style:italic;color:#66d9ef;">Self </span><span>{
+</span></td></tr><tr><td>12</td><td><span>        </span><span style="color:#75715e;">// Instead of immediately returning the newly construct struct
+</span></td></tr><tr><td>13</td><td><span>        </span><span style="color:#75715e;">// let store it in a variable and generate the initial point.
+</span></td></tr><tr><td>14</td><td><span>        </span><span style="font-style:italic;color:#66d9ef;">let</span><span> disk </span><span style="color:#f92672;">=</span><span> PoissonDisk {
+</span></td></tr><tr><td>15</td><td><span>            </span><span style="color:#f92672;">...</span><span>,
+</span></td></tr><tr><td>16</td><td><span>            active: </span><span style="font-style:italic;color:#66d9ef;">Vec</span><span>::new(),
+</span></td></tr><tr><td>17</td><td><span>        };
+</span></td></tr><tr><td>18</td><td><span>
+</span></td></tr><tr><td>19</td><td><span>        </span><span style="color:#75715e;">// Here we generate the new point.
+</span></td></tr><tr><td>20</td><td><span>        </span><span style="font-style:italic;color:#66d9ef;">let</span><span> rng </span><span style="color:#f92672;">= </span><span>rand::thread_rng();
+</span></td></tr><tr><td>21</td><td><span>        </span><span style="font-style:italic;color:#66d9ef;">let</span><span> point </span><span style="color:#f92672;">= </span><span>(
+</span></td></tr><tr><td>22</td><td><span>            (rng.gen::&lt;</span><span style="font-style:italic;color:#66d9ef;">f64</span><span>&gt;() </span><span style="color:#f92672;">*</span><span> w </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>,
+</span></td></tr><tr><td>23</td><td><span>            (rng.gen::&lt;</span><span style="font-style:italic;color:#66d9ef;">f64</span><span>&gt;() </span><span style="color:#f92672;">*</span><span> h </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize
+</span></td></tr><tr><td>24</td><td><span>        );
+</span></td></tr><tr><td>25</td><td><span>
+</span></td></tr><tr><td>26</td><td><span>        </span><span style="color:#75715e;">// Add point to grid &amp; active list.
+</span></td></tr><tr><td>27</td><td><span>        disk.</span><span style="color:#66d9ef;">insert_point</span><span>(point);
+</span></td></tr><tr><td>28</td><td><span>        disk.active.</span><span style="color:#66d9ef;">push</span><span>(point);
+</span></td></tr><tr><td>29</td><td><span>
+</span></td></tr><tr><td>30</td><td><span>        disk
+</span></td></tr><tr><td>31</td><td><span>    }
+</span></td></tr><tr><td>32</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <h3 id="sampling-points-point-validation">Sampling points &amp; point validation</h3>
 <p>Finally 🎉! Now that we have the ability to keep track of points, sources
 for new points, and an initial sample to get started we can start
@@ -250,10 +274,10 @@ point from the active list.</li>
 <p>Breaking down the loop step by step, we'll first tackle randomly selecting a point
 from the active list. Given an active list of length \(l\), we randomly
 choose an index between \(0\) and \(l - 1\).</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">// Generate a random index in our active list.
-let idx = rng.gen::<f64>() * (self.active.len() - 1) as f64;
-let source = self.active[idx as usize];
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span style="color:#75715e;">// Generate a random index in our active list.
+</span></td></tr><tr><td>2</td><td><span style="font-style:italic;color:#66d9ef;">let</span><span> idx </span><span style="color:#f92672;">=</span><span> rng.gen::&lt;</span><span style="font-style:italic;color:#66d9ef;">f64</span><span>&gt;() </span><span style="color:#f92672;">* </span><span>(self.active.</span><span style="color:#66d9ef;">len</span><span>() </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64</span><span>;
+</span></td></tr><tr><td>3</td><td><span style="font-style:italic;color:#66d9ef;">let</span><span> source </span><span style="color:#f92672;">= </span><span>self.active[idx </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>];
+</span></td></tr></tbody></table></code></pre>
 <p>Next, we need to sample \(k\) new points around the source point. When
 generating a new point, we randomly choose a point that is between \(r\)
 and \(2r\) of the source point. This will make it so that new points will
@@ -274,24 +298,24 @@ cartesian coordinates.</p>
 <em>An example of polar coordinates in action courtesy of Wikipedia</em></p>
 <p>Using this knowledge, lets create a new function, <code>generate_around</code>,
 that will generate new points around the source point:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn generate_around(&mut self, pt: (usize, usize)) -> (usize, usize) {
-    let mut rng = rand::thread_rng();
-    // Random angle
-    let angle = 2.0 * PI * rng.gen::<f64>();
-    // Random radius between r and 2r
-    let radius = self.min_dist as f64 * (rng.gen::<f64>() + 1.0);
-    // Convert polar coordinates to cartesian and viola,
-    // a new point is generated around the source point (x, y)
-    let new_x = pt.0 as f64 + (radius * angle.cos());
-    let new_y = pt.1 as f64 + (radius * angle.sin());
-    // Using min/max, we'll also constrain the new point to be within
-    // the bounds of our grid.
-    (
-        new_x.max(0.0).min(self.width as f64 - 1.0) as usize,
-        new_y.max(0.0).min(self.height as f64 - 1.0) as usize,
-    )
-}
-</code></pre>
+<pre data-linenos data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><table><tbody><tr><td>1</td><td><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">generate_around</span><span>(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span>, </span><span style="font-style:italic;color:#fd971f;">pt</span><span>: (</span><span style="font-style:italic;color:#fd971f;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">usize</span><span>)) -&gt; (</span><span style="font-style:italic;color:#66d9ef;">usize</span><span>, </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>) {
+</span></td></tr><tr><td>2</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f92672;">mut</span><span> rng </span><span style="color:#f92672;">= </span><span>rand::thread_rng();
+</span></td></tr><tr><td>3</td><td><span>    </span><span style="color:#75715e;">// Random angle
+</span></td></tr><tr><td>4</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> angle </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">2.0 </span><span style="color:#f92672;">* </span><span style="color:#ae81ff;">PI </span><span style="color:#f92672;">*</span><span> rng.gen::&lt;</span><span style="font-style:italic;color:#66d9ef;">f64</span><span>&gt;();
+</span></td></tr><tr><td>5</td><td><span>    </span><span style="color:#75715e;">// Random radius between r and 2r
+</span></td></tr><tr><td>6</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> radius </span><span style="color:#f92672;">= </span><span>self.min_dist </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">* </span><span>(rng.gen::&lt;</span><span style="font-style:italic;color:#66d9ef;">f64</span><span>&gt;() </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1.0</span><span>);
+</span></td></tr><tr><td>7</td><td><span>    </span><span style="color:#75715e;">// Convert polar coordinates to cartesian and viola,
+</span></td></tr><tr><td>8</td><td><span>    </span><span style="color:#75715e;">// a new point is generated around the source point (x, y)
+</span></td></tr><tr><td>9</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> new_x </span><span style="color:#f92672;">=</span><span> pt.</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">+ </span><span>(radius </span><span style="color:#f92672;">*</span><span> angle.</span><span style="color:#66d9ef;">cos</span><span>());
+</span></td></tr><tr><td>10</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> new_y </span><span style="color:#f92672;">=</span><span> pt.</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">+ </span><span>(radius </span><span style="color:#f92672;">*</span><span> angle.</span><span style="color:#66d9ef;">sin</span><span>());
+</span></td></tr><tr><td>11</td><td><span>    </span><span style="color:#75715e;">// Using min/max, we&#39;ll also constrain the new point to be within
+</span></td></tr><tr><td>12</td><td><span>    </span><span style="color:#75715e;">// the bounds of our grid.
+</span></td></tr><tr><td>13</td><td><span>    (
+</span></td></tr><tr><td>14</td><td><span>        new_x.</span><span style="color:#66d9ef;">max</span><span>(</span><span style="color:#ae81ff;">0.0</span><span>).</span><span style="color:#66d9ef;">min</span><span>(self.width </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>,
+</span></td></tr><tr><td>15</td><td><span>        new_y.</span><span style="color:#66d9ef;">max</span><span>(</span><span style="color:#ae81ff;">0.0</span><span>).</span><span style="color:#66d9ef;">min</span><span>(self.height </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>,
+</span></td></tr><tr><td>16</td><td><span>    )
+</span></td></tr><tr><td>17</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
 <p>Now that we have a new point, how do make sure it's a &quot;valid&quot; point?</p>
 <p>Valid new points satisfy two constraints:</p>
 <ol>
@@ -311,83 +335,84 @@ than the radius (\(\frac{r}{\sqrt{2}}\)), the neighborhood around the
 source cell will be at most 2 cells away.</p>
 <p>To find the start and end coordinates of the neighborhood, we'll determine
 where the point exists in the grid and +/- 2 from the coordinates.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">// Scale the source point onto the grid.
-let xidx = (point.0 as f64 / self.grid_size).floor();
-let yidx = (point.1 as f64 / self.grid_size).floor();
-// Determine the neighborhood around the source point.
-let start_x = (xidx - 2.0).max(0.0) as usize;
-let end_x = (xidx + 2.0).min(self.grid_width - 1.0) as usize;
-let start_y = (yidx - 2.0).max(0.0) as usize;
-let end_y = (yidx + 2.0).min(self.grid_height - 1.0) as usize;
-</code></pre>
+<pre data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#75715e;">// Scale the source point onto the grid.
+</span><span style="font-style:italic;color:#66d9ef;">let</span><span> xidx </span><span style="color:#f92672;">= </span><span>(point.</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span>self.grid_size).</span><span style="color:#66d9ef;">floor</span><span>();
+</span><span style="font-style:italic;color:#66d9ef;">let</span><span> yidx </span><span style="color:#f92672;">= </span><span>(point.</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span>self.grid_size).</span><span style="color:#66d9ef;">floor</span><span>();
+</span><span style="color:#75715e;">// Determine the neighborhood around the source point.
+</span><span style="font-style:italic;color:#66d9ef;">let</span><span> start_x </span><span style="color:#f92672;">= </span><span>(xidx </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">2.0</span><span>).</span><span style="color:#66d9ef;">max</span><span>(</span><span style="color:#ae81ff;">0.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span><span style="font-style:italic;color:#66d9ef;">let</span><span> end_x </span><span style="color:#f92672;">= </span><span>(xidx </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">2.0</span><span>).</span><span style="color:#66d9ef;">min</span><span>(self.grid_width </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span><span style="font-style:italic;color:#66d9ef;">let</span><span> start_y </span><span style="color:#f92672;">= </span><span>(yidx </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">2.0</span><span>).</span><span style="color:#66d9ef;">max</span><span>(</span><span style="color:#ae81ff;">0.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span><span style="font-style:italic;color:#66d9ef;">let</span><span> end_y </span><span style="color:#f92672;">= </span><span>(yidx </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">2.0</span><span>).</span><span style="color:#66d9ef;">min</span><span>(self.grid_height </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span></code></pre>
 <p>Using the cells in this neighborhood we can loop through the neighbors
 of the source point and make sure our new point is outside the radius of
 <em>any</em> nearby points without having to check all points. If no neighbors are
 found or if we are outside the radius of each neighbor, this point is
 valid.</p>
 <p>Our <code>is_valid</code> function should now look like the following:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn is_valid(&self, point: (usize, usize)) -> bool {
-    // Scale the source point onto the grid.
-    let xidx = (point.0 as f64 / self.grid_size).floor();
-    let yidx = (point.1 as f64 / self.grid_size).floor();
-    // Determine the neighborhood around the source point.
-    let start_x = (xidx - 2.0).max(0.0) as usize;
-    let end_x = (xidx + 2.0).min(self.grid_width - 1.0) as usize;
-    let start_y = (yidx - 2.0).max(0.0) as usize;
-    let end_y = (yidx + 2.0).min(self.grid_height - 1.0) as usize;
-    // Check all non-empty neighbors cells and make sure the new point
-    // is outside their radius.
-    for y in start_y..end_y {
-        for x in start_x..end_x {
-            let idx = y * self.grid_width as usize + x;
-            if let Some(cell) = self.grid[idx] {
-                // This is the standard distance formula between two points.
-                if distance(cell, point) <= self.min_dist as f64 {
-                    return false;
-                }
-            }
-        }
-    }
-
-    true
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">is_valid</span><span>(</span><span style="color:#f92672;">&amp;</span><span style="font-style:italic;color:#fd971f;">self</span><span>, </span><span style="font-style:italic;color:#fd971f;">point</span><span>: (</span><span style="font-style:italic;color:#fd971f;">usize</span><span>, </span><span style="font-style:italic;color:#fd971f;">usize</span><span>)) -&gt; </span><span style="font-style:italic;color:#66d9ef;">bool </span><span>{
+</span><span>    </span><span style="color:#75715e;">// Scale the source point onto the grid.
+</span><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> xidx </span><span style="color:#f92672;">= </span><span>(point.</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span>self.grid_size).</span><span style="color:#66d9ef;">floor</span><span>();
+</span><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> yidx </span><span style="color:#f92672;">= </span><span>(point.</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span style="color:#f92672;">/ </span><span>self.grid_size).</span><span style="color:#66d9ef;">floor</span><span>();
+</span><span>    </span><span style="color:#75715e;">// Determine the neighborhood around the source point.
+</span><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> start_x </span><span style="color:#f92672;">= </span><span>(xidx </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">2.0</span><span>).</span><span style="color:#66d9ef;">max</span><span>(</span><span style="color:#ae81ff;">0.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> end_x </span><span style="color:#f92672;">= </span><span>(xidx </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">2.0</span><span>).</span><span style="color:#66d9ef;">min</span><span>(self.grid_width </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> start_y </span><span style="color:#f92672;">= </span><span>(yidx </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">2.0</span><span>).</span><span style="color:#66d9ef;">max</span><span>(</span><span style="color:#ae81ff;">0.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span><span>    </span><span style="font-style:italic;color:#66d9ef;">let</span><span> end_y </span><span style="color:#f92672;">= </span><span>(yidx </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">2.0</span><span>).</span><span style="color:#66d9ef;">min</span><span>(self.grid_height </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1.0</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>;
+</span><span>    </span><span style="color:#75715e;">// Check all non-empty neighbors cells and make sure the new point
+</span><span>    </span><span style="color:#75715e;">// is outside their radius.
+</span><span>    </span><span style="color:#f92672;">for</span><span> y </span><span style="color:#f92672;">in</span><span> start_y</span><span style="color:#f92672;">..</span><span>end_y {
+</span><span>        </span><span style="color:#f92672;">for</span><span> x </span><span style="color:#f92672;">in</span><span> start_x</span><span style="color:#f92672;">..</span><span>end_x {
+</span><span>            </span><span style="font-style:italic;color:#66d9ef;">let</span><span> idx </span><span style="color:#f92672;">=</span><span> y </span><span style="color:#f92672;">* </span><span>self.grid_width </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize </span><span style="color:#f92672;">+</span><span> x;
+</span><span>            </span><span style="color:#f92672;">if </span><span style="font-style:italic;color:#66d9ef;">let Some</span><span>(cell) </span><span style="color:#f92672;">= </span><span>self.grid[idx] {
+</span><span>                </span><span style="color:#75715e;">// This is the standard distance formula between two points.
+</span><span>                </span><span style="color:#f92672;">if </span><span style="color:#66d9ef;">distance</span><span>(cell, point) </span><span style="color:#f92672;">&lt;= </span><span>self.min_dist </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64 </span><span>{
+</span><span>                    </span><span style="color:#f92672;">return </span><span style="color:#ae81ff;">false</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#ae81ff;">true
+</span><span>}
+</span></code></pre>
 <p>All that is left is to make sure any source point that were unable to generate
 valid sample points is remove from our active list.</p>
 <p>Putting it all together, the example code should now look like the following:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn generate(&mut self) {
-    let mut rng = rand::thread_rng();
-    while !self.active.is_empty() {
-        let idx = rng.gen::<f64>() * (self.active.len() - 1) as f64;
-        let source = self.active[idx as usize];
-        // Did we find an valid samples?
-        let mut found = false;
-        for _ in 0..self.num_samples {
-            let new_point = self.generate_around(source);
-            // Add the new point to the grid and active list if
-            // the point is valid.
-            if self.is_valid(new_point) {
-                // Add point to our background grid
-                self.insert_point(new_point);
-                // Add point to our active list
-                self.active.push(new_point);
-                // Add point to our list of sampled points
-                self.samples.push(new_point);
-                found = true;
-            }
-        }
-        // If not valid points are found, remove the source point
-        // from the active list.
-        if !found {
-            self.active.remove(idx);
-        }
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#272822;color:#f8f8f2;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#f92672;">pub </span><span style="font-style:italic;color:#66d9ef;">fn </span><span style="color:#a6e22e;">generate</span><span>(</span><span style="color:#f92672;">&amp;mut </span><span style="font-style:italic;color:#fd971f;">self</span><span>) {
+</span><span>    </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f92672;">mut</span><span> rng </span><span style="color:#f92672;">= </span><span>rand::thread_rng();
+</span><span>    </span><span style="color:#f92672;">while !</span><span>self.active.</span><span style="color:#66d9ef;">is_empty</span><span>() {
+</span><span>        </span><span style="font-style:italic;color:#66d9ef;">let</span><span> idx </span><span style="color:#f92672;">=</span><span> rng.gen::&lt;</span><span style="font-style:italic;color:#66d9ef;">f64</span><span>&gt;() </span><span style="color:#f92672;">* </span><span>(self.active.</span><span style="color:#66d9ef;">len</span><span>() </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span>) </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">f64</span><span>;
+</span><span>        </span><span style="font-style:italic;color:#66d9ef;">let</span><span> source </span><span style="color:#f92672;">= </span><span>self.active[idx </span><span style="color:#f92672;">as </span><span style="font-style:italic;color:#66d9ef;">usize</span><span>];
+</span><span>        </span><span style="color:#75715e;">// Did we find an valid samples?
+</span><span>        </span><span style="font-style:italic;color:#66d9ef;">let </span><span style="color:#f92672;">mut</span><span> found </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">false</span><span>;
+</span><span>        </span><span style="color:#f92672;">for _ in </span><span style="color:#ae81ff;">0</span><span style="color:#f92672;">..</span><span>self.num_samples {
+</span><span>            </span><span style="font-style:italic;color:#66d9ef;">let</span><span> new_point </span><span style="color:#f92672;">= </span><span>self.</span><span style="color:#66d9ef;">generate_around</span><span>(source);
+</span><span>            </span><span style="color:#75715e;">// Add the new point to the grid and active list if
+</span><span>            </span><span style="color:#75715e;">// the point is valid.
+</span><span>            </span><span style="color:#f92672;">if </span><span>self.</span><span style="color:#66d9ef;">is_valid</span><span>(new_point) {
+</span><span>                </span><span style="color:#75715e;">// Add point to our background grid
+</span><span>                self.</span><span style="color:#66d9ef;">insert_point</span><span>(new_point);
+</span><span>                </span><span style="color:#75715e;">// Add point to our active list
+</span><span>                self.active.</span><span style="color:#66d9ef;">push</span><span>(new_point);
+</span><span>                </span><span style="color:#75715e;">// Add point to our list of sampled points
+</span><span>                self.samples.</span><span style="color:#66d9ef;">push</span><span>(new_point);
+</span><span>                found </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">true</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>        </span><span style="color:#75715e;">// If not valid points are found, remove the source point
+</span><span>        </span><span style="color:#75715e;">// from the active list.
+</span><span>        </span><span style="color:#f92672;">if !</span><span>found {
+</span><span>            self.active.</span><span style="color:#66d9ef;">remove</span><span>(idx);
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>And there you have it! Check out the <a href="https://github.com/a5huynh/poisson-disk">code repo</a> to view the
 code in it's entirety along w/ the WASM visualization that was used for
 this page.</p>
 
+  </div>
   <span id='#thats-all-folks'>&#8718;</span>
 </div>
 <div class='footer'>
