@@ -26,16 +26,24 @@ Never `rm -rf` the repo root to "clean" before a copy.
 
 ## Syncing output
 
+**Only ever deploy a merged `master`.** Source changes go on an
+`a5huynh/<type>/<short-name>` branch in `../blog-src` and land via a PR; this repo is
+rebuilt afterwards. Never build the output from an unmerged branch or a dirty working
+tree — the deployed site is then a state nobody reviewed and that no commit describes.
+
 ```sh
-cd ../blog-src && zola build
+cd ../blog-src && git checkout master && git pull && zola build
 rsync -a --delete --exclude '.git' --exclude '.nojekyll' --exclude 'README.md' \
       --exclude '.gitignore' --exclude 'AGENTS.md' --exclude 'img/email.png' \
       --exclude 'img/linkedin.png' --exclude 'img/twitter.png' \
       public/ ../a5huynh.github.com/
 ```
 
-Then commit in **both** repos. There is no CI/GitHub Action — the build and copy are
-manual, despite what `README.md` implies.
+Then commit here with a `Rebuild: …` message referencing what landed upstream. There is
+no CI/GitHub Action — the build and copy are manual, despite what `README.md` implies.
+
+This repo takes plain commits on `master`; it is build output, so there is nothing to
+review here. The review happened in the source PR.
 
 Check sync status at any time:
 
