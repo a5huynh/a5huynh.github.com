@@ -6,26 +6,31 @@
   <meta name="author" content="a5huynh" />
 
   
-<meta name="title" content="Generating Blue Noise w/ Poisson Disk Sampling" />
-<meta name="description" content="&lt;p&gt;&quot;&lt;a href=&quot;https://www.redblobgames.com/articles/noise/introduction.html#colors&quot;&gt;Blue noise&lt;/a&gt;&quot; is a term used in computer graphics to describe
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Image_noise#Quantization_noise_(uniform_noise)&quot;&gt;noise&lt;/a&gt; that is uniformly distributed. It is often used in
+  
+
+
+<meta name="description" content="&quot;Blue noise&quot; is a term used in computer graphics to describe
+noise that is uniformly distributed. It is often used in
 procedural generation techniques to place objects during terrain generation
 that require a roughly even distribution across a landscape. This post will go
 into an implementation of Poisson Disk sampling, a super straightforward
-blue noise generator that I&#39;ve been using on recent projects. 😄&lt;/p&gt;" />
+blue noise generator that I&#39;ve been using on recent projects. 😄" />
 
 <meta property="og:title" content="Generating Blue Noise w/ Poisson Disk Sampling" />
-<meta property="og:description" content="&lt;p&gt;&quot;&lt;a href=&quot;https://www.redblobgames.com/articles/noise/introduction.html#colors&quot;&gt;Blue noise&lt;/a&gt;&quot; is a term used in computer graphics to describe
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Image_noise#Quantization_noise_(uniform_noise)&quot;&gt;noise&lt;/a&gt; that is uniformly distributed. It is often used in
+<meta property="og:description" content="&quot;Blue noise&quot; is a term used in computer graphics to describe
+noise that is uniformly distributed. It is often used in
 procedural generation techniques to place objects during terrain generation
 that require a roughly even distribution across a landscape. This post will go
 into an implementation of Poisson Disk sampling, a super straightforward
-blue noise generator that I&#39;ve been using on recent projects. 😄&lt;/p&gt;" />
-<meta property="og:type" content="website" />
-
-
-  <title>Generating Blue Noise w/ Poisson Disk Sampling</title>
+blue noise generator that I&#39;ve been using on recent projects. 😄" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://a5huynh.github.io/posts/2019/poisson-disk-sampling/" />
+<meta property="article:published_time" content="2019-05-16" />
+<meta name="twitter:card" content="summary" />
+<title>Generating Blue Noise w/ Poisson Disk Sampling</title>
   <link rel="icon" href="/favicon/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="Andrew Huynh, The Blog"
+    href="https://a5huynh.github.io/atom.xml">
   
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -44,8 +49,8 @@ blue noise generator that I&#39;ve been using on recent projects. 😄&lt;/p&gt;
     </div>
     <div id='social-icons'>
       <div>
-        <a
-          href='http://www.google.com/recaptcha/mailhide/d?k=01uNCZrwDlz2I3VKthc1vVRw==&amp;c=6YTbdnM2V4n_HnbJamUSEoWCPMs3doQFXFC1r8BFdkU='>
+        
+        <a href='mailto:a5thuynh@gmail.com'>
           <img src='https://a5huynh.github.io/img/email.svg' alt='Email me!'>
         </a>
       </div>
@@ -410,9 +415,12 @@ this page.</p>
     Founder @ <a href='https://spyglass.fyi'>Spyglass Search</a>.<br>
     Like what you see? My website is <a href='https://github.com/a5huynh/a5huynh.github.com'>open source!</a>
   </div>
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
   
+
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
 </body>
 </html>
