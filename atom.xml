@@ -24,7 +24,7 @@ electronics was to build a small device from the ground up. This would
 include sourcing all parts, writing the necessary code, and designing and
 3D printing an enclosure for the device. Given the state the world at this
 time, as my first foray into electronics design, I decided to make a little
-device to keep track of &lt;a href=&quot;https://covidtracking.com/api/us&quot;&gt;US COVID-19 stats&lt;/a&gt;.&lt;/p&gt;</summary>
+device to keep track of &lt;a href=&quot;https://covidtracking.com/data/api&quot;&gt;US COVID-19 stats&lt;/a&gt;.&lt;/p&gt;</summary>
         
     </entry>
     <entry xml:lang="en">
@@ -179,7 +179,7 @@ game, inspired by the classic &lt;a href=&quot;https://en.wikipedia.org/wiki/Def
         <link rel="alternate" type="text/html" href="https://a5huynh.github.io/posts/2017/text-analysis-of-bills/"/>
         <id>https://a5huynh.github.io/posts/2017/text-analysis-of-bills/</id>
         
-        <summary type="html">&lt;p&gt;As a fun side project, I&#39;ve been &lt;a href=&quot;https://getversed.io&quot;&gt;gathering data&lt;/a&gt; on bills that are
+        <summary type="html">&lt;p&gt;As a fun side project, I&#39;ve been &lt;a href=&quot;https://web.archive.org/web/20200812114731/https://getversed.io/&quot;&gt;gathering data&lt;/a&gt; on bills that are
 going through the U.S Senate. So far, the site itself is a pretty simple
 web app to display bill status information in an easier to digest format.
 This is the first step of many in my goal for an in-depth analysis of the
@@ -617,7 +617,7 @@ game nights, etc).&lt;/p&gt;</summary>
         <id>https://a5huynh.github.io/posts/2008/javascript-a-implementation/</id>
         
         <summary type="html">&lt;p&gt;So a little background on my implementation (feel free to skip this)....&lt;/p&gt;
-&lt;p&gt;In my freshman year at UCSD I was recruited by &lt;a href=&quot;http://cses.ucsd.edu&quot;&gt;CSES&lt;/a&gt;
+&lt;p&gt;In my freshman year at UCSD I was recruited by &lt;a href=&quot;https://web.archive.org/web/20230607104546/https://cses.ucsd.edu/&quot;&gt;CSES&lt;/a&gt;
 to work on a small game project. It was supposed to be generic enough so
 that the frontend (my game engine) could connect to a back-end that could
 be written in any language as long as it conformed to a set of standards we
