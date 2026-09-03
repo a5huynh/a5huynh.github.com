@@ -8,23 +8,25 @@
   
 <meta name="title" content="TBT: Planet Rendering" />
 <meta name="description" content="&lt;p&gt;Many moons ago, I worked on a college project that required procedurally
-generating a &amp;quot;realistic&amp;quot; planet in 3D space. The original implementation created
-a mesh in the form of the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;UV_mapping&quot;&gt;UV sphere&lt;&#x2F;a&gt;
-and then applied a &lt;a href=&quot;http:&#x2F;&#x2F;www.lighthouse3d.com&#x2F;opengl&#x2F;terrain&#x2F;index.php?particle&quot;&gt;particle deposition&lt;&#x2F;a&gt; to create the terrain.&lt;&#x2F;p&gt;
-" />
+generating a &quot;realistic&quot; planet in 3D space. The original implementation created
+a mesh in the form of the &lt;a href=&quot;https://en.wikipedia.org/wiki/UV_mapping&quot;&gt;UV sphere&lt;/a&gt;
+and then applied a &lt;a href=&quot;http://www.lighthouse3d.com/opengl/terrain/index.php?particle&quot;&gt;particle deposition&lt;/a&gt; to create the terrain.&lt;/p&gt;" />
 
 <meta property="og:title" content="TBT: Planet Rendering" />
 <meta property="og:description" content="&lt;p&gt;Many moons ago, I worked on a college project that required procedurally
-generating a &amp;quot;realistic&amp;quot; planet in 3D space. The original implementation created
-a mesh in the form of the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;UV_mapping&quot;&gt;UV sphere&lt;&#x2F;a&gt;
-and then applied a &lt;a href=&quot;http:&#x2F;&#x2F;www.lighthouse3d.com&#x2F;opengl&#x2F;terrain&#x2F;index.php?particle&quot;&gt;particle deposition&lt;&#x2F;a&gt; to create the terrain.&lt;&#x2F;p&gt;
-" />
+generating a &quot;realistic&quot; planet in 3D space. The original implementation created
+a mesh in the form of the &lt;a href=&quot;https://en.wikipedia.org/wiki/UV_mapping&quot;&gt;UV sphere&lt;/a&gt;
+and then applied a &lt;a href=&quot;http://www.lighthouse3d.com/opengl/terrain/index.php?particle&quot;&gt;particle deposition&lt;/a&gt; to create the terrain.&lt;/p&gt;" />
 <meta property="og:type" content="website" />
 
 
   <title>TBT: Planet Rendering</title>
-  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon/favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
   </head>
 <body>
@@ -60,7 +62,7 @@ and then applied a &lt;a href=&quot;http:&#x2F;&#x2F;www.lighthouse3d.com&#x2F;o
   <h1>TBT: Planet Rendering</h1>
   <p class='meta'>
     2017 May 18 - San Francisco |
-    <span>1058 words</span>
+    <span>728 words</span>
   </p>
   
   
@@ -88,7 +90,7 @@ and then applied a &lt;a href=&quot;http:&#x2F;&#x2F;www.lighthouse3d.com&#x2F;o
 
   <div class='post'>
     <p>Many moons ago, I worked on a college project that required procedurally
-generating a &quot;realistic&quot; planet in 3D space. The original implementation created
+generating a "realistic" planet in 3D space. The original implementation created
 a mesh in the form of the <a href="https://en.wikipedia.org/wiki/UV_mapping">UV sphere</a>
 and then applied a <a href="http://www.lighthouse3d.com/opengl/terrain/index.php?particle">particle deposition</a> to create the terrain.</p>
 <span id="continue-reading"></span>
@@ -105,33 +107,32 @@ and WebGL with <a href="https://www.typescriptlang.org">Typescript</a> and
 below) to generate a UV sphere is relatively compact and easy to follow
 making for a quick implementation and allowing us to focus on the terrain
 generation and animation used in the project.</p>
-<pre data-linenos data-lang="javascript" style="background-color:#272822;color:#f8f8f2;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><table><tbody><tr><td>1</td><td><span>    </span><span style="color:#75715e;">// Columns
-</span></td></tr><tr><td>2</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">var </span><span>gamma </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0.0</span><span>;
-</span></td></tr><tr><td>3</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">var </span><span>gammaStep </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">2 </span><span style="color:#f92672;">* </span><span style="color:#66d9ef;">Math</span><span>.</span><span style="color:#66d9ef;">PI </span><span style="color:#f92672;">/ </span><span>numFaces;
-</span></td></tr><tr><td>4</td><td><span>
-</span></td></tr><tr><td>5</td><td><span>    </span><span style="color:#75715e;">// Rows
-</span></td></tr><tr><td>6</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">var </span><span>theta </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0.0</span><span>;
-</span></td></tr><tr><td>7</td><td><span>    </span><span style="font-style:italic;color:#66d9ef;">var </span><span>thetaStep </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span>.</span><span style="color:#66d9ef;">PI </span><span style="color:#f92672;">/ </span><span>numFaces;
-</span></td></tr><tr><td>8</td><td><span>
-</span></td></tr><tr><td>9</td><td><span>    </span><span style="color:#75715e;">// Loop through each row &amp; col in spherical coordinates.
-</span></td></tr><tr><td>10</td><td><span>    </span><span style="color:#75715e;">//
-</span></td></tr><tr><td>11</td><td><span>    </span><span style="color:#75715e;">// Note: numPoints = numFaces + 1. You need n + 1 points to
-</span></td></tr><tr><td>12</td><td><span>    </span><span style="color:#75715e;">// represent n faces.
-</span></td></tr><tr><td>13</td><td><span>    </span><span style="color:#f92672;">for</span><span>(</span><span style="font-style:italic;color:#66d9ef;">var </span><span>row </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span>; row </span><span style="color:#f92672;">&lt; </span><span>numPoints; row</span><span style="color:#f92672;">++</span><span>) {
-</span></td></tr><tr><td>14</td><td><span>        gamma </span><span style="color:#f92672;">= </span><span>row </span><span style="color:#f92672;">* </span><span>gammaStep;
-</span></td></tr><tr><td>15</td><td><span>        </span><span style="color:#f92672;">for</span><span>(</span><span style="font-style:italic;color:#66d9ef;">var </span><span>col </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span>; col </span><span style="color:#f92672;">&lt; </span><span>numPoints; col</span><span style="color:#f92672;">++</span><span>) {
-</span></td></tr><tr><td>16</td><td><span>            theta </span><span style="color:#f92672;">= </span><span>col </span><span style="color:#f92672;">* </span><span>thetaStep;
-</span></td></tr><tr><td>17</td><td><span>
-</span></td></tr><tr><td>18</td><td><span>            </span><span style="color:#75715e;">// Convert to cartesian coordinates
-</span></td></tr><tr><td>19</td><td><span>            </span><span style="font-style:italic;color:#66d9ef;">var </span><span>x </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span>.</span><span style="color:#66d9ef;">sin</span><span>(theta) </span><span style="color:#f92672;">* </span><span style="color:#66d9ef;">Math</span><span>.</span><span style="color:#66d9ef;">cos</span><span>(gamma);
-</span></td></tr><tr><td>20</td><td><span>            </span><span style="font-style:italic;color:#66d9ef;">var </span><span>y </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span>.</span><span style="color:#66d9ef;">cos</span><span>(theta);
-</span></td></tr><tr><td>21</td><td><span>            </span><span style="font-style:italic;color:#66d9ef;">var </span><span>z </span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">Math</span><span>.</span><span style="color:#66d9ef;">sin</span><span>(theta) </span><span style="color:#f92672;">* </span><span style="color:#66d9ef;">Math</span><span>.</span><span style="color:#66d9ef;">sin</span><span>(gamma);
-</span></td></tr><tr><td>22</td><td><span>
-</span></td></tr><tr><td>23</td><td><span>            </span><span style="font-style:italic;color:#66d9ef;">var </span><span>v </span><span style="color:#f92672;">= new </span><span>Vector3(x, y, z).</span><span style="color:#66d9ef;">normalize</span><span>();
-</span></td></tr><tr><td>24</td><td><span>            this.vertices.</span><span style="color:#66d9ef;">push</span><span>(v);
-</span></td></tr><tr><td>25</td><td><span>        }
-</span></td></tr><tr><td>26</td><td><span>    }
-</span></td></tr></tbody></table></code></pre>
+<pre class="giallo" style="color: #F8F8F2; background-color: #272822;" ><code data-lang="javascript"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 1</span><span style="color: #88846F;">    // Columns</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 2</span><span style="color: #66D9EF;font-style: italic;">    var</span><span> gamma</span><span style="color: #F92672;"> =</span><span style="color: #AE81FF;"> 0.0</span><span>;</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 3</span><span style="color: #66D9EF;font-style: italic;">    var</span><span> gammaStep</span><span style="color: #F92672;"> =</span><span style="color: #AE81FF;"> 2</span><span style="color: #F92672;"> *</span><span> Math.PI</span><span style="color: #F92672;"> /</span><span> numFaces;</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 4</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 5</span><span style="color: #88846F;">    // Rows</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 6</span><span style="color: #66D9EF;font-style: italic;">    var</span><span> theta</span><span style="color: #F92672;"> =</span><span style="color: #AE81FF;"> 0.0</span><span>;</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 7</span><span style="color: #66D9EF;font-style: italic;">    var</span><span> thetaStep</span><span style="color: #F92672;"> =</span><span> Math.PI</span><span style="color: #F92672;"> /</span><span> numFaces;</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 8</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;"> 9</span><span style="color: #88846F;">    // Loop through each row &amp; col in spherical coordinates.</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">10</span><span style="color: #88846F;">    //</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">11</span><span style="color: #88846F;">    // Note: numPoints = numFaces + 1. You need n + 1 points to</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">12</span><span style="color: #88846F;">    // represent n faces.</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">13</span><span style="color: #F92672;">    for</span><span>(</span><span style="color: #66D9EF;font-style: italic;">var</span><span> row</span><span style="color: #F92672;"> =</span><span style="color: #AE81FF;"> 0</span><span>; row</span><span style="color: #F92672;"> &lt;</span><span> numPoints; row</span><span style="color: #F92672;">++</span><span>) {</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">14</span><span>        gamma</span><span style="color: #F92672;"> =</span><span> row</span><span style="color: #F92672;"> *</span><span> gammaStep;</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">15</span><span style="color: #F92672;">        for</span><span>(</span><span style="color: #66D9EF;font-style: italic;">var</span><span> col</span><span style="color: #F92672;"> =</span><span style="color: #AE81FF;"> 0</span><span>; col</span><span style="color: #F92672;"> &lt;</span><span> numPoints; col</span><span style="color: #F92672;">++</span><span>) {</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">16</span><span>            theta</span><span style="color: #F92672;"> =</span><span> col</span><span style="color: #F92672;"> *</span><span> thetaStep;</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">17</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">18</span><span style="color: #88846F;">            // Convert to cartesian coordinates</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">19</span><span style="color: #66D9EF;font-style: italic;">            var</span><span> x</span><span style="color: #F92672;"> =</span><span> Math.</span><span style="color: #A6E22E;">sin</span><span>(theta)</span><span style="color: #F92672;"> *</span><span> Math.</span><span style="color: #A6E22E;">cos</span><span>(gamma);</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">20</span><span style="color: #66D9EF;font-style: italic;">            var</span><span> y</span><span style="color: #F92672;"> =</span><span> Math.</span><span style="color: #A6E22E;">cos</span><span>(theta);</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">21</span><span style="color: #66D9EF;font-style: italic;">            var</span><span> z</span><span style="color: #F92672;"> =</span><span> Math.</span><span style="color: #A6E22E;">sin</span><span>(theta)</span><span style="color: #F92672;"> *</span><span> Math.</span><span style="color: #A6E22E;">sin</span><span>(gamma);</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">22</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">23</span><span style="color: #66D9EF;font-style: italic;">            var</span><span> v</span><span style="color: #F92672;"> = new</span><span style="color: #A6E22E;"> Vector3</span><span>(x, y, z).</span><span style="color: #A6E22E;">normalize</span><span>();</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">24</span><span style="color: #FD971F;">            this</span><span>.vertices.</span><span style="color: #A6E22E;">push</span><span>(v);</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">25</span><span>        }</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: #90908A;">26</span><span>    }</span></span></code></pre>
 <p><em>Using latitudinal and longitudinal lines as a grid, we can loop through each
 row/column and generate points for the sphere.</em></p>
 <p>Combining the above code with some Three.js materials and lighting, we get the
@@ -153,25 +154,24 @@ around that area by randomly moving different directions adding additional
 height displacement as it goes. If we'd like, at the end of the terrain
 generation we can then apply a smoothing function on the resulting land mass to
 make it look a little less jagged.</p>
-<pre data-lang="typescript" style="background-color:#272822;color:#f8f8f2;" class="language-typescript "><code class="language-typescript" data-lang="typescript"><span>    </span><span style="color:#f92672;">for</span><span>( </span><span style="font-style:italic;color:#66d9ef;">var </span><span>i </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span>; i </span><span style="color:#f92672;">&lt; </span><span>numIslands; i</span><span style="color:#f92672;">++ </span><span>) {
-</span><span>        </span><span style="color:#75715e;">// Find a random spot on the planet to grow an island
-</span><span>        </span><span style="font-style:italic;color:#66d9ef;">var </span><span>sx </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">randomInt</span><span>( </span><span style="color:#ae81ff;">0</span><span>, width );
-</span><span>        </span><span style="font-style:italic;color:#66d9ef;">var </span><span>sy </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">randomInt</span><span>( </span><span style="color:#ae81ff;">0</span><span>, height );
-</span><span>
-</span><span>        </span><span style="color:#f92672;">for</span><span>( </span><span style="font-style:italic;color:#66d9ef;">var </span><span>itNum </span><span style="color:#f92672;">= </span><span style="color:#ae81ff;">0</span><span>; itNum </span><span style="color:#f92672;">&lt; </span><span>iterations; itNum</span><span style="color:#f92672;">++ </span><span>) {
-</span><span>            </span><span style="color:#75715e;">// Add the displacement to the current height
-</span><span>            </span><span style="color:#a6e22e;">set</span><span>( sx, sy, </span><span style="color:#a6e22e;">get</span><span>( sx, sy ) </span><span style="color:#f92672;">+ </span><span>displacement );
-</span><span>
-</span><span>            </span><span style="color:#75715e;">// Pick a direction to go next
-</span><span>            </span><span style="color:#f92672;">switch</span><span>( this.</span><span style="color:#a6e22e;">_randomInt</span><span>( </span><span style="color:#ae81ff;">0</span><span>, </span><span style="color:#ae81ff;">3 </span><span>) ) {
-</span><span>                </span><span style="color:#f92672;">case </span><span>NORTH: sx </span><span style="color:#f92672;">= </span><span>sx </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1</span><span>; </span><span style="color:#f92672;">break</span><span>;
-</span><span>                </span><span style="color:#f92672;">case </span><span>EAST:  sy </span><span style="color:#f92672;">= </span><span>sy </span><span style="color:#f92672;">+ </span><span style="color:#ae81ff;">1</span><span>; </span><span style="color:#f92672;">break</span><span>;
-</span><span>                </span><span style="color:#f92672;">case </span><span>SOUTH: sx </span><span style="color:#f92672;">= </span><span>sx </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span>; </span><span style="color:#f92672;">break</span><span>;
-</span><span>                </span><span style="color:#f92672;">case </span><span>WEST:  sy </span><span style="color:#f92672;">= </span><span>sy </span><span style="color:#f92672;">- </span><span style="color:#ae81ff;">1</span><span>; </span><span style="color:#f92672;">break</span><span>;
-</span><span>            }
-</span><span>        }
-</span><span>    }
-</span></code></pre>
+<pre class="giallo" style="color: #F8F8F2; background-color: #272822;" ><code data-lang="typescript"><span class="giallo-l"><span style="color: #F92672;">    for</span><span>(</span><span style="color: #66D9EF;font-style: italic;"> var</span><span> i</span><span style="color: #F92672;"> =</span><span style="color: #AE81FF;"> 0</span><span>; i</span><span style="color: #F92672;"> &lt;</span><span> numIslands; i</span><span style="color: #F92672;">++</span><span> ) {</span></span>
+<span class="giallo-l"><span style="color: #88846F;">        // Find a random spot on the planet to grow an island</span></span>
+<span class="giallo-l"><span style="color: #66D9EF;font-style: italic;">        var</span><span> sx</span><span style="color: #F92672;"> =</span><span style="color: #A6E22E;"> randomInt</span><span>(</span><span style="color: #AE81FF;"> 0</span><span>, width );</span></span>
+<span class="giallo-l"><span style="color: #66D9EF;font-style: italic;">        var</span><span> sy</span><span style="color: #F92672;"> =</span><span style="color: #A6E22E;"> randomInt</span><span>(</span><span style="color: #AE81FF;"> 0</span><span>, height );</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #F92672;">        for</span><span>(</span><span style="color: #66D9EF;font-style: italic;"> var</span><span> itNum</span><span style="color: #F92672;"> =</span><span style="color: #AE81FF;"> 0</span><span>; itNum</span><span style="color: #F92672;"> &lt;</span><span> iterations; itNum</span><span style="color: #F92672;">++</span><span> ) {</span></span>
+<span class="giallo-l"><span style="color: #88846F;">            // Add the displacement to the current height</span></span>
+<span class="giallo-l"><span style="color: #A6E22E;">            set</span><span>( sx, sy,</span><span style="color: #A6E22E;"> get</span><span>( sx, sy )</span><span style="color: #F92672;"> +</span><span> displacement );</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #88846F;">            // Pick a direction to go next</span></span>
+<span class="giallo-l"><span style="color: #F92672;">            switch</span><span>(</span><span style="color: #FD971F;"> this</span><span>.</span><span style="color: #A6E22E;">_randomInt</span><span>(</span><span style="color: #AE81FF;"> 0</span><span>,</span><span style="color: #AE81FF;"> 3</span><span> ) ) {</span></span>
+<span class="giallo-l"><span style="color: #F92672;">                case</span><span> NORTH: sx</span><span style="color: #F92672;"> =</span><span> sx</span><span style="color: #F92672;"> +</span><span style="color: #AE81FF;"> 1</span><span>;</span><span style="color: #F92672;"> break</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #F92672;">                case</span><span> EAST:  sy</span><span style="color: #F92672;"> =</span><span> sy</span><span style="color: #F92672;"> +</span><span style="color: #AE81FF;"> 1</span><span>;</span><span style="color: #F92672;"> break</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #F92672;">                case</span><span> SOUTH: sx</span><span style="color: #F92672;"> =</span><span> sx</span><span style="color: #F92672;"> -</span><span style="color: #AE81FF;"> 1</span><span>;</span><span style="color: #F92672;"> break</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #F92672;">                case</span><span> WEST:  sy</span><span style="color: #F92672;"> =</span><span> sy</span><span style="color: #F92672;"> -</span><span style="color: #AE81FF;"> 1</span><span>;</span><span style="color: #F92672;"> break</span><span>;</span></span>
+<span class="giallo-l"><span>            }</span></span>
+<span class="giallo-l"><span>        }</span></span>
+<span class="giallo-l"><span>    }</span></span></code></pre>
 <p><em>Note that it's possible to continue moving along a single direction,
 generating a ridge. We can box in land masses by making sure future directions are
 with <code>n</code> of the initial growth point.</em></p>

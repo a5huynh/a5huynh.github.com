@@ -7,22 +7,24 @@
 
   
 <meta name="title" content="Nets, Branches, and Pipes." />
-<meta name="description" content="&lt;p&gt;With all the talk about deep learning and neural networks, I thought it&#x27;d be
+<meta name="description" content="&lt;p&gt;With all the talk about deep learning and neural networks, I thought it&#39;d be
 fun to revisit one of my favorite applications of artificial neural networks
-(ANNs) -- &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Branch_predictor&quot; title=&quot;Branch Prediction&quot;&gt;dynamic branch prediction&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-" />
+(ANNs) -- &lt;a href=&quot;https://en.wikipedia.org/wiki/Branch_predictor&quot; title=&quot;Branch Prediction&quot;&gt;dynamic branch prediction&lt;/a&gt;.&lt;/p&gt;" />
 
 <meta property="og:title" content="Nets, Branches, and Pipes." />
-<meta property="og:description" content="&lt;p&gt;With all the talk about deep learning and neural networks, I thought it&#x27;d be
+<meta property="og:description" content="&lt;p&gt;With all the talk about deep learning and neural networks, I thought it&#39;d be
 fun to revisit one of my favorite applications of artificial neural networks
-(ANNs) -- &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Branch_predictor&quot; title=&quot;Branch Prediction&quot;&gt;dynamic branch prediction&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-" />
+(ANNs) -- &lt;a href=&quot;https://en.wikipedia.org/wiki/Branch_predictor&quot; title=&quot;Branch Prediction&quot;&gt;dynamic branch prediction&lt;/a&gt;.&lt;/p&gt;" />
 <meta property="og:type" content="website" />
 
 
   <title>Nets, Branches, and Pipes.</title>
-  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon/favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
   </head>
 <body>
@@ -58,7 +60,7 @@ fun to revisit one of my favorite applications of artificial neural networks
   <h1>Nets, Branches, and Pipes.</h1>
   <p class='meta'>
     2017 January 24 - San Francisco |
-    <span>1455 words</span>
+    <span>1495 words</span>
   </p>
   
   
@@ -156,8 +158,8 @@ concepts to branch prediction. Learning from branch prediction is
 straightforward since we know whether we made the right prediction right after
 the branch occurs.</p>
 <p>The first instance of using neural networks for branch prediction appeared
-around the year 2000, in a paper titled <a href="https://www.cs.utexas.edu/~lin/papers/hpca01.pdf" title="Dynamic Branch Prediction with Perceptrons">&quot;Dynamic Branch Prediction with
-Perceptrons&quot;</a>. It proposed a method that used perceptrons to learn
+around the year 2000, in a paper titled <a href="https://www.cs.utexas.edu/~lin/papers/hpca01.pdf" title="Dynamic Branch Prediction with Perceptrons">"Dynamic Branch Prediction with
+Perceptrons"</a>. It proposed a method that used perceptrons to learn
 the correlations behind the history of the branch and the outcome of a branch.
 The intuition is that the history of whether a branch was taken or not taken in
 the past could have bearing on whether this branch will be taken now. An
@@ -202,7 +204,7 @@ also provides a nice comparison to other techniques.</p>
 rate on all except two different benchmarks when compared to two other
 techniques, we don't really see the perceptron predictor in modern day CPUs
 despite being used in most state of the art prediction schemes. A quick search
-brought up a <a href="http://www.amd.com/en-us/press-releases/Pages/amd-takes-computing-2016dec13.aspx">press release</a> from AMD that touts &quot;Neural Net Prediction&quot;,
+brought up a <a href="http://www.amd.com/en-us/press-releases/Pages/amd-takes-computing-2016dec13.aspx">press release</a> from AMD that touts "Neural Net Prediction",
 but not much else.</p>
 <p>A major disadvantage and one that may be the biggest blocker to uptake of the
 perceptron predictor is the increased computational complexity when compared to

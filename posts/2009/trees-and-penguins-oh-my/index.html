@@ -7,18 +7,20 @@
 
   
 <meta name="title" content="Trees and Penguins, Oh My!" />
-<meta name="description" content="&lt;p&gt;Update #2 on our CSE 167 Final Project&lt;&#x2F;p&gt;
-" />
+<meta name="description" content="&lt;p&gt;Update #2 on our CSE 167 Final Project&lt;/p&gt;" />
 
 <meta property="og:title" content="Trees and Penguins, Oh My!" />
-<meta property="og:description" content="&lt;p&gt;Update #2 on our CSE 167 Final Project&lt;&#x2F;p&gt;
-" />
+<meta property="og:description" content="&lt;p&gt;Update #2 on our CSE 167 Final Project&lt;/p&gt;" />
 <meta property="og:type" content="website" />
 
 
   <title>Trees and Penguins, Oh My!</title>
-  <link rel="icon" href="&#x2F;favicon&#x2F;favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inconsolata&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon/favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href='https://a5huynh.github.io/blog.css' type="text/css">
   </head>
 <body>
@@ -53,8 +55,8 @@
 <div class='article'>
   <h1>Trees and Penguins, Oh My!</h1>
   <p class='meta'>
-    2009 December  9 - San Diego |
-    <span>374 words</span>
+    2009 December 9 - San Diego |
+    <span>388 words</span>
   </p>
   
   
@@ -84,7 +86,7 @@
     <p>Update #2 on our CSE 167 Final Project</p>
 <span id="continue-reading"></span><h2 id="trees">Trees</h2>
 <p><img src="/img/CSE167/8488720-0-Screen_shot_2009-12-09_at_12.3.png.scaled.500.jpg" alt="Trees!" /></p>
-<p>Previously I said we'd try and populate the planet with trees, and as you can see in one the screenshots this has been completed! The trees themselves are fractal trees and procedurally created ( they all look the same however, but a simple rand() call to modify branch position, etc should fix that ). The tree positions are calculated based on the planet's height map so that trees don't end up where they shouldn't be ( such as in the ocean or on top of a mountain ) and are randomly distributed across the planet's &quot;green zone&quot;. Looks quite nifty doesn't it =].</p>
+<p>Previously I said we'd try and populate the planet with trees, and as you can see in one the screenshots this has been completed! The trees themselves are fractal trees and procedurally created ( they all look the same however, but a simple rand() call to modify branch position, etc should fix that ). The tree positions are calculated based on the planet's height map so that trees don't end up where they shouldn't be ( such as in the ocean or on top of a mountain ) and are randomly distributed across the planet's "green zone". Looks quite nifty doesn't it =].</p>
 <h2 id="object-culling">Object Culling</h2>
 <p><img src="/img/CSE167/8488720-0-0Screen_shot_2009-12-09_at_12.3.png.scaled.500.jpg" alt="Hiding objects" /></p>
 <p>All in all, we have around 500 trees on screen at a time which is highly detrimental to our frame rate. To remedy this, we have two forms of culling in action at the moment. One is the normal view frustum culling, which means we simply do not render any objects that can not be seen in the view of the camera, and second is a basic form of occlusion culling. Now occlusion culling essentially means that we don't draw any objects that are being blocked by another object, which works well with our planet and trees scene. If you look at the screenshots I attached, you can see that on one of them, with the planet rendering turned off, you can see only half the trees are actually being rendered. This improves our frame rate by around 2x depending on how sparse the trees are on either side of the planet.</p>
